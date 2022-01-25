@@ -1,0 +1,29 @@
+<?php
+namespace Database\Seeders;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
+
+class UsersTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('users')->insert([
+            'username' => 'Admin01',
+            'name' => 'Admin',
+            'phone' => '0123456789',
+            'email' => 'admin@momentuminternet.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('admin12345'),
+            'role' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
+    }
+}
