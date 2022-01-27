@@ -9,8 +9,8 @@
         <div class="card">
 
           <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('program.create') }}"><i class="now-ui-icons ui-1_simple-add"></i> Program</a>
-            <h5 class="title">Product Management</h5>
+          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('product.create') }}"><i class="now-ui-icons ui-1_simple-add"></i> Product</a>
+            <h5 class="title">Program Management</h5>
           </div>
 
           <div class="card-body">
@@ -29,20 +29,20 @@
                   <tbody>
                   <!-- @php($i = 1) -->
                   <?php $i = ($data->currentpage()-1)* $data->perpage(); ?>
-                      @foreach($data as $program)
+                      @foreach($data as $product)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $program->program_name }}</td>
+                            <td style="text-transform:capitalize"></td>
                             <td>
-                              <a target="_blank" href="{{ $program->page_link }}">{{ $program->page_link }}</a>
+                              <a target="_blank" href=""></a>
                             </td>
-                            <td>{{ date('d/m/Y', strtotime($program->date_start)) }} - {{ date('d/m/Y', strtotime($program->date_end)) }}</td>
+                            <td></td>
                             <td class="td-actions ">
                               <div class="row text-right">
-                              <a type="button" href="{{ route('program.edit', $program->program_id)}}" class="btn btn-success btn-sm btn-icon">
+                              <a type="button" href="{{ route('product.edit', $product->product_id)}}" class="btn btn-success btn-sm btn-icon">
                                 <i class="now-ui-icons ui-2_settings-90"></i>
                               </a>&nbsp;
-                              <form action="{{ route('program.destroy', $program->program_id)}}" method="post">
+                              <form action="{{ route('product.destroy', $product->product_id)}}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">

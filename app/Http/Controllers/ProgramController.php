@@ -7,69 +7,98 @@ use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $data = Program::latest()->paginate(15);
+
+        return view('pages.programs.all',compact('data'))->with('i');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('pages.programs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $filename = $request->file('img_path');
+
+        ///// End Upload /////
+        $extension = $filename->getClientOriginalExtension();
+        $name_img = $filename->getClientOriginalName();
+        $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
+        $dirpath = public_path('assets/Programs/');
+        $filename->move($dirpath, $uniqe_img);
+
+        $img_path = 'assets/Programs/'.$uniqe_img;
+        ///// End Upload /////
+
+        Program::create([
+            'program_id' => request('program_id'),
+            'program_name' => request('program_name'),
+            'date_start' => request('date_start'),
+            'date_end' => request('date_end'),
+            'page_link' => request('page_link'),
+            'img_path' => $img_path,
+            'status' => request('status'),
+        ]);
+        
+        //success go to all list
+        return redirect('programs')->with('success', 'The event details is added successfully.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Program $program)
+    public function show($program_id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Program $program)
+    public function edit($program_id)
     {
-        //
+        // $program = Program::findOrFail($program_id);
+        $program = Program::where('program_id',$program_id)->first();
+
+        return view('pages.programs.edit', compact('program'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Program $program)
+    public function update(Request $request, $program_id)
     {
-        //
+        $program = Program::where('program_id',$program_id)->first();
+
+        $filename = $request->file('img_path');
+        if($filename != '')
+        {  
+            ///// End Upload /////
+            $extension = $filename->getClientOriginalExtension();
+            $name_img = $filename->getClientOriginalName();
+            $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
+            $dirpath = public_path('assets/Events/');
+            $filename->move($dirpath, $uniqe_img);
+
+            $img_path = 'assets/Events/'.$uniqe_img;
+            ///// End Upload /////
+
+            $program->program_id = $request->program_id;
+            $program->program_name = $request->program_name;
+            $program->date_start = $request->date_start;
+            $program->date_end = $request->date_end;
+            $program->page_link = $request->page_link;
+            $program->status = $request->status;
+            $program->img_path = $img_path;
+
+        } else {
+
+            $program->program_id = $request->program_id;
+            $program->program_name = $request->program_name;
+            $program->date_start = $request->date_start;
+            $program->date_end = $request->date_end;
+            $program->page_link = $request->page_link;
+            $program->status = $request->status;
+        }
+
+        $program->save();
+
+        return redirect('program/edit/'.$program_id)->with('success', 'Event details is successfully updated.');
+
     }
 
     /**
@@ -78,8 +107,11 @@ class ProgramController extends Controller
      * @param  \App\Models\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Program $program)
+    public function destroy($program_id)
     {
-        //
+        $del = Program::findOrFail($program_id);
+        $del->delete();
+
+        return redirect('programs')->with('success', 'Event is successfully deleted');
     }
 }
