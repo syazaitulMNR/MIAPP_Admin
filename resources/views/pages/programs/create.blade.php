@@ -6,10 +6,11 @@
   <div class="content">
     <div class="row">
       <div class="col-md-12">
+        
         <div class="card">
 
           <div class="card-header">
-            <h5 class="title">Create New Program</h5>
+            <h5 class="title">Create New Event</h5>
           </div>
 
           <div class="card-body">
@@ -23,7 +24,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>{{__(" Program ID")}}</label>
+                        <label>{{__(" Event ID")}}</label>
                         <input type="text" name="program_id" class="form-control" placeholder="Insert Program ID (Refer MIMS)" required>
                         @include('alerts.feedback', ['field' => 'program_id'])
                       </div>
@@ -31,7 +32,7 @@
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Program Name")}}</label>
+                      <label>{{__(" Event Name")}}</label>
                       <input type="text" name="program_name" class="form-control" placeholder="Insert Program Name" required>
                       @include('alerts.feedback', ['field' => 'program_name'])
                     </div>
@@ -70,8 +71,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Poster Image")}}</label>
-                      <button class="btn btn-primary btn-round"><i class="now-ui-icons arrows-1_cloud-upload-94"></i> {{__('Upload')}}</button>
-                      <input type="file" name="img_path" class="file-control" placeholder="Insert Program's Poster" required>
+                      <input type="file" name="img_path" class="form-control" placeholder="Insert Program's Poster" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>
@@ -88,9 +88,9 @@
                   </div>
                 </div>
 
-                <div class="card-footer">
-                  <a href="{{ route('programs') }}" class="btn btn-danger btn-round">{{__('Back')}}</a>
-                  <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
+                <div class="card-footer text-right">
+                  <a href="{{ route('programs') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
+                  <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
                 <hr class="half-rule"/>
 

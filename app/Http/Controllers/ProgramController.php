@@ -44,25 +44,25 @@ class ProgramController extends Controller
         ]);
         
         //success go to all list
-        return redirect('programs')->with('success', 'The event details is added successfully.');
+        return redirect('programs')->with('success', 'The program details is added successfully.');
     }
 
-    public function show($program_id)
+    public function show($id)
     {
         //
     }
 
-    public function edit($program_id)
+    public function edit($id)
     {
         // $program = Program::findOrFail($program_id);
-        $program = Program::where('program_id',$program_id)->first();
+        $program = Program::where('id',$id)->first();
 
         return view('pages.programs.edit', compact('program'));
     }
 
-    public function update(Request $request, $program_id)
+    public function update(Request $request, $id)
     {
-        $program = Program::where('program_id',$program_id)->first();
+        $program = Program::where('id',$id)->first();
 
         $filename = $request->file('img_path');
         if($filename != '')
@@ -71,10 +71,10 @@ class ProgramController extends Controller
             $extension = $filename->getClientOriginalExtension();
             $name_img = $filename->getClientOriginalName();
             $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
-            $dirpath = public_path('assets/Events/');
+            $dirpath = public_path('assets/Programs/');
             $filename->move($dirpath, $uniqe_img);
 
-            $img_path = 'assets/Events/'.$uniqe_img;
+            $img_path = 'assets/Programs/'.$uniqe_img;
             ///// End Upload /////
 
             $program->program_id = $request->program_id;
@@ -97,21 +97,15 @@ class ProgramController extends Controller
 
         $program->save();
 
-        return redirect('program/edit/'.$program_id)->with('success', 'Event details is successfully updated.');
+        return redirect('program/edit/'.$id)->with('success', 'Program details is successfully updated.');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Program  $program
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($program_id)
+    public function destroy($id)
     {
-        $del = Program::findOrFail($program_id);
+        $del = Program::findOrFail($id);
         $del->delete();
 
-        return redirect('programs')->with('success', 'Event is successfully deleted');
+        return redirect('programs')->with('success', 'Program is successfully deleted');
     }
 }

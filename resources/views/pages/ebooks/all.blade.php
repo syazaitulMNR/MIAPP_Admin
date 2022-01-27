@@ -6,6 +6,15 @@
   <div class="content">
     <div class="row">
       <div class="col-md-12">
+        
+        @if(session('success'))          
+          <div class="alert alert-success">
+            <button type="button" aria-hidden="true" class="close">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <span><strong>Successful!</strong> {{ session('success') }}</span>
+          </div>
+        @endif
 
         <div class="card">
           <div class="card-header">
@@ -25,7 +34,7 @@
                     <h6 class="title">{{ $book->ebook_name }}</h6>
                     <p class="card-text">{{ $book->desc }}</p>
 
-                    <div class="row mx-auto">
+                    <div class="row text-center">
                       <a type="button" target="blank" href="{{ $book->ebook_pdf}}" class="btn btn-warning btn-sm">
                           <i class="now-ui-icons education_paper"></i> PDF
                       </a>
@@ -34,7 +43,6 @@
                       </a>
                       <form action="{{ route('ebook.destroy', $book->id)}}" method="post">
                         @csrf
-                        @method('DELETE')
                         <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                           <i class="now-ui-icons ui-1_simple-remove"></i>
                         </button>

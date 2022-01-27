@@ -37,12 +37,17 @@
 
       <li class = "{{ Route::currentRouteName() == 'products' ? 'active' : '' }}">
         <a href="{{ route('products') }}">
-          <i class="now-ui-icons education_agenda-bookmark"></i>
+          <i class="now-ui-icons objects_diamond"></i>
           <p>{{ __('Product Management') }}</p>
         </a>
       </li>
 
-      
+      <li class = "{{ Route::currentRouteName() == 'offers' ? 'active' : '' }}">
+        <a href="{{ route('offers') }}">
+          <i class="now-ui-icons shopping_basket"></i>
+          <p>{{ __('Promo Management') }}</p>
+        </a>
+      </li>
 
     </ul>
   </div>

@@ -5,12 +5,23 @@
   </div>
   <div class="content">
     <div class="row">
-      <div class="col-md-12">
+    <div class="col-md-12">
+      
+      @if(session('success'))          
+        <div class="alert alert-success">
+          <button type="button" aria-hidden="true" class="close">
+              <i class="now-ui-icons ui-1_simple-remove"></i>
+          </button>
+          <span><strong>Successful!</strong> {{ session('success') }}</span>
+        </div>
+      @endif
+
+      
         <div class="card">
 
           <div class="card-header">
           <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('product.create') }}"><i class="now-ui-icons ui-1_simple-add"></i> Product</a>
-            <h5 class="title">Program Management</h5>
+            <h5 class="title">Product Management</h5>
           </div>
 
           <div class="card-body">
@@ -20,10 +31,10 @@
                 <table class="table table-hover text-center" >
                   <thead class=" text-primary">
                     <th>#</th>
+                    <th>ID</th>
                     <th>Name</th>
-                    <th>Page Link</th>
-                    <th>Date</th>
-                    <th class="text-right">Action</th>
+                    <th>Image</th>
+                    <th>Action</th>
                   </thead>
 
                   <tbody>
@@ -32,24 +43,25 @@
                       @foreach($data as $product)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize"></td>
+                            <td style="text-transform:uppercase">{{ $product->product_id }}</td>
+                            <td style="text-transform:capitalize">{{ $product->product_name }}</td>
                             <td>
-                              <a target="_blank" href=""></a>
+                              @if($product->img_path != NULL) 
+                                <img class="card-img-top" src="{{ asset($product->img_path) }}" style="max-width:120px">
+                              @else
+                                &nbsp;
+                              @endif
                             </td>
-                            <td></td>
-                            <td class="td-actions ">
-                              <div class="row text-right">
-                              <a type="button" href="{{ route('product.edit', $product->product_id)}}" class="btn btn-success btn-sm btn-icon">
+                            <td class="row text-right">
+                              <a type="button" href="{{ route('product.edit', $product->id)}}" class="btn btn-success btn-sm btn-icon">
                                 <i class="now-ui-icons ui-2_settings-90"></i>
                               </a>&nbsp;
-                              <form action="{{ route('product.destroy', $product->product_id)}}" method="post">
+                              <form action="{{ route('product.destroy', $product->id)}}" method="post">
                                 @csrf
-                                @method('DELETE')
                                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>
                               </form>
-                              </div>
                             </td>
                           </tr>
                       @endforeach

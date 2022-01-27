@@ -43,25 +43,25 @@ Route::post('ebook/delete/{id}',[ EBookController::class, 'destroy'])->name('ebo
 Route::get('programs',[ ProgramController::class, 'index'])->name('programs');
 Route::get('program/create',[ ProgramController::class, 'create'])->name('program.create');
 Route::post('program/save',[ ProgramController::class, 'store'])->name('program.save');
-Route::get('program/edit/{program_id}',[ ProgramController::class, 'edit'])->name('program.edit');
-Route::post('program/update/{program_id}',[ ProgramController::class, 'update'])->name('program.update');
-Route::post('program/delete/{program_id}',[ ProgramController::class, 'destroy'])->name('program.destroy');
+Route::get('program/edit/{id}',[ ProgramController::class, 'edit'])->name('program.edit');
+Route::post('program/update/{id}',[ ProgramController::class, 'update'])->name('program.update');
+Route::post('program/delete/{id}',[ ProgramController::class, 'destroy'])->name('program.destroy');
 
 // Product
 Route::get('products',[ ProductController::class, 'index'])->name('products');
 Route::get('product/create',[ ProductController::class, 'create'])->name('product.create');
 Route::post('product/save',[ ProductController::class, 'store'])->name('product.save');
-Route::get('product/edit/{product_id}',[ ProductController::class, 'edit'])->name('product.edit');
-Route::post('product/update/{product_id}',[ ProductController::class, 'update'])->name('product.update');
-Route::post('product/delete/{product_id}',[ ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('product/edit/{id}',[ ProductController::class, 'edit'])->name('product.edit');
+Route::post('product/update/{id}',[ ProductController::class, 'update'])->name('product.update');
+Route::post('product/delete/{id}',[ ProductController::class, 'destroy'])->name('product.destroy');
 
 // Offer
-Route::get('offers',[ OfferController::class, 'index'])->name('offers');
-Route::get('offer/create',[ OfferController::class, 'create'])->name('offer.create');
-Route::post('offer/save',[ OfferController::class, 'store'])->name('offer.save');
-Route::get('offer/edit/{offer_id}',[ OfferController::class, 'edit'])->name('offer.edit');
-Route::post('offer/update/{offer_id}',[ OfferController::class, 'update'])->name('offer.update');
-Route::post('offer/delete/{offer_id}',[ OfferController::class, 'destroy'])->name('offer.destroy');
+Route::get('promotions',[ OfferController::class, 'index'])->name('offers');
+Route::get('promotion/create',[ OfferController::class, 'create'])->name('offer.create');
+Route::post('promotion/save',[ OfferController::class, 'store'])->name('offer.save');
+Route::get('promotion/edit/{offer_id}',[ OfferController::class, 'edit'])->name('offer.edit');
+Route::post('promotion/update/{offer_id}',[ OfferController::class, 'update'])->name('offer.update');
+Route::post('promotion/delete/{offer_id}',[ OfferController::class, 'destroy'])->name('offer.destroy');
 
 // Applicable_to
 

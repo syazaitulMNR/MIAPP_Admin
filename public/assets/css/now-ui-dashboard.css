@@ -1746,8 +1746,8 @@ textarea.form-control {
     max-height: 80px;
     padding: 10px 10px 0 0;
     resize: none;
-    border: none;
-    border-bottom: 1px solid #E3E3E3;
+    /* border: 1px; */
+    border: 1px solid #E3E3E3;
     border-radius: 0;
     line-height: 2;
 }
@@ -1778,7 +1778,8 @@ textarea.form-control:active {
 }
 
 .form-group input[type=file] {
-    opacity: 0;
+    overflow:hidden;
+    /* opacity: 0;
     position: absolute;
     top: 0;
     right: 0;
@@ -1786,8 +1787,12 @@ textarea.form-control:active {
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: 100; */
 }
+
+/* .form-control[type=file] {
+    overflow:hidden
+} */
 
 .form-text {
     font-size: 0.8571em;
@@ -4656,7 +4661,7 @@ Created using IcoMoon - icomoon.io
 .card label {
     font-size: 0.8571em;
     margin-bottom: 5px;
-    color: #9A9A9A;
+    color: black;
 }
 
 .card .card-footer {
