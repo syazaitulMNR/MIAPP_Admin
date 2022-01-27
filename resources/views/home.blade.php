@@ -21,7 +21,7 @@
                 <i class="now-ui-icons loader_gear"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Action </a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Something else here</a>
                 <a class="dropdown-item text-danger" href="#">Remove Data</a>
