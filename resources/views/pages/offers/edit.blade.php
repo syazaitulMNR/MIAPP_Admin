@@ -124,17 +124,24 @@
                     </div>
                   </div>
                 </div>
-
+                
                 <div class="row">
                   <div class="col-md-12 pr-1">
-                    <div class="form-group">
-                      <label>{{__(" Applicable To (Select Product/Event)")}} <span class="text-danger">*</span></label>
-                      <select class="form-control" name="" >
-                        <option value="">Please select..</option>
-                        <option value="Disactive">Disactive</option>
+                      <label>Applicable To (Select Multiple Product/Event)</label>
+                      <div class="row">
+                        @foreach($apply as $data)
+                          @foreach($product as $products)
+                            @if ($products->id == $data->product_id)
+                              <button class="btn btn-primary btn-outline-primary">{{ $products -> product_name }}</button> &nbsp;
+                            @endif
+                          @endforeach
+                        @endforeach
+                      </div>
+                      <select name="product[]" class="form-control select-tag" multiple>
+                        @foreach($product as $tag)
+                          <option value="{{$tag->id}}" {{in_array($tag->id, old("tags") ?: []) ? "selected": ""}}>{{$tag->product_name}}</option>
+                        @endforeach
                       </select>
-                      @include('alerts.feedback', ['field' => ''])
-                    </div>
                   </div>
                 </div>
 
@@ -148,9 +155,9 @@
                   </div>
                 </div>
     
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <a href="{{ route('offers') }}" class="btn btn-danger btn-round">{{__('Back')}}</a>
-                  <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
+                  <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
                 <hr class="half-rule"/>
 

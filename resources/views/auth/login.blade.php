@@ -29,10 +29,8 @@
             <form role="form" method="POST" action="{{ route('login') }}">
                 @csrf
             <div class="card card-login card-plain">
-                <div class="card-header ">
-                <div class="logo-container">
-                    <img src="{{ asset('assets/img/now-logo.png') }}" alt="">
-                </div>
+                <div class="card-header text-center">
+                    <img src="{{ asset('assets/img/icon_1.png') }}" style="max-width:50%" alt="">
                 </div>
                 <div class="card-body ">
                 <div class="input-group no-border form-control-lg {{ $errors->has('email') ? ' has-danger' : '' }}">
@@ -63,17 +61,7 @@
                 @endif
                 </div>
                 <div class="card-footer ">
-                <button  type = "submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">{{ __('Get Started') }}</button>
-                <div class="pull-left">
-                    <h6>
-                    <a href="{{ route('register') }}" class="link footer-link">{{ __('Create Account') }}</a>
-                    </h6>
-                </div>
-                <div class="pull-right">
-                    <h6>
-                    <a href="{{ route('password.request') }}" class="link footer-link">{{ __('Forgot Password?') }}</a>
-                    </h6>                
-                </div>
+                    <button  type = "submit" class="btn btn-primary btn-round btn-lg btn-block mb-3">{{ __('Get Started') }}</button>
                 </div>
             </div>
             </form>

@@ -10,7 +10,7 @@ class ApplicableTo extends Model
     use HasFactory;
 
     
-    protected $table = 'applicable_to';
+    protected $table = 'applicable_to_';
 
     protected $fillable = [
         'product_id',

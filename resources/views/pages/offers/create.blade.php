@@ -111,24 +111,15 @@
                   </div>
                 </div>
 
-                <label for="name">Tags</label>
-                <select name="product[]" class="form-control select-tag" multiple>
-                  @foreach($product as $tag)
-                    <option value="{{$tag->id}}" {{in_array($tag->id, old("tags") ?: []) ? "selected": ""}}>{{$tag->product_name}}</option>
-                  @endforeach
-                </select>
-
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Applicable To (Select Product/Event)")}} <span class="text-danger">*</span></label>
-                      <select class="form-control" name="" style="text-transform: capitalize">
-                        <option value="">Please select..</option>
-                        @foreach($product as $data)
-                          <option value="{{ $data->id }}">{{ $data->product_name}}</option>
+                      <label>Applicable To (Select Multiple Product/Event)</label>
+                      <select name="product[]" class="form-control select-tag" multiple>
+                        @foreach($product as $tag)
+                          <option value="{{$tag->id}}" {{in_array($tag->id, old("tags") ?: []) ? "selected": ""}}>{{$tag->product_name}}</option>
                         @endforeach
                       </select>
-                      @include('alerts.feedback', ['field' => ''])
                     </div>
                   </div>
                 </div>
@@ -143,9 +134,9 @@
                   </div>
                 </div>
     
-                <div class="card-footer">
+                <div class="card-footer text-right">
                   <a href="{{ route('offers') }}" class="btn btn-danger btn-round">{{__('Back')}}</a>
-                  <button type="submit" class="btn btn-primary btn-round">{{__('Save')}}</button>
+                  <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
                 <hr class="half-rule"/>
 

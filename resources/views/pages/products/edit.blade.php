@@ -72,7 +72,7 @@
                     </div>
 
                     <div class="card-footer text-right">
-                      <a href="{{ route('programs') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
+                      <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
                       <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                     </div>
 

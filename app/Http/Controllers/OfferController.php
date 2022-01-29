@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\ApplicableTo;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -26,10 +27,9 @@ class OfferController extends Controller
     {
         $input = $request->all();
         $hobby = $input['product'];
-        $input['product'] = implode(',', $hobby);
+        $count_owner = count($hobby);
 
-        dd($input['product']);
-
+        // dd($count_owner);
 
         $filename = $request->file('img_path');
 
@@ -43,7 +43,7 @@ class OfferController extends Controller
         $img_path = 'assets/Offers/'.$uniqe_img;
         ///// End Upload /////
 
-        Offer::create([
+        $new = Offer::create([
             'offer_id' => request('offer_id'),
             'offer_name' => request('offer_name'),
             'desc' => request('desc'),
@@ -55,6 +55,17 @@ class OfferController extends Controller
             'promo_code' => request('promo_code'),
             'status' => request('status'),
         ]);
+
+        $newId = $new->id;
+
+        for($i=0; $i<$count_owner; $i++) {
+
+            ApplicableTo::create([
+                'product_id' => $input['product'][$i],
+                'offer_id' => $newId,
+            ]);
+
+        }
         
         //success go to all list
         return redirect('promotions')->with('success', 'The promotion details is added successfully.');
@@ -68,13 +79,27 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::where('id',$id)->first();
+        $apply = ApplicableTo::where('offer_id',$id)->get();
+        $product = Product::all();
 
-        return view('pages.offers.edit', compact('offer'));
+        // foreach ($apply as $applys){
+        //     $product = Product::where('id',$applys->product_id)->first();
+        // }
+
+        // echo $product."<br>";
+        // dd($product);
+
+        // $new_package = $request->session()->get('ticket');
+        
+        // dd($apply);
+
+        return view('pages.offers.edit', compact('offer', 'apply', 'product'));
     }
 
     public function update(Request $request, $id)
     {
         $offer = Offer::where('id',$id)->first();
+        $apply = ApplicableTo::where('offer_id',$id)->get();
 
         $filename = $request->file('img_path');
         if($filename != '')
