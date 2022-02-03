@@ -25,5 +25,17 @@ class UsersTableSeeder extends Seeder
             'created_at' => now(),
             'updated_at' => now()
         ]);
+
+        DB::table('users')->insert([
+            'username' => 'Admin02',
+            'name' => 'Admin2',
+            'phone' => '01234567890',
+            'email' => 'admin2@momentuminternet.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('admin12345678'),
+            'role' => 'admin',
+            'created_at' => now(),
+            'updated_at' => now()
+        ]);
     }
 }
