@@ -44,7 +44,13 @@
                       @foreach($data as $offer)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $offer->offer_name }}</td>
+                            <td style="text-transform:capitalize">{{ $offer->offer_name }} &nbsp;
+                              @if($offer->status == 'Active')
+                              <a class="btn btn-success btn-sm btn-round btn-icon"></a>
+                              @else
+                                <a class="btn btn-default btn-sm btn-icon btn-round"></a>
+                              @endif
+                            </td>
                             <td>{{ date('d/m/Y', strtotime($offer->valid_until)) }}</td>
                             <td>
                               <a target="_blank" href="{{ $offer->onpay_link }}">{{ $offer->onpay_link }}</a>

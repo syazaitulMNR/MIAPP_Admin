@@ -118,32 +118,33 @@
                       <label>{{__(" Status")}} <span class="text-danger">*</span></label>
                       <select class="form-control" name="status" required>
                         <option value="Active" {{ $offer->status == 'Active' ? 'selected' : '' }} >Active</option>
-                        <option value="Disactive" {{ $offer->status == 'Disactive' ? 'selected' : '' }} >Disactive</option>
+                        <option value="Deactive" {{ $offer->status == 'Deactive' ? 'selected' : '' }} >Deactive</option>
                       </select>
                       @include('alerts.feedback', ['field' => 'status'])
                     </div>
                   </div>
                 </div>
                 
-                <div class="row">
+                <div class="row" style="text-transform: capitalize;">
                   <div class="col-md-12 pr-1">
-                      <label>Applicable To (Select Multiple Product/Event)</label>
-                      <div class="row">
-                        @foreach($apply as $data)
-                          @foreach($product as $products)
-                            @if ($products->id == $data->product_id)
-                              <button class="btn btn-primary btn-outline-primary">{{ $products -> product_name }}</button> &nbsp;
-                            @endif
-                          @endforeach
+                    <label>Applicable To (Select Multiple Product/Event)</label>
+                    <div class="row">
+                      @foreach($apply as $data)
+                        @foreach($product as $products)
+                          @if ($products->id == $data->product_id)
+                            <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
+                          @endif
                         @endforeach
+                      @endforeach
+                    </div>
+                    @foreach ($product as $tag)
+                      <div class="checkbox checkbox-info checkbox-inline">
+                        <input class="age_group_checkbox" type="checkbox" value="{{$tag->id}}" name="product[]" @foreach ($apply as $ids) @if($tag->id == $ids->product_id ) checked @endif @endforeach />
+                        <label>{{$tag->product_name}}</label>
                       </div>
-                      <select name="product[]" class="form-control select-tag" multiple>
-                        @foreach($product as $tag)
-                          <option value="{{$tag->id}}" {{in_array($tag->id, old("tags") ?: []) ? "selected": ""}}>{{$tag->product_name}}</option>
-                        @endforeach
-                      </select>
-                  </div>
+                    @endforeach
                 </div>
+              </div>
 
                 <div class="row">
                   <div class="col-md-12 pr-1">

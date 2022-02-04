@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\EBookController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
@@ -63,7 +64,10 @@ Route::get('promotion/edit/{offer_id}',[ OfferController::class, 'edit'])->name(
 Route::post('promotion/update/{offer_id}',[ OfferController::class, 'update'])->name('offer.update');
 Route::post('promotion/delete/{offer_id}',[ OfferController::class, 'destroy'])->name('offer.destroy');
 
-// Applicable_to
+// User
+Route::get('users',[ UserController::class, 'index'])->name('users');
+Route::get('user/view/{id}',[ UserController::class, 'view'])->name('user.view');
+
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('user', 'App\Http\Controllers\UserController', ['except' => ['show']]);

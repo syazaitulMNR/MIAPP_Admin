@@ -23,4 +23,10 @@ class Offer extends Model
         'promo_code',
         'status'
     ];
+
+    //Has FK in applicable_to
+    public function offer()
+    {
+        return $this->hasMany('App\Models\ApplicableTo');
+    }
 }

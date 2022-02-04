@@ -3,19 +3,27 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\OfferHistory;
+use App\Models\Offer;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the users
-     *
-     * @param  \App\Models\User  $model
-     * @return \Illuminate\View\View
-     */
-    public function index(User $model)
+    public function index()
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        $data = User::where('role', 'user')->latest()->paginate(15);
+
+        return view('pages.users.all',compact('data'))->with('i');
+    }
+
+    public function view($id)
+    {
+        // $program = Program::findOrFail($program_id);
+        $user = User::where('id',$id)->first();
+        $userOffer = OfferHistory::where('user_id',$id)->get();
+        $offers = Offer::all();
+
+        return view('pages.users.view', compact('user', 'userOffer', 'offers'))->with('i');
     }
 }

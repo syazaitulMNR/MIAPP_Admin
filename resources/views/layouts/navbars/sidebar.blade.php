@@ -49,6 +49,13 @@
         </a>
       </li>
 
+      <li class = "{{ Route::currentRouteName() == 'users' ? 'active' : '' }}">
+        <a href="{{ route('users') }}">
+          <i class="now-ui-icons users_single-02"></i>
+          <p>{{ __('User Management') }}</p>
+        </a>
+      </li>
+
     </ul>
   </div>
 

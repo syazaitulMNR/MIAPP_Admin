@@ -17,4 +17,10 @@ class Product extends Model
         'img_path',
         'desc'
     ];
+
+    //Has FK in applicable_to
+    public function product()
+    {
+        return $this->hasMany('App\Models\ApplicableTo');
+    }
 }
