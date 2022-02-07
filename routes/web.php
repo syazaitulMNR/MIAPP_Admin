@@ -22,7 +22,7 @@ use App\Http\Controllers\ApplicableToController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 // Auth::routes();

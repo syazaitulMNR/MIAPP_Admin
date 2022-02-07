@@ -19,8 +19,12 @@ class Product extends Model
     ];
 
     //Has FK in applicable_to
-    public function product()
-    {
-        return $this->hasMany('App\Models\ApplicableTo');
-    }
+    // public function product()
+    // {
+    //     return $this->hasMany('App\Models\ApplicableTo');
+    // }
+
+    public function offers(){
+        return $this->belongsToMany(Offer::class);
+     }
 }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class EBookController extends Controller
 {
+    
     public function index()
     {
         $data = EBook::latest()->paginate(15);

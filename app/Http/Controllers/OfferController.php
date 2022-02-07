@@ -86,10 +86,9 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::where('id',$id)->first();
-        // $apply = ApplicableTo::where('offer_id',$id)->get();
+        $apply = ApplicableTo::where('offer_id',$id)->get();
         $product = Product::all();
         // $apply = $offer->offer()->where('id',$id)->get();
-        dd($offer->offer()->where('id',$id));
 
         return view('pages.offers.edit', compact('offer', 'apply', 'product'));
     }
@@ -100,9 +99,14 @@ class OfferController extends Controller
         $apply = ApplicableTo::where('offer_id',$id)->get();
         $product = Product::all();
 
-        $input = $request->all();
-        $plist = $input['product'];
-        $count_owner = count($plist);
+        dd($request->product);
+
+        $apply->products()->sync($request->product, false);
+
+        // $input = $request->all();
+        // $plist = $input['product'];
+        // $count_owner = count($plist);
+        // dd($plist);
 
         // <td class="text-center"><input type="checkbox" name="status[{{ $banner->id }}]" 
         //  @if($banner->is_checked) checked @endif ></td>
@@ -114,13 +118,13 @@ class OfferController extends Controller
         //     $banner->save();
         // }
         // dd($request->product);
-        dd($apply->product());
+        // dd($apply->product());
 
-        if(is_array($plist)) {
-            foreach($request->product as $newlist) {
-                $apply->product()->sync($request->product);
-            }
-        }
+        // if(is_array($plist)) {
+        //     foreach($request->product as $newlist) {
+        //         $apply->product()->sync($request->product);
+        //     }
+        // }
 
         // foreach($apply as $applicable) {
         //     for($i=0; $i<$count_owner; $i++) {
