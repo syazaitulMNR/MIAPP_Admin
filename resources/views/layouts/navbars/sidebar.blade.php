@@ -14,8 +14,8 @@
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
 
-      <li class="">
-        <a href="">
+      <li class= "{{ Route::currentRouteName() == 'home' ? 'active' : '' }}">
+        <a href="{{ route('home') }}">
           <i class="now-ui-icons design_app"></i>
           <p>{{ __('Dashboard') }}</p>
         </a>

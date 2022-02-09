@@ -17,11 +17,11 @@ class ApplicableTo extends Model
         'program_id'
     ];
 
-    //get PK from Offer
-    public function applyOffer()
-	{
- 		return $this->belongsToMany('App\Models\Offer');
-	}
+    // //get PK from Offer
+    // public function applyOffer()
+	// {
+ 	// 	return $this->belongsToMany('App\Models\Offer');
+	// }
 
     //get PK from Product
     public function applyProduct()
