@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\Product;
+use App\Models\Program;
 use App\Models\ApplicableTo;
 use Illuminate\Http\Request;
 
@@ -26,11 +27,8 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
-        $plist = $input['product'];
-        $count_owner = count($plist);
-
-        // dd($count_owner);
-
+        $productlist = $input['product'];
+        $count_owner = count($productlist);
         $filename = $request->file('img_path');
 
         ///// End Upload /////
@@ -76,103 +74,50 @@ class OfferController extends Controller
         //
     }
 
-//     public function editexample($id)
-// {
-//   $role = Role::where('id', $id)->with('permissions')->first();
-//   $permissions = Permission::all();
-//   return view('admin.manage.roles.edit')->withRole($role)->withPermissions($permissions);
-// }
-
     public function edit($id)
     {
-        $offer = Offer::where('id',$id)->first();
-        // $apply = ApplicableTo::where('offer_id',$id)->get();
+        $offer = Offer::findOrFail($id);
+        $apply = ApplicableTo::where('offer_id',$id)->get();
         $product = Product::all();
-        // $apply = $offer->offer()->where('id',$id)->get();
-        dd($offer->offer()->where('id',$id));
+        $program = Program::all();
 
-        return view('pages.offers.edit', compact('offer', 'apply', 'product'));
+        return view('pages.offers.edit', compact('offer', 'product', 'apply', 'program'));
     }
 
     public function update(Request $request, $id)
     {
         $offer = Offer::where('id',$id)->first();
-        $apply = ApplicableTo::where('offer_id',$id)->get();
-        $product = Product::all();
-
         $input = $request->all();
-        $plist = $input['product'];
-        $count_owner = count($plist);
-
-        // <td class="text-center"><input type="checkbox" name="status[{{ $banner->id }}]" 
-        //  @if($banner->is_checked) checked @endif ></td>
-
-        // $banners = $user->banners()->get();
-       
-        // foreach($banners as $banner) {
-        //     $banner->is_checked = $request->has('status.' . $banner->id);
-        //     $banner->save();
-        // }
-        // dd($request->product);
-        dd($apply->product());
-
-        if(is_array($plist)) {
-            foreach($request->product as $newlist) {
-                $apply->product()->sync($request->product);
-            }
-        }
-
-        // foreach($apply as $applicable) {
-        //     for($i=0; $i<$count_owner; $i++) {
-        //     // $applicable->product_id = $request->has('product.' . $applicable->id);
-            
-        //     dd($input['product'][$i]);
-        //     $applicable->product_id=$plist;
-        //     $applicable->save();
-        //     }
-        // }       
-
+        $productlist = $input['product']; 
+        $programlist = $input['program']; 
         $filename = $request->file('img_path');
+        $offer->offer_id = $request->offer_id;
+        $offer->offer_name = $request->offer_name;
+        $offer->desc = $request->desc;
+        $offer->type = $request->type;
+        $offer->tnc = $request->tnc;
+        $offer->valid_until = $request->valid_until;
+        $offer->onpay_link = $request->onpay_link;
+        $offer->promo_code = $request->promo_code;
+        $offer->status = $request->status;
+
         if($filename != '')
         {  
-            ///// End Upload /////
             $extension = $filename->getClientOriginalExtension();
             $name_img = $filename->getClientOriginalName();
             $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
             $dirpath = public_path('assets/Offers/');
             $filename->move($dirpath, $uniqe_img);
-
             $img_path = 'assets/Offers/'.$uniqe_img;
-            ///// End Upload /////
-
-            $offer->offer_id = $request->offer_id;
-            $offer->offer_name = $request->offer_name;
-            $offer->desc = $request->desc;
-            $offer->type = $request->type;
-            $offer->tnc = $request->tnc;
-            $offer->valid_until = $request->valid_until;
-            $offer->onpay_link = $request->onpay_link;
-            $offer->promo_code = $request->promo_code;
-            $offer->status = $request->status;
             $offer->img_path = $img_path;
-
         } else {
-
-            $offer->offer_id = $request->offer_id;
-            $offer->offer_name = $request->offer_name;
-            $offer->desc = $request->desc;
-            $offer->type = $request->type;
-            $offer->tnc = $request->tnc;
-            $offer->valid_until = $request->valid_until;
-            $offer->onpay_link = $request->onpay_link;
-            $offer->promo_code = $request->promo_code;
-            $offer->status = $request->status;
         }
-
+        
+        $offer->products()->programs()->sync($productlist,$programlist);
+        // $offer->programs()->sync($programlist);
         $offer->save();
 
         return redirect('promotion/edit/'.$id)->with('success', 'Promotion details is successfully updated.');
-
     }
 
     public function destroy($id)

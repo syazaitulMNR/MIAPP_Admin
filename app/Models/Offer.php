@@ -25,8 +25,18 @@ class Offer extends Model
     ];
 
     //Has FK in applicable_to
-    public function offer()
+    public function products()
     {
-        return $this->hasMany('App\Models\ApplicableTo');
+        return $this->belongsToMany(Product::class)->withTimestamps();
     }
+
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class)->withTimestamps();
+    }
+
+    // public function offer()
+    // {
+    //     return $this->hasMany('App\Models\ApplicableTo');
+    // }
 }

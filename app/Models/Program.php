@@ -20,4 +20,9 @@ class Program extends Model
         'img_path',
         'status'
     ];
+
+    public function offers()
+    {
+        return $this->belongsToMany(Offer::class)->withTimestamps();
+    }
 }
