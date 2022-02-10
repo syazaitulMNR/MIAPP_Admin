@@ -151,7 +151,7 @@
                   <label>Applicable To (Select Multiple Event)</label>
                   @foreach ($program as $programs)
                   <div class="checkbox checkbox-info checkbox-inline">
-                    <input class="age_group_checkbox" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($apply as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
+                    <input class="age_group_checkbox" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($applyProgram as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
                     <label>{{$programs->program_name}}</label>
                   </div>
                 @endforeach

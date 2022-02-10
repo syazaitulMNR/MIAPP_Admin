@@ -9,12 +9,11 @@ class ApplicableTo extends Model
 {
     use HasFactory;
 
-    protected $table = 'offer_product_program';
+    protected $table = 'offer_product';
 
     protected $fillable = [
         'product_id',
-        'offer_id',
-        'program_id'
+        'offer_id'      
     ];
 
     // //get PK from Offer
@@ -24,13 +23,13 @@ class ApplicableTo extends Model
 	// }
 
     //get PK from Product
-    public function applyProduct()
-	{
- 		return $this->belongsToMany('App\Models\Product');
-	}
+    // public function applyProduct()
+	// {
+ 	// 	return $this->belongsToMany('App\Models\Product');
+	// }
 
-    public function applyProgram()
-	{
- 		return $this->belongsToMany('App\Models\Program');
-	}
+    // public function applyProgram()
+	// {
+ 	// 	return $this->belongsToMany('App\Models\Program');
+	// }
 }

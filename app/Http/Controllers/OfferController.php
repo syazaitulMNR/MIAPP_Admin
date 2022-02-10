@@ -6,6 +6,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\Program;
 use App\Models\ApplicableTo;
+use App\Models\OfferProgram;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
@@ -78,18 +79,17 @@ class OfferController extends Controller
     {
         $offer = Offer::findOrFail($id);
         $apply = ApplicableTo::where('offer_id',$id)->get();
+        $applyProgram = OfferProgram::where('offer_id',$id)->get();
         $product = Product::all();
         $program = Program::all();
 
-        return view('pages.offers.edit', compact('offer', 'product', 'apply', 'program'));
+        return view('pages.offers.edit', compact('offer', 'product', 'apply', 'applyProgram', 'program'));
     }
 
     public function update(Request $request, $id)
     {
         $offer = Offer::where('id',$id)->first();
         $input = $request->all();
-        $productlist = $input['product']; 
-        $programlist = $input['program']; 
         $filename = $request->file('img_path');
         $offer->offer_id = $request->offer_id;
         $offer->offer_name = $request->offer_name;
@@ -110,11 +110,42 @@ class OfferController extends Controller
             $filename->move($dirpath, $uniqe_img);
             $img_path = 'assets/Offers/'.$uniqe_img;
             $offer->img_path = $img_path;
-        } else {
         }
-        
-        $offer->products()->programs()->sync($productlist,$programlist);
-        // $offer->programs()->sync($programlist);
+
+        if(empty($input['product']) && empty($input['program']) )
+        {
+            $offer->programs()->detach();
+            $offer->products()->detach();
+        } elseif(empty($input['program'])) {
+            // dd('john');
+            $productlist = $input['product'];
+            $offer->products()->sync($productlist); 
+            $offer->programs()->detach();
+        } elseif(empty($input['product'])) {
+            // dd('john');
+            $productlist = $input['program'];
+            $offer->programs()->sync($productlist); 
+            $offer->products()->detach();
+        } else {
+            $productlist = $input['product'];
+            $programlist = $input['program'];
+            
+            $offer->products()->sync($productlist);
+            $offer->programs()->sync($programlist);
+        }
+        // dd($input );
+        // $productlist = $input['product']; 
+        // $programlist = $input['program']; 
+
+        // if($productlist == '') {
+        //     $offer->programs()->sync($programlist);
+        // } elseif($programlist == '') {
+        //     $offer->products()->sync($productlist);
+        // } else {
+        //     $offer->programs()->sync($programlist);
+        //     $offer->products()->sync($productlist);
+        // }
+
         $offer->save();
 
         return redirect('promotion/edit/'.$id)->with('success', 'Promotion details is successfully updated.');

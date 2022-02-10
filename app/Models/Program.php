@@ -21,8 +21,19 @@ class Program extends Model
         'status'
     ];
 
-    public function offers()
-    {
-        return $this->belongsToMany(Offer::class)->withTimestamps();
-    }
+    // public function offers()
+    // {
+    //     return $this->belongsToMany(Offer::class)->withTimestamps();
+    // }
+
+    // public function offers()
+    // {
+    //     return $this->hasMany(Offer::class, 'program_id', 'id');
+    // }
+
+     //Has FK in applicable_to
+     public function offerProgram()
+     {
+         return $this->belongsToMany(Offer::class)->withTimestamps();
+     }
 }
