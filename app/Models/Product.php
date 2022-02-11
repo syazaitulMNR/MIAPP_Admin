@@ -18,12 +18,7 @@ class Product extends Model
         'desc'
     ];
 
-    //Has FK in applicable_to
-    // public function product()
-    // {
-    //     return $this->hasMany('App\Models\ApplicableTo');
-    // }
-
+    //bridge with offer
     public function offers(){
         return $this->belongsToMany(Offer::class);
      }

@@ -45,4 +45,15 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //has FK at Offer_HistoryhasMany
+    public function historyUser()
+    {
+        return $this->hasMany(OfferHistory::class);
+    }
+
+    public function historyOffer()
+    {
+        return $this->belongsTo(OfferHistory::class);
+    }
 }

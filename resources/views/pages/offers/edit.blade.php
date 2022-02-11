@@ -137,11 +137,13 @@
                         @endforeach
                       @endforeach
                     </div>
+                    <select class="form-control" name="product[]" multiple>
                     @foreach ($product as $tag)
-                      <div class="checkbox checkbox-info checkbox-inline">
+                      <option value="{{$tag->id}}" @foreach ($apply as $ids) @if($tag->id == $ids->product_id){{ $tag->id == $ids->product_id ? 'selected' : '' }} @endif @endforeach >{{$tag->product_name}}</option>
+                      <!-- <div class="checkbox checkbox-info checkbox-inline">
                         <input class="age_group_checkbox" type="checkbox" value="{{$tag->id}}" name="product[]" @foreach ($apply as $ids) @if($tag->id == $ids->product_id ) checked @endif @endforeach />
                         <label>{{$tag->product_name}}</label>
-                      </div>
+                      </div> -->
                     @endforeach
                 </div>
               </div>

@@ -15,4 +15,16 @@ class OfferHistory extends Model
         'user_id',
         'offer_id',
     ];
+
+    //has PK in user 
+    public function historyUser()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    //has PK in offer 
+    public function historyOffer()
+    {
+        return $this->hasMany(Offer::class);
+    }
 }

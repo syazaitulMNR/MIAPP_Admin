@@ -4,11 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Models\Offer;
 use App\Models\Product;
-use App\Models\ApplicableTo;
+use App\Models\OfferProduct;
 use Illuminate\Http\Request;
 
 class OfferController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function index()
     {
         $data = Offer::latest()->paginate(15);
@@ -60,7 +65,7 @@ class OfferController extends Controller
 
         for($i=0; $i<$count_owner; $i++) {
 
-            ApplicableTo::create([
+            OfferProduct::create([
                 'product_id' => $input['product'][$i],
                 'offer_id' => $newId,
             ]);
@@ -76,17 +81,10 @@ class OfferController extends Controller
         //
     }
 
-//     public function editexample($id)
-// {
-//   $role = Role::where('id', $id)->with('permissions')->first();
-//   $permissions = Permission::all();
-//   return view('admin.manage.roles.edit')->withRole($role)->withPermissions($permissions);
-// }
-
     public function edit($id)
     {
         $offer = Offer::where('id',$id)->first();
-        $apply = ApplicableTo::where('offer_id',$id)->get();
+        $apply = OfferProduct::where('offer_id',$id)->get();
         $product = Product::all();
         // $apply = $offer->offer()->where('id',$id)->get();
 
@@ -96,7 +94,7 @@ class OfferController extends Controller
     public function update(Request $request, $id)
     {
         $offer = Offer::where('id',$id)->first();
-        $apply = ApplicableTo::where('offer_id',$id)->get();
+        $apply = OfferProduct::where('offer_id',$id)->get();
         $product = Product::all();
 
         dd($request->product);
