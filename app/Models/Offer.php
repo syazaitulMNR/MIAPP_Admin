@@ -24,14 +24,24 @@ class Offer extends Model
         'status'
     ];
 
-    //bridge with product
-    public function products(){
-        return $this->belongsToMany(Product::class);
-     }
-
     //has FK in OfferHistory
     public function offerHistory()
     {
         return $this->hasMany(OfferHistory::class);
     }
+    //Has FK in applicable_to
+    public function products()
+    {
+        return $this->belongsToMany(Product::class)->withTimestamps();
+    }
+
+    public function programs()
+    {
+        return $this->belongsToMany(Program::class)->withTimestamps();
+    }
+
+    // public function offer()
+    // {
+    //     return $this->hasMany('App\Models\ApplicableTo');
+    // }
 }

@@ -127,7 +127,7 @@
                 
                 <div class="row" style="text-transform: capitalize;">
                   <div class="col-md-12 pr-1">
-                    <label>Applicable To (Select Multiple Product/Event)</label>
+                    <label>Applicable To (Select Multiple Product)</label>
                     <div class="row">
                       @foreach($apply as $data)
                         @foreach($product as $products)
@@ -137,16 +137,26 @@
                         @endforeach
                       @endforeach
                     </div>
-                    <select class="form-control" name="product[]" multiple>
-                    @foreach ($product as $tag)
-                      <option value="{{$tag->id}}" @foreach ($apply as $ids) @if($tag->id == $ids->product_id){{ $tag->id == $ids->product_id ? 'selected' : '' }} @endif @endforeach >{{$tag->product_name}}</option>
-                      <!-- <div class="checkbox checkbox-info checkbox-inline">
-                        <input class="age_group_checkbox" type="checkbox" value="{{$tag->id}}" name="product[]" @foreach ($apply as $ids) @if($tag->id == $ids->product_id ) checked @endif @endforeach />
-                        <label>{{$tag->product_name}}</label>
-                      </div> -->
+                    @foreach ($product as $products)
+                      <div class="checkbox checkbox-info checkbox-inline">
+                        <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($apply as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
+                        <label>{{$products->product_name}}</label>
+                      </div>
                     @endforeach
                 </div>
               </div>
+
+              <div class="row" style="text-transform: capitalize;">
+                <div class="col-md-12 pr-1">
+                  <label>Applicable To (Select Multiple Event)</label>
+                  @foreach ($program as $programs)
+                  <div class="checkbox checkbox-info checkbox-inline">
+                    <input class="age_group_checkbox" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($applyProgram as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
+                    <label>{{$programs->program_name}}</label>
+                  </div>
+                @endforeach
+              </div>
+            </div>
 
                 <div class="row">
                   <div class="col-md-12 pr-1">
