@@ -129,7 +129,7 @@
                   <div class="col-md-12 pr-1">
                     <label>Applicable To (Select Multiple Product)</label>
                     <div class="row">
-                      @foreach($apply as $data)
+                      @foreach($applyProduct as $data)
                         @foreach($product as $products)
                           @if ($products->id == $data->product_id)
                             <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
@@ -138,11 +138,11 @@
                       @endforeach
                     </div>
                     @foreach ($product as $products)
-                      <div class="checkbox checkbox-info checkbox-inline">
-                        <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($apply as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
-                        <label>{{$products->product_name}}</label>
-                      </div>
-                    @endforeach
+                    <div class="checkbox checkbox-info checkbox-inline">
+                      <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($applyProduct as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
+                      <label>{{$products->product_name}}</label>
+                    </div>
+                  @endforeach
                 </div>
               </div>
 

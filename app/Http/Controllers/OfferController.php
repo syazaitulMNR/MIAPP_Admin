@@ -6,7 +6,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\OfferProduct;
 use App\Models\Program;
-use App\Models\ApplicableTo;
+// use App\Models\ApplicableTo;
 use App\Models\OfferProgram;
 use Illuminate\Http\Request;
 
@@ -84,12 +84,13 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::findOrFail($id);
-        $apply = ApplicableTo::where('offer_id',$id)->get();
+        // $apply = ApplicableTo::where('offer_id',$id)->get();
+        $applyProduct = OfferProduct::where('offer_id',$id)->get();
         $applyProgram = OfferProgram::where('offer_id',$id)->get();
         $product = Product::all();
         $program = Program::all();
 
-        return view('pages.offers.edit', compact('offer', 'product', 'apply', 'applyProgram', 'program'));
+        return view('pages.offers.edit', compact('offer', 'product', 'applyProduct', 'applyProgram', 'program'));
     }
 
     public function update(Request $request, $id)
@@ -129,8 +130,8 @@ class OfferController extends Controller
             $offer->programs()->detach();
         } elseif(empty($input['product'])) {
             // dd('john');
-            $productlist = $input['program'];
-            $offer->programs()->sync($productlist); 
+            $programlist = $input['program'];
+            $offer->programs()->sync($programlist); 
             $offer->products()->detach();
         } else {
             $productlist = $input['product'];
