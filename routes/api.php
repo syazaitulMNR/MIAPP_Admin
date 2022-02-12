@@ -27,6 +27,7 @@ Route::get('profile/guestIndex' , 'App\Http\Controllers\Api\ProfileController@gu
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('authenticate' , 'App\Http\Controllers\Api\AuthController@authenticate');
+    Route::post('changePassword' , 'App\Http\Controllers\Api\UserController@changePassword');
     Route::resource('user', 'App\Http\Controllers\Api\UserController');
 
   

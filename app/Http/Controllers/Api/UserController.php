@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,9 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
+        $user = User::find(auth()->user()->id);
         return response([
             'status' => 'success',
-            'user' => auth()->user(),
+            'user' => $user,
             'token' => '',
         ]);
     }
@@ -85,5 +87,32 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function changePassword(Request $request){
+
+        $request->validate([
+            'password' => ['required', 'confirmed'],
+        ]);
+
+        $user = User::find(auth()->user()->id); 
+        
+        if (Hash::check($request->current_password, $user->password)) {
+
+            $user->password = Hash::make($request->password);
+
+            $user->save();
+
+            return response([
+                'status' => 'success'
+            ]);
+
+        }
+        else{
+            return response([
+                'message' => 'Current Password is not match',
+            ]);
+        }
+
     }
 }
