@@ -19,7 +19,7 @@ class Product extends Model
     ];
 
     //Has FK in applicable_to
-    public function offers()
+    public function offerProduct()
     {
         return $this->belongsToMany(Offer::class)->withTimestamps();
     }
