@@ -41,6 +41,7 @@ class HomeController extends Controller
         //promo
         $allOff = Offer::all();
 
+        $nameOff = null;
         foreach ($allOff as $alls => $val){
             // $nameOff = OfferHistory::where('id',$val->id);
             $nameOff = $val;
