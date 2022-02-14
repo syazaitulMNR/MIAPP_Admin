@@ -44,6 +44,7 @@ class HomeController extends Controller
         //offer_history
         $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
 
+        $nameOff = null;
         foreach ($allOff as $alls => $val){
             $nameOff = $val->id;
         }
