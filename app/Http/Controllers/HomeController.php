@@ -38,20 +38,26 @@ class HomeController extends Controller
         $bygroup = Offer::where('status', 'Active')->groupBy('type')->selectRaw('count(id) as total, type')->get();
         // dd($bygroup);
 
+        ////////////////////////////////////////////////
         //promo
         $allOff = Offer::all();
+        //offer_history
+        $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
 
         foreach ($allOff as $alls => $val){
-            // $nameOff = OfferHistory::where('id',$val->id);
-            $nameOff = $val;
-            // dd($val);
-
+            $nameOff = $val->id;
         }
+
+        foreach ($byOffer as $data => $vals){
+            $idBy = $vals->offer_id;
+        }
+        // dd($idBy);
+        
 
          //offer_history
         $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
-        // dd($byOffer);
-
+ 
+        ////////////////////////////////////////////////
         // //promo
         // $allOff = Offer::all();
         // //offer_history
@@ -59,6 +65,6 @@ class HomeController extends Controller
         
         
 
-        return view('home', compact('nameOff', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff'));
+        return view('home', compact('nameOff', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff', 'idBy'));
     }
 }

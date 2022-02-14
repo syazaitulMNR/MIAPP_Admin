@@ -8,7 +8,6 @@ use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProgramController;
 use App\Http\Controllers\OfferHistoryController;
-use App\Http\Controllers\ApplicableToController;
 
 /*
 |--------------------------------------------------------------------------

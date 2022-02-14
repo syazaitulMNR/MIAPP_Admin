@@ -124,25 +124,37 @@
         @endif
       @endforeach -->
 
-      <!-- @foreach($allOff as $all)
+
+      <!----------------------------------------------------------->
+      @foreach($allOff as $all)
         @foreach($byOffer as $claimed)
           @if ($all->id == $claimed->offer_id)
             {{ $all->offer_name }} -> {{ $claimed->total }} <br>
-          @elseif ($all->id != $claimed->offer_id)
-            {{ $all->offer_name }} -> 0 <br>
+          @endif
+         
+        @endforeach
+      
+        @if ($all->id != $idBy)
+          {{ $all->offer_name }} -> 0 <br>
+        @endif
+      @endforeach
+<!----------------------------------------------------------->
+      <!-- @foreach($byOffer as $claimed => $value)
+        @foreach($allOff as $all => $val)
+          @if($val->id == $value->offer_id)
+            {{ $value->total }}
+            {{ $val->offer_name }}<br>
+          @else
+          @endif
+        @endforeach
+        @foreach($allOff as $all => $val)
+          @if(!$val->id == $value->offer_id)
+            0
+            {{ $val->offer_name }}<br>
+          @else
           @endif
         @endforeach
       @endforeach -->
-
-      @foreach($allOff as $all)
-      @foreach($byOffer as $claimed => $value)
-        @if($all->id == $value->offer_id)
-        {{ $value->total }}
-        {{ $nameOff->offer_name }}<br>
-        @else
-        @endif
-      @endforeach
-      @endforeach
 
       <div class="row">
         @foreach($bygroup as $types)

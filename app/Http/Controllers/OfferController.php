@@ -6,7 +6,7 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\OfferProduct;
 use App\Models\Program;
-use App\Models\ApplicableTo;
+// use App\Models\ApplicableTo;
 use App\Models\OfferProgram;
 use Illuminate\Http\Request;
 
@@ -27,18 +27,16 @@ class OfferController extends Controller
     public function create()
     {
         $product = Product::all();
+        $program = Program::all();
 
-        return view('pages.offers.create',compact('product'));
+        return view('pages.offers.create',compact('product', 'program'));
     }
 
     public function store(Request $request)
     {
-        $input = $request->all();
-        $productlist = $input['product'];
-        $count_owner = count($productlist);
         $filename = $request->file('img_path');
 
-        ///// End Upload /////
+        ///// Start Upload /////
         $extension = $filename->getClientOriginalExtension();
         $name_img = $filename->getClientOriginalName();
         $uniqe_img = 'PROMO_'. uniqid() . '.' . $extension;
@@ -61,15 +59,53 @@ class OfferController extends Controller
             'status' => request('status'),
         ]);
 
-        $newId = $new->id;
+        $newId = $new->id; //get offer latest id
 
-        for($i=0; $i<$count_owner; $i++) {
+        //// Start Bridge process for Offer_Product & Offer_Program
+        $input = $request->all();
+        
+        $productlist = $input['product'];
+        $count_product = count($productlist);
+       
+        $programlist = $input['program'];
+        $count_program = count($programlist);
 
+        if(empty($input['product']) && empty($input['program']) )
+        {
+            return redirect('pages.offers.edit')->with('success', 'The promotion details is added successfully.');
+
+        } elseif(empty($input['program'])) {
+           
+            $productlist = $input['product'];
+            $offer->products()->sync($productlist); 
+            $offer->programs()->detach();
+
+        } elseif(empty($input['product'])) {
+            
+            $productlist = $input['program'];
+            $offer->programs()->sync($productlist); 
+            $offer->products()->detach();
+
+        } else {
+            $productlist = $input['product'];
+            $programlist = $input['program'];
+            
+            $offer->products()->sync($productlist);
+            $offer->programs()->sync($programlist);
+        }
+
+        for($i=0; $i<$count_product; $i++) {
             OfferProduct::create([
                 'product_id' => $input['product'][$i],
                 'offer_id' => $newId,
             ]);
+        }
 
+        for($i=0; $i<$count_program; $i++) {
+            OfferProgram::create([
+                'program_id' => $input['program'][$i],
+                'offer_id' => $newId,
+            ]);
         }
         
         //success go to all list
@@ -84,7 +120,7 @@ class OfferController extends Controller
     public function edit($id)
     {
         $offer = Offer::findOrFail($id);
-        $apply = ApplicableTo::where('offer_id',$id)->get();
+        $apply = OfferProduct::where('offer_id',$id)->get();
         $applyProgram = OfferProgram::where('offer_id',$id)->get();
         $product = Product::all();
         $program = Program::all();
@@ -139,18 +175,6 @@ class OfferController extends Controller
             $offer->products()->sync($productlist);
             $offer->programs()->sync($programlist);
         }
-        // dd($input );
-        // $productlist = $input['product']; 
-        // $programlist = $input['program']; 
-
-        // if($productlist == '') {
-        //     $offer->programs()->sync($programlist);
-        // } elseif($programlist == '') {
-        //     $offer->products()->sync($productlist);
-        // } else {
-        //     $offer->programs()->sync($programlist);
-        //     $offer->products()->sync($productlist);
-        // }
 
         $offer->save();
 
