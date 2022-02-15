@@ -50,18 +50,17 @@
                               <a target="_blank" href="{{ $program->page_link }}">{{ $program->page_link }}</a>
                             </td>
                             <td>{{ date('d/m/Y', strtotime($program->date_start)) }} - {{ date('d/m/Y', strtotime($program->date_end)) }}</td>
-                            <td class="td-actions ">
-                              <div class="row text-right">
-                              <a type="button" href="{{ route('program.edit', $program->id)}}" class="btn btn-success btn-sm btn-icon">
-                                <i class="now-ui-icons ui-2_settings-90"></i>
-                              </a>&nbsp;
+                            
+                            <td class="text-right">
                               <form action="{{ route('program.destroy', $program->id)}}" method="post">
                                 @csrf
+                                <a type="button" href="{{ route('program.edit', $program->id)}}" class="btn btn-success btn-sm btn-icon">
+                                  <i class="now-ui-icons ui-2_settings-90"></i>
+                                </a>
                                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>
                               </form>
-                              </div>
                             </td>
                           </tr>
                       @endforeach

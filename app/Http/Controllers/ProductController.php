@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use URL;
 
 class ProductController extends Controller
 {
@@ -37,7 +38,7 @@ class ProductController extends Controller
             $dirpath = public_path('assets/Products/');
             $filename->move($dirpath, $uniqe_img);
 
-            $img_path = 'assets/Products/'.$uniqe_img;
+            $img_path = '/assets/Products/'.$uniqe_img;
             ///// End Upload /////
         } else {
             $img_path = NULL;
@@ -47,7 +48,7 @@ class ProductController extends Controller
         Product::create([
             'product_id' => request('product_id'),
             'product_name' => request('product_name'),
-            'img_path' => $img_path,
+            'img_path' => ''.URL::to('').$img_path.'',
             'desc' => request('desc'),
         ]);
         
@@ -82,13 +83,13 @@ class ProductController extends Controller
             $dirpath = public_path('assets/Products/');
             $filename->move($dirpath, $uniqe_img);
 
-            $img_path = 'assets/Products/'.$uniqe_img;
+            $img_path = '/assets/Products/'.$uniqe_img;
             ///// End Upload /////
 
             $product->product_id = $request->product_id;
             $product->product_name = $request->product_name;
             $product->desc = $request->desc;
-            $product->img_path = $img_path;
+            $product->img_path = ''.URL::to('').$img_path.'';
 
         } else {
             $product->product_id = $request->product_id;

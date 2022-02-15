@@ -9,7 +9,9 @@ use App\Models\Product;
 use App\Models\Program;
 use App\Models\User;
 use App\Models\OfferProduct;
+use App\Models\OfferProgram;
 use App\Models\OfferHistory;
+use Carbon\Carbon;
 
 class HomeController extends Controller
 {
@@ -20,6 +22,14 @@ class HomeController extends Controller
 
     public function index()
     {
+        //update offer status based on valid_until date
+        $date = Carbon::today();
+        $end = Offer::where('valid_until','<',$date)->get();
+        foreach($end as $change){
+            $change->status = 'Deactive';
+            $change->save();
+        }
+
         //user
         $userNum = User::where('role', 'user')->count();
         // $userNum = count($user);
@@ -40,32 +50,32 @@ class HomeController extends Controller
 
         ////////////////////////////////////////////////
         //promo
-        $allOff = Offer::all();
+        // $allOff = Offer::all();
         //offer_history
-        $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
+        // $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
 
-        $nameOff = null;
-        foreach ($allOff as $alls => $val){
-            $nameOff = $val->id;
-        }
+        // $nameOff = null;
+        // foreach ($allOff as $alls => $val){
+        //     $nameOff = $val->id;
+        // }
 
-        foreach ($byOffer as $data => $vals){
-            $idBy = $vals->offer_id;
-        }
+        // foreach ($byOffer as $data => $vals){
+        //     $idBy = $vals->offer_id;
+        // }
         // dd($idBy);
         
 
          //offer_history
-        $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
+        // $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
  
         ////////////////////////////////////////////////
-        // //promo
-        // $allOff = Offer::all();
-        // //offer_history
-        // $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
+        //promo
+        $allOff = Offer::all();
+        //offer_history
+        $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
         
         
 
-        return view('home', compact('nameOff', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff', 'idBy'));
+        return view('home', compact('userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff'));
     }
 }

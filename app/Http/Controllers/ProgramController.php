@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Program;
 use Illuminate\Http\Request;
+use URL;
 
 class ProgramController extends Controller
 {
@@ -35,7 +36,7 @@ class ProgramController extends Controller
         $dirpath = public_path('assets/Programs/');
         $filename->move($dirpath, $uniqe_img);
 
-        $img_path = 'assets/Programs/'.$uniqe_img;
+        $img_path = '/assets/Programs/'.$uniqe_img;
         ///// End Upload /////
 
         Program::create([
@@ -44,7 +45,7 @@ class ProgramController extends Controller
             'date_start' => request('date_start'),
             'date_end' => request('date_end'),
             'page_link' => request('page_link'),
-            'img_path' => $img_path,
+            'img_path' => ''.URL::to('').$img_path.'',
             'status' => request('status'),
         ]);
         
@@ -69,6 +70,13 @@ class ProgramController extends Controller
     {
         $program = Program::where('id',$id)->first();
 
+        $program->program_id = $request->program_id;
+        $program->program_name = $request->program_name;
+        $program->date_start = $request->date_start;
+        $program->date_end = $request->date_end;
+        $program->page_link = $request->page_link;
+        $program->status = $request->status;
+
         $filename = $request->file('img_path');
         if($filename != '')
         {  
@@ -79,25 +87,10 @@ class ProgramController extends Controller
             $dirpath = public_path('assets/Programs/');
             $filename->move($dirpath, $uniqe_img);
 
-            $img_path = 'assets/Programs/'.$uniqe_img;
+            $img_path = '/assets/Programs/'.$uniqe_img;
             ///// End Upload /////
 
-            $program->program_id = $request->program_id;
-            $program->program_name = $request->program_name;
-            $program->date_start = $request->date_start;
-            $program->date_end = $request->date_end;
-            $program->page_link = $request->page_link;
-            $program->status = $request->status;
-            $program->img_path = $img_path;
-
-        } else {
-
-            $program->program_id = $request->program_id;
-            $program->program_name = $request->program_name;
-            $program->date_start = $request->date_start;
-            $program->date_end = $request->date_end;
-            $program->page_link = $request->page_link;
-            $program->status = $request->status;
+            $program->img_path = ''.URL::to('').$img_path.'';
         }
 
         $program->save();

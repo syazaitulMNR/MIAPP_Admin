@@ -6,9 +6,9 @@ use App\Models\Offer;
 use App\Models\Product;
 use App\Models\OfferProduct;
 use App\Models\Program;
-// use App\Models\ApplicableTo;
 use App\Models\OfferProgram;
 use Illuminate\Http\Request;
+use URL;
 
 class OfferController extends Controller
 {
@@ -19,7 +19,7 @@ class OfferController extends Controller
     
     public function index()
     {
-        $data = Offer::latest()->paginate(15);
+        $data = Offer::latest()->paginate(10);
 
         return view('pages.offers.all',compact('data'))->with('i');
     }
@@ -43,7 +43,7 @@ class OfferController extends Controller
         $dirpath = public_path('assets/Offers/');
         $filename->move($dirpath, $uniqe_img);
 
-        $img_path = 'assets/Offers/'.$uniqe_img;
+        $img_path = '/assets/Offers/'.$uniqe_img;
         ///// End Upload /////
 
         $new = Offer::create([
@@ -54,7 +54,7 @@ class OfferController extends Controller
             'tnc' => request('tnc'),
             'valid_until' => request('valid_until'),
             'onpay_link' => request('onpay_link'),
-            'img_path' => $img_path,
+            'img_path' => ''.URL::to('').$img_path.'',
             'promo_code' => request('promo_code'),
             'status' => request('status'),
         ]);
@@ -63,50 +63,52 @@ class OfferController extends Controller
 
         //// Start Bridge process for Offer_Product & Offer_Program
         $input = $request->all();
-        
-        $productlist = $input['product'];
-        $count_product = count($productlist);
-       
-        $programlist = $input['program'];
-        $count_program = count($programlist);
 
         if(empty($input['product']) && empty($input['program']) )
         {
-            return redirect('pages.offers.edit')->with('success', 'The promotion details is added successfully.');
-
+            return redirect('promotion/edit/'.$newId)->with('success', 'The promotion details is added successfully. Please Update Product or Event.');
+            
         } elseif(empty($input['program'])) {
+
+            $count_product = count($input['product']);
            
-            $productlist = $input['product'];
-            $offer->products()->sync($productlist); 
-            $offer->programs()->detach();
+            for($i=0; $i<$count_product; $i++) {
+                OfferProduct::create([
+                    'product_id' => $input['product'][$i],
+                    'offer_id' => $newId,
+                ]);
+            }
 
         } elseif(empty($input['product'])) {
+
+            $count_program = count($input['program']);
             
-            $productlist = $input['program'];
-            $offer->programs()->sync($productlist); 
-            $offer->products()->detach();
+            for($i=0; $i<$count_program; $i++) {
+                OfferProgram::create([
+                    'program_id' => $input['program'][$i],
+                    'offer_id' => $newId,
+                ]);
+            }
 
         } else {
-            $productlist = $input['product'];
-            $programlist = $input['program'];
-            
-            $offer->products()->sync($productlist);
-            $offer->programs()->sync($programlist);
-        }
 
-        for($i=0; $i<$count_product; $i++) {
-            OfferProduct::create([
-                'product_id' => $input['product'][$i],
-                'offer_id' => $newId,
-            ]);
-        }
+            $count_product = count($input['product']);
+            for($i=0; $i<$count_product; $i++) {
+                OfferProduct::create([
+                    'product_id' => $input['product'][$i],
+                    'offer_id' => $newId,
+                ]);
+            }
 
-        for($i=0; $i<$count_program; $i++) {
-            OfferProgram::create([
-                'program_id' => $input['program'][$i],
-                'offer_id' => $newId,
-            ]);
+            $count_program = count($input['program']);
+            for($i=0; $i<$count_program; $i++) {
+                OfferProgram::create([
+                    'program_id' => $input['program'][$i],
+                    'offer_id' => $newId,
+                ]);
+            }
         }
+        /////////end bridge/////
         
         //success go to all list
         return redirect('promotions')->with('success', 'The promotion details is added successfully.');
@@ -150,25 +152,30 @@ class OfferController extends Controller
             $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
             $dirpath = public_path('assets/Offers/');
             $filename->move($dirpath, $uniqe_img);
-            $img_path = 'assets/Offers/'.$uniqe_img;
-            $offer->img_path = $img_path;
+            $img_path = '/assets/Offers/'.$uniqe_img;
+
+            $offer->img_path = ''.URL::to('').$img_path.'';
         }
 
         if(empty($input['product']) && empty($input['program']) )
         {
             $offer->programs()->detach();
             $offer->products()->detach();
+
         } elseif(empty($input['program'])) {
-            // dd('john');
+            
             $productlist = $input['product'];
             $offer->products()->sync($productlist); 
             $offer->programs()->detach();
+
         } elseif(empty($input['product'])) {
-            // dd('john');
+           
             $programlist = $input['program'];
             $offer->programs()->sync($programlist); 
             $offer->products()->detach();
+
         } else {
+
             $productlist = $input['product'];
             $programlist = $input['program'];
             

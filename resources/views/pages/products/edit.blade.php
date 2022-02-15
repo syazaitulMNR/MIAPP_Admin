@@ -79,7 +79,7 @@
                   </div>
 
                   <div class="col-md-5 text-center">
-                    <img class="card-img-top" src="{{ asset($product->img_path) }}" style="max-width:50%">
+                    <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:50%">
                   </div>
                 </div>
     

@@ -82,15 +82,14 @@
                         @if ($offername->id == $offer->offer_id)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $offername->offer_name }} &nbsp;
-                            @if($offername->status == 'Active')
-                              <a class="btn btn-success btn-sm btn-round">{{ $offername->status }}</a>
-                            @else
-                              <a class="btn btn-default btn-sm btn-round">{{ $offername->status }}</a>
-                            @endif
-                            </td>
+                            <td style="text-transform:capitalize">{{ $offername->offer_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($offer->created_at)) }}</td>
-                            <td class="row text-right">
+                            <td class="text-right">
+                              @if($offername->status == 'Active')
+                                <a class="btn btn-success btn-sm">{{ $offername->status }}</a>
+                              @else
+                                <a class="btn btn-default btn-sm">{{ $offername->status }}</a>
+                              @endif 
                               <a type="button" href="{{ route('offer.edit', $offer->offer_id)}}" class="btn btn-success btn-sm btn-icon">
                                 <i class="now-ui-icons media-1_button-play"></i>
                               </a>

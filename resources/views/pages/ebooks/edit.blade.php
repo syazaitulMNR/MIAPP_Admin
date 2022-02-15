@@ -76,7 +76,7 @@
                 </div>
 
                 <div class="col-md-5 text-center">
-                  <img class="card-img-top" src="{{ asset($book->ebook_cover) }}" style="max-width:50%">
+                  <img class="card-img-top" src="{{ $book->ebook_cover }}" style="max-width:50%">
                 </div>
               </div>           
 

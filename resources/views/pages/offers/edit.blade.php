@@ -32,7 +32,7 @@
 
                 <div class="row">
                   <div class="col-md-12 pb-3 text-center">
-                    <img class="card-img-top" src="{{ asset($offer->img_path) }}" style="max-width:50%">
+                    <img class="card-img-top" src="{{ $offer->img_path }}" style="max-width:50%">
                   </div>
                 </div>
 
@@ -124,39 +124,60 @@
                     </div>
                   </div>
                 </div>
+
+            <!-------------- ---------------------->
+            <div class="row">
+              <div class="col-md-12 pr-1">
+                <div class="form-group">
+                  <label>Applicable To (Select Multiple Product/Event)<span class="text-danger">*</span></label>
+                </div>
+              </div>
+            </div>
                 
-                <div class="row" style="text-transform: capitalize;">
-                  <div class="col-md-12 pr-1">
-                    <label>Applicable To (Select Multiple Product)</label>
-                    <div class="row">
-                      @foreach($applyProduct as $data)
-                        @foreach($product as $products)
-                          @if ($products->id == $data->product_id)
-                            <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
-                          @endif
+<!-- PRODUCT -->
+                <div class="row">
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Product</label>
+                      <div class="row">
+                        @foreach($applyProduct as $data)
+                          @foreach($product as $products)
+                            @if ($products->id == $data->product_id)
+                              <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
+                            @endif
+                          @endforeach
                         @endforeach
-                      @endforeach
-                    </div>
-                    @foreach ($product as $products)
+                      </div>
+                      @foreach ($product as $products)
                     <div class="checkbox checkbox-info checkbox-inline">
                       <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($applyProduct as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
                       <label>{{$products->product_name}}</label>
                     </div>
                   @endforeach
-                </div>
-              </div>
-
-              <div class="row" style="text-transform: capitalize;">
-                <div class="col-md-12 pr-1">
-                  <label>Applicable To (Select Multiple Event)</label>
-                  @foreach ($program as $programs)
+                    </div>
+                  </div>
+<!-- EVENT -->
+                  <div class="col-md-6 pr-1">
+                    <div class="form-group">
+                      <label>Event</label>
+                      <div class="row">
+                        @foreach($applyProgram as $data)
+                          @foreach($program as $programs)
+                            @if ($programs->id == $data->program_id)
+                              <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $programs -> program_name }}</a> &nbsp;
+                            @endif
+                          @endforeach
+                        @endforeach
+                      </div>
+                      @foreach ($program as $programs)
                   <div class="checkbox checkbox-info checkbox-inline">
                     <input class="age_group_checkbox" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($applyProgram as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
                     <label>{{$programs->program_name}}</label>
                   </div>
                 @endforeach
-              </div>
-            </div>
+                    </div>
+                  </div>
+                </div>
 
                 <div class="row">
                   <div class="col-md-12 pr-1">

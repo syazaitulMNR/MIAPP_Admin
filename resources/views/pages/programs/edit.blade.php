@@ -32,7 +32,7 @@
 
                 <div class="row">
                   <div class="col-md-12 pb-3 text-center">
-                    <img class="card-img-top" src="{{ asset($program->img_path) }}" style="max-width:50%">
+                    <img class="card-img-top" src="{{ $program->img_path }}" style="max-width:50%">
                   </div>
                 </div>
 

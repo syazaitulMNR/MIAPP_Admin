@@ -44,23 +44,22 @@
                       @foreach($data as $offer)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $offer->offer_name }} &nbsp;
-                              @if($offer->status == 'Active')
-                              <a class="btn btn-success btn-sm btn-round btn-icon"></a>
-                              @else
-                                <a class="btn btn-default btn-sm btn-icon btn-round"></a>
-                              @endif
-                            </td>
+                            <td style="text-transform:capitalize">{{ $offer->offer_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($offer->valid_until)) }}</td>
                             <td>
                               <a target="_blank" href="{{ $offer->onpay_link }}">{{ $offer->onpay_link }}</a>
-                            </td>
-                            <td class="row text-right">
-                              <a type="button" href="{{ route('offer.edit', $offer->id)}}" class="btn btn-success btn-sm btn-icon">
-                                <i class="now-ui-icons ui-2_settings-90"></i>
-                              </a>&nbsp;
+                            </td> 
+                            <td class="text-right">
                               <form action="{{ route('offer.destroy', $offer->id)}}" method="post">
                                 @csrf
+                                @if($offer->status == 'Active')
+                                  <a class="btn btn-success btn-sm">{{ $offer->status }}</a>
+                                @else
+                                  <a class="btn btn-default btn-sm">{{ $offer->status }}</a>
+                                @endif 
+                                <a type="button" href="{{ route('offer.edit', $offer->id)}}" class="btn btn-success btn-sm btn-icon">
+                                  <i class="now-ui-icons ui-2_settings-90"></i>
+                                </a>
                                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>

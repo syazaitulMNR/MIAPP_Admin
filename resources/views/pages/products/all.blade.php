@@ -47,17 +47,17 @@
                             <td style="text-transform:capitalize">{{ $product->product_name }}</td>
                             <td>
                               @if($product->img_path != NULL) 
-                                <img class="card-img-top" src="{{ asset($product->img_path) }}" style="max-width:120px">
+                                <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:120px">
                               @else
                                 &nbsp;
                               @endif
                             </td>
-                            <td class="row text-right">
-                              <a type="button" href="{{ route('product.edit', $product->id)}}" class="btn btn-success btn-sm btn-icon">
-                                <i class="now-ui-icons ui-2_settings-90"></i>
-                              </a>&nbsp;
+                            <td class="text-right">
                               <form action="{{ route('product.destroy', $product->id)}}" method="post">
                                 @csrf
+                                <a type="button" href="{{ route('product.edit', $product->id)}}" class="btn btn-success btn-sm btn-icon">
+                                  <i class="now-ui-icons ui-2_settings-90"></i>
+                                </a>
                                 <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>

@@ -29,20 +29,22 @@
             @foreach($data as $book)
               <div class="col-md-4">
                 <div class="card text-center">
-                  <img class="card-img-top" src="{{ asset($book->ebook_cover) }}" style="max-width:50%">
+
+                  <img class="card-img-top" src="{{ $book->ebook_cover }}" style="max-width:50%">
                   <div class="card-body">
+
                     <h6 class="title">{{ $book->ebook_name }}</h6>
                     <p class="card-text">{{ $book->desc }}</p>
 
-                    <div class="row text-center">
-                      <a type="button" target="blank" href="{{ $book->ebook_pdf}}" class="btn btn-warning btn-sm">
-                          <i class="now-ui-icons education_paper"></i> PDF
-                      </a>
-                      <a type="button" rel="tooltip" href="{{ route('ebook.edit', $book->id)}}" class="btn btn-success btn-sm btn-icon">
-                          <i class="now-ui-icons ui-2_settings-90"></i>
-                      </a>
+                    <div class="text-center">
                       <form action="{{ route('ebook.destroy', $book->id)}}" method="post">
                         @csrf
+                        <a type="button" target="blank" href="{{ $book->ebook_pdf }}" class="btn btn-warning btn-sm">
+                          <i class="now-ui-icons education_paper"></i> PDF
+                        </a>
+                        <a type="button" rel="tooltip" href="{{ route('ebook.edit', $book->id)}}" class="btn btn-success btn-sm btn-icon">
+                            <i class="now-ui-icons ui-2_settings-90"></i>
+                        </a>
                         <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
                           <i class="now-ui-icons ui-1_simple-remove"></i>
                         </button>

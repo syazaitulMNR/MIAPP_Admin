@@ -100,17 +100,17 @@
       <h5 class="title">Overall Promotion</h5>
       <hr class="half-rule"/>
 
-      <!-- @foreach($allOff as $all)
+      @foreach($allOff as $all)
         @php
           $isAnswered = false;
         @endphp
           
-        @foreach($byOffer as $claimed)
-          @if ($all->id == $claimed->offer_id)
+        @foreach($byOffer as $by)
+          @if ($all->id == $by->offer_id)
             @php
                 $isAnswered = true;
             @endphp
-          @elseif ($all->id != $claimed->offer_id)
+          @elseif ($all->id != $by->offer_id)
             {{ $all->offer_name }} -> 0 <br>
             @php
                 $isAnswered = false;
@@ -118,43 +118,12 @@
             @break
           @endif
         @endforeach
-      
+        
         @if ($isAnswered)
-          {{ $all->offer_name }} -> {{ $claimed->total }}
-        @endif
-      @endforeach -->
-
-
-      <!----------------------------------------------------------->
-      @foreach($allOff as $all)
-        @foreach($byOffer as $claimed)
-          @if ($all->id == $claimed->offer_id)
-            {{ $all->offer_name }} -> {{ $claimed->total }} <br>
-          @endif
-         
-        @endforeach
-      
-        @if ($all->id != $idBy)
-          {{ $all->offer_name }} -> 0 <br>
+          {{ $all->offer_name }} -> {{ $by->total }}
         @endif
       @endforeach
-<!----------------------------------------------------------->
-      <!-- @foreach($byOffer as $claimed => $value)
-        @foreach($allOff as $all => $val)
-          @if($val->id == $value->offer_id)
-            {{ $value->total }}
-            {{ $val->offer_name }}<br>
-          @else
-          @endif
-        @endforeach
-        @foreach($allOff as $all => $val)
-          @if(!$val->id == $value->offer_id)
-            0
-            {{ $val->offer_name }}<br>
-          @else
-          @endif
-        @endforeach
-      @endforeach -->
+      
 
       <div class="row">
         @foreach($bygroup as $types)

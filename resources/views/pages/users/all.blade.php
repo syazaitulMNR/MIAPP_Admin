@@ -43,7 +43,7 @@
                             <td style="text-transform:capitalize">{{ $user->name }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->email }}</td>
-                            <td class="row text-right">
+                            <td class="text-right">
                               <a type="button" href="{{ route('user.view', $user->id)}}" class="btn btn-success btn-sm btn-icon">
                                 <i class="now-ui-icons media-1_button-play"></i>
                               </a>

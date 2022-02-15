@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\EBook;
 use Illuminate\Http\Request;
+use URL;
 
 class EBookController extends Controller
 {
@@ -37,7 +38,7 @@ class EBookController extends Controller
         $dirpath = public_path('assets/EBooks/');
         $cover->move($dirpath, $uniqe_cover);
 
-        $cover_path = 'assets/EBooks/'.$uniqe_cover;
+        $cover_path = '/assets/EBooks/'.$uniqe_cover;
 
         // ebook_pdf
         $ext_pdf = $pdf->getClientOriginalExtension();
@@ -46,7 +47,7 @@ class EBookController extends Controller
         $dirpath = public_path('assets/EBooks/');
         $pdf->move($dirpath, $uniqe_pdf);
 
-        $pdf_path = 'assets/EBooks/'.$uniqe_pdf;
+        $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
     
         ///// End Upload /////
 
@@ -54,8 +55,8 @@ class EBookController extends Controller
             'ebook_name' => request('ebook_name'),
             'desc' => request('desc'),
             'type' => request('type'),
-            'ebook_cover' => $cover_path,
-            'ebook_pdf' => $pdf_path,
+            'ebook_cover' => ''.URL::to('').$cover_path.'',
+            'ebook_pdf' => ''.URL::to('').$pdf_path.'',
         ]);
         
         //success go to all list
@@ -104,9 +105,9 @@ class EBookController extends Controller
                 $dirpath = public_path('assets/EBooks/');
                 $cover->move($dirpath, $uniqe_cover);
 
-                $cover_path = 'assets/EBooks/'.$uniqe_cover;
+                $cover_path = '/assets/EBooks/'.$uniqe_cover;
                 
-                $book->ebook_cover = $cover_path;
+                $book->ebook_cover = ''.URL::to('').$cover_path.'';
 
             } elseif ($pdf != ''){ 
                 // ebook_pdf
@@ -116,9 +117,9 @@ class EBookController extends Controller
                 $dirpath = public_path('assets/EBooks/');
                 $pdf->move($dirpath, $uniqe_pdf);
 
-                $pdf_path = 'assets/EBooks/'.$uniqe_pdf;
+                $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
                 
-                $book->ebook_pdf = $pdf_path;
+                $book->ebook_pdf = ''.URL::to('').$pdf_path.'';
             }
 
             $book->save();
