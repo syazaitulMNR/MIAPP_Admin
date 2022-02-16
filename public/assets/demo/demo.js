@@ -1,3 +1,5 @@
+console.log (xValues);
+console.log (yValues);
 demo = {
     initPickColor: function() {
         $('.pick-class-label').click(function() {
@@ -229,20 +231,20 @@ demo = {
 
         var ctx = document.getElementById('bigDashboardChart').getContext("2d");
 
-        var gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
+        gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
         gradientStroke.addColorStop(0, '#80b6f4');
         gradientStroke.addColorStop(1, chartColor);
 
-        var gradientFill = ctx.createLinearGradient(0, 200, 0, 50);
+        gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
-        gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.24)");
+        gradientFill.addColorStop(1, "rgba(249, 99, 59, 0.40)");
 
         var myChart = new Chart(ctx, {
-            type: 'line',
+            type: 'bar',
             data: {
-                labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
+                labels: xValues,
                 datasets: [{
-                    label: "Data",
+                    label: "Total Claimed",
                     borderColor: chartColor,
                     pointBorderColor: chartColor,
                     pointBackgroundColor: "#1e3d60",
@@ -255,7 +257,7 @@ demo = {
                     fill: true,
                     backgroundColor: gradientFill,
                     borderWidth: 2,
-                    data: [50, 150, 100, 190, 130, 90, 150, 160, 120, 140, 190, 95]
+                    data: yValues
                 }]
             },
             options: {
@@ -270,7 +272,7 @@ demo = {
                 maintainAspectRatio: false,
                 tooltips: {
                     backgroundColor: '#fff',
-                    titleFontColor: '#333',
+                    titleFontColor: '#000000',
                     bodyFontColor: '#666',
                     bodySpacing: 4,
                     xPadding: 12,
@@ -286,17 +288,17 @@ demo = {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            fontColor: "rgba(255,255,255,0.4)",
+                            fontColor: "#000000",
                             fontStyle: "bold",
                             beginAtZero: true,
                             maxTicksLimit: 5,
                             padding: 10
                         },
                         gridLines: {
-                            drawTicks: true,
+                            drawTicks: false,
                             drawBorder: false,
                             display: true,
-                            color: "rgba(255,255,255,0.1)",
+                            color: "#FFC7C7",
                             zeroLineColor: "transparent"
                         }
 
@@ -309,7 +311,7 @@ demo = {
                         },
                         ticks: {
                             padding: 10,
-                            fontColor: "rgba(255,255,255,0.4)",
+                            fontColor: "#000000",
                             fontStyle: "bold"
                         }
                     }]
@@ -393,12 +395,15 @@ demo = {
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.6));
 
+        // var xValues =  $xValues;
+        // var yValues =  $yValues;
+
         var a = {
             type: "bar",
             data: {
-                labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+                labels: xValues,
                 datasets: [{
-                    label: "Active Countries",
+                    label: "Total Claimed",
                     backgroundColor: gradientFill,
                     borderColor: "#2CA8FF",
                     pointBorderColor: "#FFF",
@@ -409,7 +414,7 @@ demo = {
                     pointRadius: 4,
                     fill: true,
                     borderWidth: 1,
-                    data: [80, 99, 86, 96, 123, 85, 100, 75, 88, 90, 123, 155]
+                    data: yValues
                 }]
             },
             options: {

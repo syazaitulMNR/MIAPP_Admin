@@ -46,37 +46,32 @@ class HomeController extends Controller
         $offerNum = Offer::where('status', 'Active')->count();
         // $offerNum = count($offer);
         $bygroup = Offer::where('status', 'Active')->groupBy('type')->selectRaw('count(id) as total, type')->get();
-        // dd($bygroup);
-
-        ////////////////////////////////////////////////
-        //promo
-        // $allOff = Offer::all();
-        //offer_history
-        // $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
-
-        // $nameOff = null;
-        // foreach ($allOff as $alls => $val){
-        //     $nameOff = $val->id;
-        // }
-
        
-        // dd($idBy);
-        
-
-         //offer_history
-        // $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
- 
-        ////////////////////////////////////////////////
         //promo
         $allOff = Offer::all();
+        $offYear = Offer::whereYear('created_at',$date->year)->get();
         //offer_history
         $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
-        foreach ($byOffer as $data => $vals){
-            $idBy = $vals->offer_id;
+        $countByOffer = count($byOffer);
+        
+        /////////////////////////////////////////////////////////////////////////////
+        // for CHART
+        $labelist = [];
+        foreach($offYear as $lists => $list) {
+            $labelist[] =  $list->offer_name;
+        }
+
+        $selectid = [];
+        foreach($offYear as $numering => $num) {
+            $selectid[] =  $num->id;
+        }
+
+        $number = [];
+        foreach ($selectid as $value => $val) {
+            $number[] = OfferHistory::where(\DB::raw("offer_id"),$val)->count();
         }
         
-        
 
-        return view('home', compact('userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff', 'idBy'));
+        return view('home', compact('labelist', 'date', 'number', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff',  'countByOffer'));
     }
 }
