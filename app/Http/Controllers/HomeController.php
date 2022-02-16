@@ -59,9 +59,7 @@ class HomeController extends Controller
         //     $nameOff = $val->id;
         // }
 
-        // foreach ($byOffer as $data => $vals){
-        //     $idBy = $vals->offer_id;
-        // }
+       
         // dd($idBy);
         
 
@@ -73,9 +71,12 @@ class HomeController extends Controller
         $allOff = Offer::all();
         //offer_history
         $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
+        foreach ($byOffer as $data => $vals){
+            $idBy = $vals->offer_id;
+        }
         
         
 
-        return view('home', compact('userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff'));
+        return view('home', compact('userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff', 'idBy'));
     }
 }

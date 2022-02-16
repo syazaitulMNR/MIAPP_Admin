@@ -100,7 +100,7 @@
       <h5 class="title">Overall Promotion</h5>
       <hr class="half-rule"/>
 
-      @foreach($allOff as $all)
+      <!-- @foreach($allOff as $all)
         @php
           $isAnswered = false;
         @endphp
@@ -122,6 +122,25 @@
         @if ($isAnswered)
           {{ $all->offer_name }} -> {{ $by->total }}
         @endif
+      @endforeach -->
+
+      @foreach($allOff as $all)
+
+
+        @foreach($byOffer as $claimed)
+        @if ($all->id != $claimed->offer_id )
+
+          {{ $all->offer_name }} -> 0 <br><br>
+ 
+        @endif
+        @endforeach
+        @foreach($byOffer as $claimed)
+          @if ($all->id == $claimed->offer_id)
+            {{ $all->offer_name }} -> {{ $claimed->total }} <br>
+    
+          @endif
+         
+        @endforeach
       @endforeach
       
 

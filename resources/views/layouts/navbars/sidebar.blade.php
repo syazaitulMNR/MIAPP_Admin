@@ -3,9 +3,10 @@
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
   <div class="logo">
-    <a href="" class="simple-text logo-mini">
-      {{ __('MI') }}
-    </a>
+    <!-- <a class="simple-text logo-mini" type="image/png" rel="icon" href="{{ asset('assets') }}/img/icon_1.png">
+      
+    </a> -->
+    <img class="card-img-top" href="asset/img/icon_1.png" style="max-width:50%">
     <a href="" class="simple-text logo-normal">
       {{ __('Momentum Internet') }}
     </a>
