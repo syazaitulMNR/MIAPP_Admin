@@ -1,5 +1,3 @@
-console.log (xValues);
-console.log (yValues);
 demo = {
     initPickColor: function() {
         $('.pick-class-label').click(function() {

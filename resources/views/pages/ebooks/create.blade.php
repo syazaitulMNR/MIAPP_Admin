@@ -21,7 +21,7 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                       <div class="form-group">
-                          <label>{{__(" Name")}}</label>
+                          <label>{{__(" Name")}}<span class="text-danger">*</span></label>
                           <input type="text" name="ebook_name" class="form-control" placeholder="Insert EBook Name" required>
                           @include('alerts.feedback', ['field' => 'ebook_name'])
                       </div>
@@ -41,7 +41,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" EBook Cover")}}</label>
+                      <label>{{__(" EBook Cover")}}<span class="text-danger">*</span></label>
                       <input type="file" name="ebook_cover" class="form-control" placeholder="Insert EBook's Description" required>
                       @include('alerts.feedback', ['field' => 'ebook_cover'])
                     </div>
@@ -49,7 +49,7 @@
     
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">{{__(" PDF File")}}</label>
+                      <label for="exampleInputEmail1">{{__(" PDF File")}}<span class="text-danger">*</span></label>
                       <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description" required>
                       @include('alerts.feedback', ['field' => 'ebook_pdf'])
                     </div>

@@ -39,12 +39,14 @@
   <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
   <script src="{{ asset('assets') }}/js/core/bootstrap.min.js"></script>
   <script src="{{ asset('assets') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--   Offer Nav Bar   -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js "></script>
+ 
 
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
   <!-- Chart JS -->
-  <!-- <script src="{{ asset('assets') }}/js/plugins/chartjs.min.js"></script> -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
   <!--  Notifications Plugin    -->

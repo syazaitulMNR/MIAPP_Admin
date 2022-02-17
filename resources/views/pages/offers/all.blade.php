@@ -5,17 +5,17 @@
   </div>
   <div class="content">
     <div class="row">
-      
-      @if(session('success'))          
-        <div class="alert alert-success">
-          <button type="button" aria-hidden="true" class="close">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-          </button>
-          <span><strong>Successful!</strong> {{ session('success') }}</span>
-        </div>
-      @endif
-
       <div class="col-md-12">
+      
+        @if(session('success'))          
+          <div class="alert alert-success">
+            <button type="button" aria-hidden="true" class="close">
+                <i class="now-ui-icons ui-1_simple-remove"></i>
+            </button>
+            <span><strong>Successful!</strong> {{ session('success') }}</span>
+          </div>
+        @endif
+
         <div class="card">
 
           <div class="card-header">

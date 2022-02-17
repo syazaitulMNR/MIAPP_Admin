@@ -66,7 +66,7 @@ class OfferController extends Controller
 
         if(empty($input['product']) && empty($input['program']) )
         {
-            return redirect('promotion/edit/'.$newId)->with('success', 'The promotion details is added successfully. Please Update Product or Event.');
+            return redirect('promotion/edit/'.$newId.'/#nav-apply')->with('success', 'The promotion details is added successfully. Please Update Product or Event.');
             
         } elseif(empty($input['program'])) {
 

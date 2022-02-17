@@ -39,7 +39,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>{{__(" Event ID")}}</label>
+                        <label>{{__(" Event ID")}}<span class="text-danger">*</span></label>
                         <input type="text" name="program_id" class="form-control" placeholder="Insert Program ID (Refer MIMS)" style="text-transform: uppercase" value="{{ $program->program_id }}" required>
                         @include('alerts.feedback', ['field' => 'program_id'])
                       </div>
@@ -47,7 +47,7 @@
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Event Name")}}</label>
+                      <label>{{__(" Event Name")}}<span class="text-danger">*</span></label>
                       <input type="text" name="program_name" class="form-control" placeholder="Insert Program Name" style="text-transform: capitalize" value="{{ $program->program_name }}" required>
                       @include('alerts.feedback', ['field' => 'program_name'])
                     </div>
@@ -57,7 +57,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Date Start")}}</label>
+                      <label>{{__(" Date Start")}}<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="date_start" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($program->date_start)) }}" required>
                       @include('alerts.feedback', ['field' => 'date_start'])
                     </div>
@@ -65,7 +65,7 @@
     
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Date End")}}</label>
+                      <label>{{__(" Date End")}}<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="date_end" class="form-control" value="{{ date('Y-m-d\TH:i', strtotime($program->date_end)) }}" required>
                       @include('alerts.feedback', ['field' => '	date_end'])
                     </div>
@@ -75,7 +75,7 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Link Landing Page")}}</label>
+                      <label>{{__(" Link Landing Page")}}<span class="text-danger">*</span></label>
                       <input type="text" name="page_link" class="form-control" placeholder="Insert Link of Program's Landing Page" value="{{ $program->page_link }}" required>
                       @include('alerts.feedback', ['field' => 'page_link'])
                     </div>
@@ -85,7 +85,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Poster Image")}}</label>
+                      <label>{{__(" Poster Image")}}<span class="text-danger">*</span></label>
                       <input type="file" name="img_path" class="form-control" placeholder="Insert Program's Poster">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
@@ -93,7 +93,7 @@
     
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Status")}}</label>
+                      <label>{{__(" Status")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="status">
                         <option value="Active" {{ $program->status == 'Active' ? 'selected' : '' }} >Active</option>
                         <option value="Deactive" {{ $program->status == 'Deactive' ? 'selected' : '' }} >Deactive</option>

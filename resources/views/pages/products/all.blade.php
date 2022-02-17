@@ -47,7 +47,7 @@
                             <td style="text-transform:capitalize">{{ $product->product_name }}</td>
                             <td>
                               @if($product->img_path != NULL) 
-                                <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:120px">
+                                <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:80px">
                               @else
                                 &nbsp;
                               @endif

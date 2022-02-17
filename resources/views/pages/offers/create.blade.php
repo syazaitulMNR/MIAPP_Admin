@@ -24,7 +24,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promotion ID")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Promotion ID")}}<span class="text-danger">*</span></label>
                       <input type="text" name="offer_id" class="form-control" placeholder="Insert Promo ID (Refer Onpay)" required>
                       @include('alerts.feedback', ['field' => 'offer_id'])
                     </div>
@@ -32,7 +32,7 @@
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promotion Name")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Promotion Name")}}<span class="text-danger">*</span></label>
                       <input type="text" name="offer_name" class="form-control" placeholder="Insert Promotion Name" required>
                       @include('alerts.feedback', ['field' => 'offer_name'])
                     </div>
@@ -42,7 +42,7 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promotion Type")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Promotion Type")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="type" required>
                         <option value="">Please Select...</option>
                         <option value="Merchandise">Merchandise</option>
@@ -55,7 +55,7 @@
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Valid Until")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Valid Until")}}<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="valid_until" class="form-control" required>
                       @include('alerts.feedback', ['field' => 'valid_until'])
                     </div>
@@ -85,7 +85,7 @@
                 <div class="row">
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promo Code")}}</label>
+                      <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
                       <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" required>
                       @include('alerts.feedback', ['field' => 'promo_code'])
                     </div>
@@ -93,7 +93,7 @@
 
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promo Image")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
                       <input type="file" name="img_path" class="form-control" placeholder="Insert Product's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
@@ -101,7 +101,7 @@
 
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Status")}} <span class="text-danger">*</span></label>
+                      <label>{{__(" Status")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="status" required>
                         <option value="Active">Active</option>
                         <option value="Deactive">Deactive</option>
