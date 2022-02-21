@@ -20,7 +20,7 @@
         <div class="card">
 
           <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('product.create') }}"><i class="now-ui-icons ui-1_simple-add"></i> Product</a>
+          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('product.create') }}" title="Add Product"><i class="now-ui-icons ui-1_simple-add"></i> Product</a>
             <h5 class="title">Product Management</h5>
           </div>
 
@@ -55,10 +55,10 @@
                             <td class="text-right">
                               <form action="{{ route('product.destroy', $product->id)}}" method="post">
                                 @csrf
-                                <a type="button" href="{{ route('product.edit', $product->id)}}" class="btn btn-success btn-sm btn-icon">
+                                <a type="button" href="{{ route('product.edit', $product->id)}}" class="btn btn-success btn-sm btn-icon" title="Edit">
                                   <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon" title="Delete">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>
                               </form>

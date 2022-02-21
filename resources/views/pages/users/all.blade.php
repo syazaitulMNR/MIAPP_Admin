@@ -44,7 +44,7 @@
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->email }}</td>
                             <td class="text-right">
-                              <a type="button" href="{{ route('user.view', $user->id)}}" class="btn btn-success btn-sm btn-icon">
+                              <a type="button" href="{{ route('user.view', $user->id)}}" class="btn btn-success btn-sm btn-icon" title="View Detail">
                                 <i class="now-ui-icons media-1_button-play"></i>
                               </a>
                             </td>

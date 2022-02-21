@@ -93,7 +93,7 @@
     </div>
 
     <div class="col-12">
-      <a class="btn btn-round btn-outline-default btn-simple btn-icon no-caret pull-right" href="{{ route('offers') }}" >
+      <a class="btn btn-round btn-outline-default btn-simple btn-icon no-caret pull-right" href="{{ route('offers') }}" title="View All Promotion">
         <i class="now-ui-icons loader_gear"></i>                                        
       </a>
       <h5 class="title">Overall Promotion</h5>

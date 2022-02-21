@@ -29,17 +29,17 @@
               @csrf
               @include('alerts.success')
               <nav>
-                <div class="nav nav-tabs nav-justified bd-highlight" style="font-size: 9pt" id="nav-tab">
-                  <button class="nav-link active" id="nav-detail-tab" href="#nav-detail-tab" data-bs-toggle="tab" data-bs-target="#nav-detail" type="button" role="tab" aria-controls="nav-detail" aria-selected="true">Details</button>
-                  <button class="nav-link" id="nav-tnc-tab" data-bs-toggle="tab" data-bs-target="#nav-tnc" type="button" role="tab" aria-controls="nav-tnc" aria-selected="false">Terms & Conditions</button>
-                  <button class="nav-link " id="nav-poster-tab" data-bs-toggle="tab" data-bs-target="#nav-poster" type="button" role="tab" aria-controls="nav-poster" aria-selected="false">Poster</button>
-                  <button class="nav-link {{ !empty($tabName) && $tabName == 'nav-apply' ? 'active' : '' }}" id="nav-apply-tab"data-bs-toggle="tab" data-bs-target="#nav-apply" type="button" role="tab" aria-controls="nav-apply" aria-selected="false">Applicable List</button>
+                <div class="nav nav-tabs nav-justified bd-highlight" id="v-pills-tab" role="tablist">
+                  <a class="nav-link active" id="v-pills-detail-tab" data-toggle="pill" href="#v-pills-detail" role="tab" aria-controls="v-pills-detail" aria-selected="true">Details</a>
+                  <a class="nav-link" id="v-pills-tnc-tab" data-toggle="pill" href="#v-pills-tnc" role="tab" aria-controls="v-pills-tnc" aria-selected="false">Terms & Conditions</a>
+                  <a class="nav-link" id="v-pills-poster-tab" data-toggle="pill" href="#v-pills-poster" role="tab" aria-controls="v-pills-poster" aria-selected="false">Poster</a>
+                  <a class="nav-link" id="v-pills-apply-tab" data-toggle="pill" href="#v-pills-apply" role="tab" aria-controls="v-pills-apply" aria-selected="false">Applicable List</a>
                 </div>
               </nav>
 
-              <div class="tab-content pt-4" id="nav-tabContent">
+              <div class="tab-content pt-3" id="v-pills-tabContent">
                 <!--------------------------------- DETAILS --------------------------------------------->
-                <div class="tab-pane fade show active" id="nav-detail" role="tabpanel" aria-labelledby="nav-detail-tab">
+                <div class="tab-pane fade show active" id="v-pills-detail" role="tabpanel" aria-labelledby="v-pills-detail-tab">
                   <div class="col-md-12">
 
                   <div class="row">
@@ -96,7 +96,13 @@
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
                         <label>{{__(" OnPay Link")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="onpay_link" class="form-control" placeholder="Insert OnPay Link (Refer Onpay)" value="{{ $offer->onpay_link }}" required>
+                        <a class="btn btn-primary btn-sm btn-icon text-white " value="copy" onclick="copyToClipboard('copy_{{ $offer->onpay_link }}')" data-bs-toggle="tooltip" data-bs-placement="top" title="Copy Link">
+                          <i class="now-ui-icons files_single-copy-04"></i>
+                        </a>
+                        <a class="btn btn-primary btn-sm btn-icon text-white" target="_blank" href="{{ $offer->onpay_link }}" data-bs-toggle="tooltip" data-bs-placement="top" title="Go To Page">
+                          <i class="now-ui-icons media-1_button-play"></i>
+                        </a>
+                        <input type="text" name="onpay_link" id="copy_{{ $offer->onpay_link }}" class="form-control" placeholder="Insert OnPay Link (Refer Onpay)" value="{{ $offer->onpay_link }}" required>
                         @include('alerts.feedback', ['field' => 'onpay_link'])
                       </div>
                     </div>
@@ -127,7 +133,7 @@
                 </div>
 
                 <!--------------------------------- TNC --------------------------------------------->
-                <div class="tab-pane fade" id="nav-tnc" role="tabpanel" aria-labelledby="nav-tnc-tab">
+                <div class="tab-pane fade" id="v-pills-tnc" role="tabpanel" aria-labelledby="v-pills-tnc-tab">
                   <div class="col-md-12">
 
                     <div class="row">
@@ -144,7 +150,7 @@
                 </div>
 
                 <!--------------------------------- POSTER --------------------------------------------->
-                <div class="tab-pane fade" id="nav-poster" role="tabpanel" aria-labelledby="nav-poster-tab">
+                <div class="tab-pane fade" id="v-pills-poster" role="tabpanel" aria-labelledby="v-pills-poster-tab">
                   <div class="col-md-12">
 
                     <div class="col-md-12 pr-1 align-center">
@@ -164,7 +170,7 @@
                 </div>
 
                 <!--------------------------------- APPLICABLE --------------------------------------------->
-                <div class="tab-pane fade" id="nav-apply" role="tabpanel" aria-labelledby="nav-apply-tab">
+                <div class="tab-pane fade" id="v-pills-apply" role="tabpanel" aria-labelledby="v-pills-apply-tab">
                   <div class="col-md-12">
 
                     <div class="row">
@@ -241,8 +247,10 @@
       </div>
     </div>
   </div>
-
-  <script type="text/javascript">
+  
+<script type="text/javascript">
+    
+    // TEXTAREA 
     $('#compose').summernote({
         placeholder: 'Please Insert Terms And Condition',
         tabsize: 2,
@@ -250,10 +258,45 @@
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],
+          ['fontname', ['fontname']],
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
         ]
       });
+
+      $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+    // COPY LINK
+    function copyToClipboard(onpay_link) {
+        document.getElementById(onpay_link).select();
+        document.execCommand('copy');
+        alert("Copied text to clipboard: " + event.data["text/plain"] );
+    }
+    
+    // REDIRECT TAB FUNCTION
+    (function() {
+        'use strict';
+        window.addEventListener('load', function() {
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            var forms = document.getElementsByClassName('needs-validation');
+            // Loop over them and prevent submission
+            var validation = Array.prototype.filter.call(forms, function(form) {
+            form.addEventListener('submit', function(event) {
+                if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+            });
+        }, false);
+    })();
+
+    $(document).ready(function () {
+        $('#v-pills-tab a[href="#{{ old('pill') }}"]').tab('show')
+    });
   </script>
 
 @endsection

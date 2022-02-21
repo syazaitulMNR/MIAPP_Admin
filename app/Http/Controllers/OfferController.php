@@ -20,14 +20,18 @@ class OfferController extends Controller
     public function index()
     {
         $data = Offer::latest()->paginate(10);
+       
 
         return view('pages.offers.all',compact('data'))->with('i');
     }
 
     public function create()
     {
-        $product = Product::all();
+        $product = Product::latest()->paginate(15);
         $program = Program::all();
+        // dd($product);
+        // dd(empty($product));
+        // dd($product == NULL);
 
         return view('pages.offers.create',compact('product', 'program'));
     }
@@ -66,7 +70,7 @@ class OfferController extends Controller
 
         if(empty($input['product']) && empty($input['program']) )
         {
-            return redirect('promotion/edit/'.$newId.'/#nav-apply')->with('success', 'The promotion details is added successfully. Please Update Product or Event.');
+            return redirect('promotion/edit/'.$newId)->withInput(['pill' => 'v-pills-apply'])->with('success', 'The promotion details is added successfully. Please Select Product or Event.');
             
         } elseif(empty($input['program'])) {
 

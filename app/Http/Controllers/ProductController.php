@@ -16,7 +16,9 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::latest()->paginate(15);
-
+        // dd($data);
+        // dd(empty($data));
+        // dd($data == NULL);
         return view('pages.products.all',compact('data'))->with('i');
     }
 

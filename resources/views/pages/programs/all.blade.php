@@ -20,7 +20,7 @@
         <div class="card">
 
           <div class="card-header">
-          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('program.create') }}" >
+          <a class="btn btn-primary btn-round text-white pull-right" href="{{ route('program.create') }}" title="Add Event">
             <i class="now-ui-icons ui-1_simple-add"></i> Event                                          
           </a>
             <h5 class="title">Event Management</h5>
@@ -34,8 +34,8 @@
                   <thead class=" text-primary">
                     <th>#</th>
                     <th>Name</th>
-                    <th>Page Link</th>
                     <th>Date</th>
+                    <th>Status</th>
                     <th class="text-right">Action</th>
                   </thead>
 
@@ -46,18 +46,22 @@
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
                             <td style="text-transform:capitalize">{{ $program->program_name }}</td>
-                            <td>
-                              <a target="_blank" href="{{ $program->page_link }}">{{ $program->page_link }}</a>
-                            </td>
                             <td>{{ date('d/m/Y', strtotime($program->date_start)) }} - {{ date('d/m/Y', strtotime($program->date_end)) }}</td>
+                            <td>
+                              @if($program->status == 'Active')
+                                <a class="btn btn-success btn-sm">{{ $program->status }}</a>
+                              @else
+                                <a class="btn btn-default btn-sm">{{ $program->status }}</a>
+                              @endif
+                            </td>
                             
                             <td class="text-right">
                               <form action="{{ route('program.destroy', $program->id)}}" method="post">
                                 @csrf
-                                <a type="button" href="{{ route('program.edit', $program->id)}}" class="btn btn-success btn-sm btn-icon">
+                                <a type="button" href="{{ route('program.edit', $program->id)}}" class="btn btn-success btn-sm btn-icon" title="Edit">
                                   <i class="now-ui-icons ui-2_settings-90"></i>
                                 </a>
-                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon">
+                                <button type="submit" onclick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-sm btn-icon" title="Delete">
                                   <i class="now-ui-icons ui-1_simple-remove"></i>
                                 </button>
                               </form>

@@ -90,7 +90,7 @@
                               @else
                                 <a class="btn btn-default btn-sm">{{ $offername->status }}</a>
                               @endif 
-                              <a type="button" href="{{ route('offer.edit', $offer->offer_id)}}" class="btn btn-success btn-sm btn-icon">
+                              <a type="button" href="{{ route('offer.edit', $offer->offer_id)}}" class="btn btn-success btn-sm btn-icon" title="Promotion Detail">
                                 <i class="now-ui-icons media-1_button-play"></i>
                               </a>
                             </td>

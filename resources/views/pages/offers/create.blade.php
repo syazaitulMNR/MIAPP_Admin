@@ -111,6 +111,8 @@
                   </div>
                 </div>
 
+                <hr class="half-rule"/>
+
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
@@ -123,38 +125,54 @@
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>Product</label>
-                      @foreach($product as $tag)
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="product[]" value="{{$tag->id}}" >
-                            {{$tag->product_name}}
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      @endforeach
+                      <h6>Product</h6>
+                      @if(!empty($product) && $product->count())
+                        @foreach($product as $tag)
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" name="product[]" value="{{$tag->id}}" >
+                              {{$tag->product_name}}
+                              <span class="form-check-sign">
+                                  <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        @endforeach
+                      @else
+                        No data 
+                        <a class="btn btn-primary btn-round text-white" href="{{ route('product.create') }}">
+                          Add Product Now
+                        </a>
+                      @endif
                     </div>
                   </div>
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>Event</label>
-                      @foreach($program as $data)
-                        <div class="form-check">
-                          <label class="form-check-label">
-                            <input class="form-check-input" type="checkbox" name="program[]" value="{{$data->id}}" >
-                            {{$data->program_name}}
-                            <span class="form-check-sign">
-                                <span class="check"></span>
-                            </span>
-                          </label>
-                        </div>
-                      @endforeach
+                      <h6>Event</h6>
+                      @if(!empty($product) && $product->count())
+                        @foreach($program as $data)
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" name="program[]" value="{{$data->id}}" >
+                              {{$data->program_name}}
+                              <span class="form-check-sign">
+                                  <span class="check"></span>
+                              </span>
+                            </label>
+                          </div>
+                        @endforeach
+                      @else
+                        No data 
+                        <a class="btn btn-primary btn-round text-white" href="{{ route('program.create') }}">
+                          Add Program Now
+                        </a>
+                      @endif
                     </div>
                   </div>
                 </div>
+
+                <hr class="half-rule"/>
 
                 <div class="row">
                   <div class="col-md-12 pr-1">
@@ -189,6 +207,7 @@
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],
+          ['fontname', ['fontname']],
           ['color', ['color']],
           ['para', ['ul', 'ol', 'paragraph']],
         ]

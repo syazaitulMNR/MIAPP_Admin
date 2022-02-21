@@ -75,8 +75,10 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Link Landing Page")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="page_link" class="form-control" placeholder="Insert Link of Program's Landing Page" value="{{ $program->page_link }}" required>
+                        <label>{{__(" Link Landing Page")}}<span class="text-danger">*</span></label>
+                        <a class="btn btn-primary btn-sm btn-icon text-white " value="copy" onclick="copyToClipboard('copy_{{ $program->page_link }}')" title="Copy Link"><i class="now-ui-icons files_single-copy-04"></i></a>
+                        <a class="btn btn-primary btn-sm btn-icon text-white" target="_blank" href="{{ $program->page_link }}"><i class="now-ui-icons media-1_button-play" title="Go to Page"></i></a>                        
+                      <input type="text" id="copy_{{ $program->page_link }}" name="page_link" class="form-control" placeholder="Insert Link of Program's Landing Page" value="{{ $program->page_link }}" required>
                       @include('alerts.feedback', ['field' => 'page_link'])
                     </div>
                   </div>
@@ -118,4 +120,12 @@
     </div>
   </div>
 
+  <script>
+    // COPY LINK
+    function copyToClipboard(page_link) {
+        document.getElementById(page_link).select();
+        document.execCommand('copy');
+        alert("Copied text to clipboard: " + event.data["text/plain"] );
+    }
+  </script>
 @endsection

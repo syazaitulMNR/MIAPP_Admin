@@ -34,6 +34,7 @@
       @include('layouts.page_template.guest')
     @endguest
   </div>
+  
   <!--   Core JS Files   -->
   <script src="{{ asset('assets') }}/js/core/jquery.min.js"></script>
   <script src="{{ asset('assets') }}/js/core/popper.min.js"></script>
@@ -41,11 +42,10 @@
   <script src="{{ asset('assets') }}/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <!--   Offer Nav Bar   -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js "></script>
- 
 
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-
+  
   <!-- Chart JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
@@ -55,7 +55,7 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('assets') }}/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
 
-  <!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+  <!-- View chart -->
   <script src="{{ asset('assets') }}/demo/demo.js"></script>
   @stack('js')
 </body>
