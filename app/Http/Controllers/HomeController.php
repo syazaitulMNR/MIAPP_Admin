@@ -22,14 +22,7 @@ class HomeController extends Controller
 
     public function index()
     {
-        //update offer status based on valid_until date
         $date = Carbon::today();
-        $end = Offer::where('valid_until','<',$date)->get();
-        foreach($end as $change){
-            $change->status = 'Deactive';
-            $change->save();
-        }
-
         //user
         $userNum = User::where('role', 'user')->count();
         // $userNum = count($user);

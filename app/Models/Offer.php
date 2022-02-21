@@ -39,9 +39,4 @@ class Offer extends Model
     {
         return $this->belongsToMany(Program::class)->withTimestamps();
     }
-
-    // public function offer()
-    // {
-    //     return $this->hasMany('App\Models\ApplicableTo');
-    // }
 }
