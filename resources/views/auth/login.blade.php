@@ -1,3 +1,5 @@
+@if(!isset(Auth::user()->id))
+
 @extends('layouts.app', [
     'namePage' => 'Login page',
     'class' => 'login-page sidebar-mini ',
@@ -5,7 +7,7 @@
     'backgroundImage' => asset('assets') . "/img/bg14.jpg",
 ])
 
-@section('content')
+@section('contentGuest')
     <div class="content">
         <div class="container">
         <div class="col-md-12 ml-auto mr-auto">
@@ -77,3 +79,12 @@
         });
     </script>
 @endpush
+
+@else
+    {{ Session::flush(); }}
+
+    <script>
+        location.replace("{{ url('/') }}");
+    </script>   
+  
+@endif
