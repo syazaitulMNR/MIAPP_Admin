@@ -60,7 +60,7 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Link Landing Page")}}<span class="text-danger">*</span></label>
+                      <label>{{__(" Web Link")}}<span class="text-danger">*</span></label>
                       <input type="text" name="page_link" class="form-control" placeholder="Insert Link of Program's Landing Page" required>
                       @include('alerts.feedback', ['field' => 'page_link'])
                     </div>
