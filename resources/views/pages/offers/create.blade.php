@@ -38,21 +38,21 @@
                     </div>
                   </div>
                 </div>
-
+                  <!-------------------------------------SELECT TYPE---------------------------------------------------------------------->
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promotion Type")}}<span class="text-danger">*</span></label>
-                      <select class="form-control" name="type" required>
+                      <select class="form-control" name="type" id="type" onchange="ableCheckBox(this)" required>
                         <option value="">Please Select...</option>
-                        <option value="Merchandise">Merchandise</option>
+                        <option value="Product">Product</option>
                         <option value="Event">Event</option>
-                        <option value="Merchandise + Event">Merchandise + Event</option>
+                        <option value="Product + Event">Product + Event</option>
                       </select>
                       @include('alerts.feedback', ['field' => '	type'])
                     </div>
                   </div>
-
+                  <!--------------------------------------------------------------------------------------------------------------------->
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Valid Until")}}<span class="text-danger">*</span></label>
@@ -121,16 +121,16 @@
                   </div>
                 </div>
                 
-
+                <!---------------------------------------------------PRODUCT CHECKBOX------------------------------------------------------------------->
                 <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <h6>Product</h6>
                       @if(!empty($product) && $product->count())
                         @foreach($product as $tag)
-                          <div class="form-check">
+                          <div class="form-check disabled" id="ElementPd">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" name="product[]" value="{{$tag->id}}" >
+                              <input class="form-control form-control-lg" type="checkbox" name="product[]" id="products[]" value="{{$tag->id}}" disabled>
                               {{$tag->product_name}}
                               <span class="form-check-sign">
                                   <span class="check"></span>
@@ -146,15 +146,15 @@
                       @endif
                     </div>
                   </div>
-
+                  <!-----------------------------------------------------PROGRAM CHECKBOX-------------------------------------------------------------->
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <h6>Event</h6>
                       @if(!empty($product) && $product->count())
                         @foreach($program as $data)
-                          <div class="form-check">
+                          <div class="form-check disabled" id="ElementPg">
                             <label class="form-check-label">
-                              <input class="form-check-input" type="checkbox" name="program[]" value="{{$data->id}}" >
+                              <input class="form-check-input" type="checkbox" name="program[]" id="programs[]" value="{{$data->id}}" disabled>
                               {{$data->program_name}}
                               <span class="form-check-sign">
                                   <span class="check"></span>
@@ -171,7 +171,7 @@
                     </div>
                   </div>
                 </div>
-
+                <!--------------------------------------------------------------------------------------------------------------------------------------->
                 <hr class="half-rule"/>
 
                 <div class="row">
@@ -183,7 +183,7 @@
                     </div>
                   </div>
                 </div>
-    
+                
                 <div class="card-footer text-right">
                   <a href="{{ route('offers') }}" class="btn btn-danger btn-round">{{__('Back')}}</a>
                   <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
@@ -201,17 +201,71 @@
 
   <script type="text/javascript">
     $('#compose').summernote({
-        placeholder: 'Please Insert Terms And Condition',
-        tabsize: 2,
-        height: 120,
-        toolbar: [
-          ['style', ['style']],
-          ['font', ['bold', 'underline', 'clear']],
-          ['fontname', ['fontname']],
-          ['color', ['color']],
-          ['para', ['ul', 'ol', 'paragraph']],
-        ]
-      });
+      placeholder: 'Please Insert Terms And Condition',
+      tabsize: 2,
+      height: 120,
+      toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['fontname', ['fontname']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+      ]
+    });
+
+    // Checkbox function for product & program
+    function ableCheckBox(opts) {
+      var pdChks = document.getElementsByName("product[]");
+      var pgChks = document.getElementsByName("program[]");
+
+      if (opts.value == 'Product') { //DISABLE Product, ABLE Program
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = false;
+          $('#ElementPd').removeClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = true;
+          pgChks[i].checked = false;
+          $('#ElementPg').addClass('disabled');
+        }
+
+      } else if (opts.value == 'Event') { //ABLE Product, DISABLE Program
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = true;
+          pdChks[i].checked = false;
+          $('#ElementPd').addClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = false;
+          $('#ElementPg').removeClass('disabled');
+        }
+
+      } else if (opts.value == 'Product + Event') { //ABLE both
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = false;
+          $('#ElementPd').removeClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = false;
+          $('#ElementPg').removeClass('disabled');
+        }
+
+      } else { //DISABLE both
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = true;
+          pdChks[i].checked = false;
+          $('#ElementPd').addClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = true;
+          pgChks[i].checked = false;
+          $('#ElementPg').addClass('disabled');
+        }
+
+      }
+    }
+    // END Checkbox function for product & program
+
   </script>
 
 @endsection

@@ -64,10 +64,10 @@
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>{{__(" Promotion Type")}}<span class="text-danger">*</span></label>
-                        <select class="form-control" name="type" required>
-                          <option value="Merchandise" {{ $offer->type == 'Merchandise' ? 'selected' : '' }} >Merchandise</option>
+                        <select class="form-control" name="type" onchange="ableCheckBox(this)" required>
+                          <option value="Product" {{ $offer->type == 'Product' ? 'selected' : '' }} >Product</option>
                           <option value="Event" {{ $offer->type == 'Event' ? 'selected' : '' }} >Event</option>
-                          <option value="Merchandise + Event" {{ $offer->type == 'Merchandise + Event' ? 'selected' : '' }} >Merchandise + Event</option>
+                          <option value="Product + Event" {{ $offer->type == 'Product + Event' ? 'selected' : '' }} >Product + Event</option>
                         </select>
                         @include('alerts.feedback', ['field' => '	type'])
                       </div>
@@ -180,49 +180,62 @@
                         </div>
                       </div>
                     </div>
-                        
-                    <!-- PRODUCT -->
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <h6>Product</h6>
-                        <div class="row">
-                          @foreach($applyProduct as $data)
-                            @foreach($product as $products)
-                              @if ($products->id == $data->product_id)
-                                <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
-                              @endif
+                    
+                    <div class="row">
+                      <!---------------------------------------------------PRODUCT CHECKBOX------------------------------------------------------------------->
+                      <div class="col-md-6 pr-1 pb-5">
+                        <div class="form-group">
+                          <h6>Product</h6>
+                          <div class="row">
+                            @foreach($applyProduct as $data)
+                              @foreach($product as $products)
+                                @if ($products->id == $data->product_id)
+                                  <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $products -> product_name }}</a> &nbsp;
+                                @endif
+                              @endforeach
                             @endforeach
+                          </div>
+                          @foreach ($product as $products)
+                            <div class="form-check" id="ElementPd">
+                              <label class="form-check-label">
+                              <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($applyProduct as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
+                                {{$products->product_name}}
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
                           @endforeach
                         </div>
-                        @foreach ($product as $products)
-                          <div class="checkbox checkbox-info checkbox-inline">
-                            <input class="age_group_checkbox" type="checkbox" value="{{$products->id}}" name="product[]" @foreach ($applyProduct as $ids) @if($products->id == $ids->product_id ) checked @endif @endforeach />
-                            <label>{{$products->product_name}}</label>
-                          </div>
-                        @endforeach
                       </div>
-                    </div>
 
-                    <!-- EVENT -->
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <h6>Event</h6>
-                        <div class="row">
-                          @foreach($applyProgram as $data)
-                            @foreach($program as $programs)
-                              @if ($programs->id == $data->program_id)
-                                <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $programs -> program_name }}</a> &nbsp;
-                              @endif
+                      <!---------------------------------------------------EVENT CHECKBOX------------------------------------------------------------------->
+                      <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                          <h6>Event</h6>
+                          <div class="row">
+                            @foreach($applyProgram as $data)
+                              @foreach($program as $programs)
+                                @if ($programs->id == $data->program_id)
+                                  <a href="" class="btn btn-primary btn-sm btn-outline-primary" disable>{{ $programs -> program_name }}</a> &nbsp;
+                                @endif
+                              @endforeach
                             @endforeach
+                          </div>
+                          @foreach($program as $programs)
+                            <div class="form-check" id="ElementPg">
+                              <label class="form-check-label">
+                              <input class="form-check-input" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($applyProgram as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
+                                {{$programs->program_name}}
+                                <span class="form-check-sign">
+                                    <span class="check"></span>
+                                </span>
+                              </label>
+                            </div>
                           @endforeach
                         </div>
-                        @foreach ($program as $programs)
-                          <div class="checkbox checkbox-info checkbox-inline">
-                            <input class="age_group_checkbox" type="checkbox" value="{{$programs->id}}" name="program[]" @foreach ($applyProgram as $ids) @if($programs->id == $ids->program_id ) checked @endif @endforeach />
-                            <label>{{$programs->program_name}}</label>
-                          </div>
-                        @endforeach
                       </div>
+
                     </div>
 
                   </div>
@@ -297,6 +310,59 @@
     $(document).ready(function () {
         $('#v-pills-tab a[href="#{{ old('pill') }}"]').tab('show')
     });
+
+    // Checkbox function for product & program
+    function ableCheckBox(opts) {
+      var pdChks = document.getElementsByName("product[]");
+      var pgChks = document.getElementsByName("program[]");
+
+      if (opts.value == 'Product') { //DISABLE Product, ABLE Program
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = false;
+          $('#ElementPd').removeClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = true;
+          pgChks[i].checked = false;
+          $('#ElementPg').addClass('disabled');
+        }
+
+      } else if (opts.value == 'Event') { //ABLE Product, DISABLE Program
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = true;
+          pdChks[i].checked = false;
+          $('#ElementPd').addClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = false;
+          $('#ElementPg').removeClass('disabled');
+        }
+
+      } else if (opts.value == 'Product + Event') { //ABLE both
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = false;
+          $('#ElementPd').removeClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = false;
+          $('#ElementPg').removeClass('disabled');
+        }
+
+      } else { //DISABLE both
+        for (var i = 0; i <= pdChks.length - 1; i++) {
+          pdChks[i].disabled = true;
+          pdChks[i].checked = false;
+          $('#ElementPd').addClass('disabled');
+        }
+        for (var i = 0; i <= pgChks.length - 1; i++) {
+          pgChks[i].disabled = true;
+          pgChks[i].checked = false;
+          $('#ElementPg').addClass('disabled');
+        }
+
+      }
+    }
+    // END Checkbox function for product & program
   </script>
 
 @endsection
