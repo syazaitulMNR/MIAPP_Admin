@@ -128,7 +128,7 @@
                       <h6>Product</h6>
                       @if(!empty($product) && $product->count())
                         @foreach($product as $tag)
-                          <div class="form-check disabled" id="ElementPd">
+                          <div class="form-check disabled" id="ElementPd[]">
                             <label class="form-check-label">
                               <input class="form-control form-control-lg" type="checkbox" name="product[]" id="products[]" value="{{$tag->id}}" disabled>
                               {{$tag->product_name}}

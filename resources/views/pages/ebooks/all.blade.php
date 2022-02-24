@@ -34,7 +34,7 @@
           @if(!empty($data) && $data->count())
 
             @foreach($data as $book)
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <div class="card text-center">
 
                   <img class="card-img-top" src="{{ $book->ebook_cover }}" style="max-width:50%">
