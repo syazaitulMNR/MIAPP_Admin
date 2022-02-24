@@ -29,12 +29,13 @@ class EBookController extends Controller
     {
         $cover = $request->file('ebook_cover');
         $pdf = $request->file('ebook_pdf');
+        $ebookname = $request->input('ebook_name');
 
         ///// End Upload /////
         // ebook_cover
         $ext_cover = $cover->getClientOriginalExtension();
         $name_cover = $cover->getClientOriginalName();
-        $uniqe_cover = 'COVER_'. uniqid() . '.' . $ext_cover;
+        $uniqe_cover = 'COVER '. $ebookname  . '.'  . $ext_cover;
         $dirpath = public_path('assets/EBooks/');
         $cover->move($dirpath, $uniqe_cover);
 
@@ -43,7 +44,7 @@ class EBookController extends Controller
         // ebook_pdf
         $ext_pdf = $pdf->getClientOriginalExtension();
         $name_pdf = $pdf->getClientOriginalName();
-        $uniqe_pdf = 'PDF_'. uniqid() . '.' . $ext_pdf;
+        $uniqe_pdf = 'EBOOK '.  $ebookname  . '.' . $ext_pdf;
         $dirpath = public_path('assets/EBooks/');
         $pdf->move($dirpath, $uniqe_pdf);
 
@@ -82,6 +83,7 @@ class EBookController extends Controller
         // Start Image
         $cover = $request->file('ebook_cover');
         $pdf = $request->file('ebook_pdf');
+        $ebookname = $request->input('ebook_name');
             
         if($cover == '' && $pdf == '')
         {   
@@ -90,18 +92,41 @@ class EBookController extends Controller
 
             $book->save();
 
-            return redirect('ebook/edit/'.$id)->with('success', 'EBook details is successfully updated.');
+            return redirect('ebooks')->with('success', 'EBook details is successfully updated.');
 
         } else {
 
             $book->ebook_name = $request->ebook_name;
             $book->desc = $request->desc;
-
-            if($cover != '') {
+            
+            if ($cover != '' && $pdf != '') {
                 // ebook_cover
                 $ext_cover = $cover->getClientOriginalExtension();
                 $name_cover = $cover->getClientOriginalName();
-                $uniqe_cover = 'COVER_'. uniqid() . '.' . $ext_cover;
+                $uniqe_cover = 'COVER '. $ebookname . '.' . $ext_cover;
+                $dirpath = public_path('assets/EBooks/');
+                $cover->move($dirpath, $uniqe_cover);
+
+                $cover_path = '/assets/EBooks/'.$uniqe_cover;
+                
+                $book->ebook_cover = ''.URL::to('').$cover_path.'';
+
+                // ebook_pdf
+                $ext_pdf = $pdf->getClientOriginalExtension();
+                $name_pdf = $pdf->getClientOriginalName();
+                $uniqe_pdf = 'EBOOK '. $ebookname . '.' . $ext_pdf;
+                $dirpath = public_path('assets/EBooks/');
+                $pdf->move($dirpath, $uniqe_pdf);
+
+                $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
+                
+                $book->ebook_pdf = ''.URL::to('').$pdf_path.'';
+
+            } elseif($cover != '') {
+                // ebook_cover
+                $ext_cover = $cover->getClientOriginalExtension();
+                $name_cover = $cover->getClientOriginalName();
+                $uniqe_cover = 'COVER '. $ebookname . '.' . $ext_cover;
                 $dirpath = public_path('assets/EBooks/');
                 $cover->move($dirpath, $uniqe_cover);
 
@@ -113,18 +138,19 @@ class EBookController extends Controller
                 // ebook_pdf
                 $ext_pdf = $pdf->getClientOriginalExtension();
                 $name_pdf = $pdf->getClientOriginalName();
-                $uniqe_pdf = 'PDF_'. uniqid() . '.' . $ext_pdf;
+                $uniqe_pdf = 'EBOOK '. $ebookname . '.' . $ext_pdf;
                 $dirpath = public_path('assets/EBooks/');
                 $pdf->move($dirpath, $uniqe_pdf);
 
                 $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
                 
                 $book->ebook_pdf = ''.URL::to('').$pdf_path.'';
-            }
+
+            } 
 
             $book->save();
 
-            return redirect('ebook/edit/'.$id)->with('success', 'EBook details is successfully updated.');
+            return redirect('ebooks')->with('success', 'EBook details is successfully updated.');
 
         }
     }
