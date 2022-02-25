@@ -34,18 +34,18 @@
           @if(!empty($data) && $data->count())
 
             @foreach($data as $book)
-              <div class="col-md-3">
+              <div class="col-md-3 col-6">
                 <div class="card text-center">
 
-                  <img class="card-img-top" src="{{ $book->ebook_cover }}" style="max-width:50%">
+                  <img class="card-img-top pt-4" src="{{ $book->ebook_cover }}" style="max-width:50%">
                   <div class="card-body">
 
                     <h6 class="title">{{ $book->ebook_name }}</h6>
                     <p class="card-text">{{ $book->desc }}</p>
 
-                    <div class="text-center">
+                    <div class="text-center col-md-12 col-11">
                       <form action="{{ route('ebook.destroy', $book->id)}}" method="post">
-                        @csrf
+                          @csrf
                         <a type="button" target="blank" href="{{ $book->ebook_pdf }}" class="btn btn-warning btn-sm" title="View PDF">
                           <i class="now-ui-icons education_paper"></i> PDF
                         </a>

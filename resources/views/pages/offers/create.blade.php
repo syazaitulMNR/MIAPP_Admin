@@ -128,7 +128,7 @@
                       <h6>Product</h6>
                       @if(!empty($product) && $product->count())
                         @foreach($product as $tag)
-                          <div class="form-check disabled" id="ElementPd[]">
+                          <div class="form-check 1 disabled" id="ElementPd[]">
                             <label class="form-check-label">
                               <input class="form-control form-control-lg" type="checkbox" name="product[]" id="products[]" value="{{$tag->id}}" disabled>
                               {{$tag->product_name}}
@@ -152,7 +152,7 @@
                       <h6>Event</h6>
                       @if(!empty($product) && $product->count())
                         @foreach($program as $data)
-                          <div class="form-check disabled" id="ElementPg">
+                          <div class="form-check 2 disabled" id="ElementPg[]">
                             <label class="form-check-label">
                               <input class="form-check-input" type="checkbox" name="program[]" id="programs[]" value="{{$data->id}}" disabled>
                               {{$data->program_name}}
@@ -215,51 +215,62 @@
 
     // Checkbox function for product & program
     function ableCheckBox(opts) {
-      var pdChks = document.getElementsByName("product[]");
-      var pgChks = document.getElementsByName("program[]");
+      var pdChks = document.getElementsByName("product[]"); //Product chkbox Function
+      var pgChks = document.getElementsByName("program[]"); //Program chkbox Function
+      var pdEle = document.getElementsByClassName("form-check 1"); //Product CSS
+      var pgEle = document.getElementsByClassName("form-check 2"); //Program CSS
 
-      if (opts.value == 'Product') { //DISABLE Product, ABLE Program
+      if (opts.value == 'Product') { //CONDITION 1 = DISABLE Product, ABLE Program
         for (var i = 0; i <= pdChks.length - 1; i++) {
           pdChks[i].disabled = false;
-          $('#ElementPd').removeClass('disabled');
+
+          pdEle[i].classList.remove('disabled'); //remove 'disabled' from Product css
         }
         for (var i = 0; i <= pgChks.length - 1; i++) {
           pgChks[i].disabled = true;
           pgChks[i].checked = false;
-          $('#ElementPg').addClass('disabled');
+
+          pgEle[i].classList.add('disabled'); //add 'disabled' from Program css
+          
         }
 
-      } else if (opts.value == 'Event') { //ABLE Product, DISABLE Program
+      } else if (opts.value == 'Event') { //CONDITION 2 = ABLE Product, DISABLE Program
         for (var i = 0; i <= pdChks.length - 1; i++) {
           pdChks[i].disabled = true;
           pdChks[i].checked = false;
-          $('#ElementPd').addClass('disabled');
+
+          pdEle[i].classList.add('disabled');
         }
         for (var i = 0; i <= pgChks.length - 1; i++) {
           pgChks[i].disabled = false;
-          $('#ElementPg').removeClass('disabled');
+
+          pgEle[i].classList.remove('disabled');
         }
 
-      } else if (opts.value == 'Product + Event') { //ABLE both
+      } else if (opts.value == 'Product + Event') { //CONDITION 3 = ABLE both
         for (var i = 0; i <= pdChks.length - 1; i++) {
           pdChks[i].disabled = false;
-          $('#ElementPd').removeClass('disabled');
+
+          pdEle[i].classList.remove('disabled');
         }
         for (var i = 0; i <= pgChks.length - 1; i++) {
           pgChks[i].disabled = false;
-          $('#ElementPg').removeClass('disabled');
+          
+          pgEle[i].classList.remove('disabled');
         }
 
-      } else { //DISABLE both
+      } else { //CONDITION 4 = DISABLE both
         for (var i = 0; i <= pdChks.length - 1; i++) {
           pdChks[i].disabled = true;
           pdChks[i].checked = false;
-          $('#ElementPd').addClass('disabled');
+          
+          pdEle[i].classList.add('disabled');
         }
         for (var i = 0; i <= pgChks.length - 1; i++) {
           pgChks[i].disabled = true;
           pgChks[i].checked = false;
-          $('#ElementPg').addClass('disabled');
+          
+          pgEle[i].classList.add('disabled');
         }
 
       }
