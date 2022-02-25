@@ -11,11 +11,30 @@
       </div>
     <a class="navbar-brand" href="#pablo"></a>
     </div>
+
+    <div class="pt-3">
+      @if (Route::currentRouteName() == 'home')
+        <h6>Dashboard</h6>
+      @elseif (Route::currentRouteName() == 'ebooks' || Route::currentRouteName() == 'ebook.edit' || Route::currentRouteName() == 'ebook.create')
+        <h6>EBook</h6>
+      @elseif (Route::currentRouteName() == 'products'|| Route::currentRouteName() == 'product.edit' || Route::currentRouteName() == 'product.create')
+        <h6>Product</h6>
+      @elseif (Route::currentRouteName() == 'programs'|| Route::currentRouteName() =='program.edit' || Route::currentRouteName() == 'program.create')
+        <h6>Event</h6>
+      @elseif (Route::currentRouteName() == 'offers'|| Route::currentRouteName() =='offer.edit' || Route::currentRouteName() == 'offer.create')
+        <h6>Promotion</h6>
+        @elseif (Route::currentRouteName() == 'users'|| Route::currentRouteName() == 'user.view')
+        <h6>User</h6>
+      @endif 
+    </div>
+     
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
       <span class="navbar-toggler-bar navbar-kebab"></span>
     </button>
+
     <div class="collapse navbar-collapse justify-content-end" id="navigation">
       <form>
         <div class="input-group no-border">
@@ -47,6 +66,7 @@
         </li>
       </ul>
     </div>
+    
   </div>
 </nav>
   <!-- End Navbar -->

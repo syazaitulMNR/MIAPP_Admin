@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="panel-header panel-header-sm">
-  </div>
+  <div class="panel-header panel-header-sm"></div>
+  
   <div class="content">
 
-    <div class="row">
+    <div class="row pt-12">
       <!-- User Number -->
       <div class="col-lg-3">
         <div class="card card-chart">
