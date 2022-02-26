@@ -110,6 +110,6 @@ class ProductController extends Controller
         $del = Product::findOrFail($id);
         $del->delete();
 
-        return redirect('products')->with('success', 'Product is successfully deleted');
+        return redirect()->back()->with('success', 'Product is successfully deleted');
     }
 }
