@@ -10,7 +10,7 @@
         <div class="card">
 
           <div class="card-header">
-            <h5 class="title">Create New Program</h5>
+            <h5 class="title">Create New Product</h5>
           </div>
 
           <div class="card-body">
@@ -25,7 +25,7 @@
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>{{__(" Product ID")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID (Refer Onpay)" required>
+                        <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID" required>
                         @include('alerts.feedback', ['field' => 'product_id'])
                       </div>
                   </div>
