@@ -10,7 +10,7 @@ class EBookController extends Controller
 {
     public function index()
     {
-        $data = EBook::all();
+        $data = EBook::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',
@@ -21,7 +21,7 @@ class EBookController extends Controller
 
     public function guestIndex()
     {
-        $data = EBook::all();
+        $data = EBook::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',

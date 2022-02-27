@@ -10,7 +10,7 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $data = User::all();
+        $data = User::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',
@@ -21,7 +21,7 @@ class ProfileController extends Controller
 
     public function guestIndex()
     {
-        $data = User::all();
+        $data = User::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',

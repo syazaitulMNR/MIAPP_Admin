@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $data = Product::all();
+        $data = Product::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',
@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function guestIndex()
     {
-        $data = Product::all();
+        $data = Product::orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',
