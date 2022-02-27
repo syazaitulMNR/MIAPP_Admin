@@ -25,6 +25,7 @@ class OfferHistory extends Model
     //has PK in offer 
     public function historyOffer()
     {
-        return $this->hasMany(Offer::class);
+        // return $this->hasMany(Offer::class);
+        return $this->hasOne('App\Models\Offer', 'id', 'offer_id');
     }
 }
