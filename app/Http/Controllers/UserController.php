@@ -17,7 +17,7 @@ class UserController extends Controller
     
     public function index()
     {
-        $data = User::where('role', 'user')->latest()->paginate(15);
+        $data = User::where('role', 'guest')->latest()->paginate(15);
 
         return view('pages.users.all',compact('data'))->with('i');
     }
