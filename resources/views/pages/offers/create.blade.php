@@ -25,7 +25,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promotion ID")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="offer_id" class="form-control" placeholder="Insert Promo ID (Refer Onpay)" required>
+                      <input type="text" name="offer_id" class="form-control" value="{{ old('offer_id') }}" placeholder="Insert Promo ID (Refer Onpay)" required>
                       @include('alerts.feedback', ['field' => 'offer_id'])
                     </div>
                   </div>
@@ -33,7 +33,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promotion Name")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="offer_name" class="form-control" placeholder="Insert Promotion Name" required>
+                      <input type="text" name="offer_name" class="form-control" value="{{ old('offer_name') }}" placeholder="Insert Promotion Name" required>
                       @include('alerts.feedback', ['field' => 'offer_name'])
                     </div>
                   </div>
@@ -56,7 +56,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Valid Until")}}<span class="text-danger">*</span></label>
-                      <input type="datetime-local" name="valid_until" class="form-control" required>
+                      <input type="datetime-local" name="valid_until" value="{{ old('valid_until') }}" class="form-control" required>
                       @include('alerts.feedback', ['field' => 'valid_until'])
                     </div>
                   </div>
@@ -66,7 +66,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Description")}}</label>
-                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert Promotion's Description" ></textarea>
+                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert Promotion's Description" >{{ old('desc') }}</textarea>
                       @include('alerts.feedback', ['field' => 'desc'])
                     </div>
                   </div>
@@ -76,7 +76,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" OnPay Link")}} <span class="text-danger">*</span></label>
-                      <input type="text" name="onpay_link" class="form-control" placeholder="Insert OnPay Link (Refer Onpay)" required>
+                      <input type="text" name="onpay_link" class="form-control" value="{{ old('onpay_link') }}" placeholder="Insert OnPay Link (Refer Onpay)" required>
                       @include('alerts.feedback', ['field' => 'onpay_link'])
                     </div>
                   </div>
@@ -86,7 +86,7 @@
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" required>
+                      <input type="text" name="promo_code" class="form-control" value="{{ old('promo_code') }}" placeholder="Insert Promo Code" required>
                       @include('alerts.feedback', ['field' => 'promo_code'])
                     </div>
                   </div>
@@ -178,7 +178,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Terms And Conditions")}} <span class="text-danger">*</span></label>
-                      <textarea rows="3" class="form-control" id="compose" name="tnc" placeholder="Insert Terms And Conditions" required></textarea>
+                      <textarea rows="3" class="form-control" id="compose" name="tnc" placeholder="Insert Terms And Conditions" required>{{ old('tnc') }}</textarea>
                       @include('alerts.feedback', ['field' => 'tnc'])
                     </div>
                   </div>

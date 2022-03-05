@@ -34,7 +34,7 @@
                     <th>ID</th>
                     <th>Name</th>
                     <th>Image</th>
-                    <th>Action</th>
+                    <th class="header text-right">Action</th>
                   </thead>
 
                   <tbody>

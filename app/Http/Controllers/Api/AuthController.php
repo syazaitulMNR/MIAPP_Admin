@@ -56,7 +56,7 @@ class AuthController extends Controller
 
         $user = $request->user();
 
-        $token = $request->user()->createToken('authToken')->plainTextToken;
+        $tokenName = $request->user()->createToken('authToken')->plainTextToken;
 
         return response([
             'status' => 'authenticated',

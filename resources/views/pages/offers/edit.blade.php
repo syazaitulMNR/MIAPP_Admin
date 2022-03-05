@@ -140,7 +140,7 @@
                       <div class="col-md-12 pr-1">
                         <div class="form-group">
                           <label>{{__(" Terms And Conditions")}}<span class="text-danger">*</span></label>
-                          <textarea rows="3" class="form-control" id="compose" name="tnc" placeholder="Insert Terms And Conditions" required>{!! $offer->tnc !!}</textarea>
+                          <textarea class="form-control" id="compose" name="tnc" placeholder="Insert Terms And Conditions" required>{!! $offer->tnc !!}</textarea>
                           @include('alerts.feedback', ['field' => 'tnc'])
                         </div>
                       </div>
@@ -267,7 +267,7 @@
     $('#compose').summernote({
         placeholder: 'Please Insert Terms And Condition',
         tabsize: 2,
-        height: 120,
+        height: 250,
         toolbar: [
           ['style', ['style']],
           ['font', ['bold', 'underline', 'clear']],

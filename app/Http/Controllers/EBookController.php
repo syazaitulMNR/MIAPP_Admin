@@ -27,41 +27,49 @@ class EBookController extends Controller
 
     public function store(Request $request)
     {
-        $cover = $request->file('ebook_cover');
-        $pdf = $request->file('ebook_pdf');
-        $ebookname = $request->input('ebook_name');
-
-        ///// End Upload /////
-        // ebook_cover
-        $ext_cover = $cover->getClientOriginalExtension();
-        $name_cover = $cover->getClientOriginalName();
-        $uniqe_cover = 'COVER '. $ebookname  . '.'  . $ext_cover;
-        $dirpath = public_path('assets/EBooks/');
-        $cover->move($dirpath, $uniqe_cover);
-
-        $cover_path = '/assets/EBooks/'.$uniqe_cover;
-
-        // ebook_pdf
-        $ext_pdf = $pdf->getClientOriginalExtension();
-        $name_pdf = $pdf->getClientOriginalName();
-        $uniqe_pdf = 'EBOOK '.  $ebookname  . '.' . $ext_pdf;
-        $dirpath = public_path('assets/EBooks/');
-        $pdf->move($dirpath, $uniqe_pdf);
-
-        $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
-    
-        ///// End Upload /////
-
-        EBook::create([
-            'ebook_name' => request('ebook_name'),
-            'desc' => request('desc'),
-            'type' => request('type'),
-            'ebook_cover' => ''.URL::to('').$cover_path.'',
-            'ebook_pdf' => ''.URL::to('').$pdf_path.'',
+        $validatedData = $request->validate([
+            'ebook_cover' => 'required|image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
+            'ebook_pdf' => 'required|mimes:pdf|max:5000',
         ]);
+
+        if($validatedData)
+        {
+            $cover = $request->file('ebook_cover');
+            $pdf = $request->file('ebook_pdf');
+            $ebookname = $request->input('ebook_name');
+
+            ///// End Upload /////
+            // ebook_cover
+            $ext_cover = $cover->getClientOriginalExtension();
+            $name_cover = $cover->getClientOriginalName();
+            $uniqe_cover = 'COVER '. $ebookname  . '.'  . $ext_cover;
+            $dirpath = public_path('assets/EBooks/');
+            $cover->move($dirpath, $uniqe_cover);
+
+            $cover_path = '/assets/EBooks/'.$uniqe_cover;
+
+            // ebook_pdf
+            $ext_pdf = $pdf->getClientOriginalExtension();
+            $name_pdf = $pdf->getClientOriginalName();
+            $uniqe_pdf = 'EBOOK '.  $ebookname  . '.' . $ext_pdf;
+            $dirpath = public_path('assets/EBooks/');
+            $pdf->move($dirpath, $uniqe_pdf);
+
+            $pdf_path = '/assets/EBooks/'.$uniqe_pdf;
         
-        //success go to all list
-        return redirect('ebooks')->with('success', 'The EBook details is added successfully.');
+            ///// End Upload /////
+
+            EBook::create([
+                'ebook_name' => request('ebook_name'),
+                'desc' => request('desc'),
+                'type' => request('type'),
+                'ebook_cover' => ''.URL::to('').$cover_path.'',
+                'ebook_pdf' => ''.URL::to('').$pdf_path.'',
+            ]);
+            
+            //success go to all list
+            return redirect('ebooks')->with('success', 'The EBook details is added successfully.');
+        }
     }
 
     public function show(EBook $id)
@@ -98,6 +106,11 @@ class EBookController extends Controller
 
             $book->ebook_name = $request->ebook_name;
             $book->desc = $request->desc;
+
+            $validatedData = $request->validate([
+                'ebook_cover' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
+                'ebook_pdf' => 'mimes:pdf|max:5000',
+            ]);
             
             if ($cover != '' && $pdf != '') {
                 // ebook_cover
@@ -122,7 +135,7 @@ class EBookController extends Controller
                 
                 $book->ebook_pdf = ''.URL::to('').$pdf_path.'';
 
-            } elseif($cover != '') {
+            } elseif ($cover != '') {
                 // ebook_cover
                 $ext_cover = $cover->getClientOriginalExtension();
                 $name_cover = $cover->getClientOriginalName();

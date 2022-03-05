@@ -22,7 +22,7 @@
                   <div class="col-md-12 pr-1">
                       <div class="form-group">
                           <label>{{__(" Name")}}<span class="text-danger">*</span></label>
-                          <input type="text" name="ebook_name" class="form-control" placeholder="Insert EBook Name" required>
+                          <input type="text" name="ebook_name" class="form-control" value="{{ old('ebook_name') }}" placeholder="Insert EBook Name" required>
                           @include('alerts.feedback', ['field' => 'ebook_name'])
                       </div>
                     </div>
@@ -32,7 +32,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Description")}}</label>
-                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert EBook's Description" ></textarea>
+                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert EBook's Description" >{{ old('desc') }}</textarea>
                       @include('alerts.feedback', ['field' => 'desc'])
                     </div>
                   </div>

@@ -48,6 +48,7 @@
                             <td style="text-transform:capitalize">{{ $offer->offer_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($offer->valid_until)) }}</td>
                             <td>{{ $offer->type }}</td>
+                            <td>
                               @if($offer->status == 'Active')
                                 <a class="btn btn-success btn-sm">{{ $offer->status }}</a>
                               @else
