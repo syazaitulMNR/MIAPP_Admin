@@ -12,22 +12,20 @@ class OfferController extends Controller
     public function index()
     {
         $data = Offer::where('status', 'Active')->orderBy('created_at' , 'DESC')->with('products','programs')->get();
+  
+        $data->map(function ($item) {
 
-        $offer_histories = $data->offerHistory->where('user_id' , auth()->user()->id);
-
-        if(count($offer_histories) > 0){
-            $data->map(function ($item) {
+            $offer_histories =  $item->offerHistory->where('user_id' , auth()->user()->id);
+            if(count($offer_histories) > 0){
                 $item['click'] = true;
                 return $item;
-            });
-        }
-        else{
-            $data->map(function ($item) {
+            }
+            else{
                 $item['click'] = false;
                 return $item;
-            });
-        }
-
+            }
+        });
+     
         return response([
             'status' => '200',
             'message' => 'Successfully fetch offer data',

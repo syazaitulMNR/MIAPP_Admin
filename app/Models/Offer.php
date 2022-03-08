@@ -39,4 +39,8 @@ class Offer extends Model
     {
         return $this->belongsToMany(Program::class)->withTimestamps();
     }
+
+    // public function offerHistories() {
+    //     return $this->hasMany('App\Models\OfferHistory', 'offer_id', 'id');
+    // }
 }
