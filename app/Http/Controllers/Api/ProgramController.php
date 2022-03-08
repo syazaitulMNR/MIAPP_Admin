@@ -10,7 +10,7 @@ class ProgramController extends Controller
 {
     public function index()
     {
-        $data = Program::orderBy('created_at' , 'DESC')->get();
+        $data = Program::where('status', 'Active')->orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',
@@ -21,7 +21,7 @@ class ProgramController extends Controller
 
     public function guestIndex()
     {
-        $data = Program::orderBy('created_at' , 'DESC')->get();
+        $data = Program::where('status', 'Active')->orderBy('created_at' , 'DESC')->get();
 
         return response([
             'status' => '200',

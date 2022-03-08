@@ -11,7 +11,7 @@ class OfferController extends Controller
 {
     public function index()
     {
-        $data = Offer::orderBy('created_at' , 'DESC')->with('products','programs')->get();
+        $data = Offer::where('status', 'Active')->orderBy('created_at' , 'DESC')->with('products','programs')->get();
 
         return response([
             'status' => '200',
@@ -22,7 +22,7 @@ class OfferController extends Controller
 
     public function guestIndex()
     {
-        $data = Offer::orderBy('created_at' , 'DESC')->with('products','programs')->get();
+        $data = Offer::where('status', 'Active')->orderBy('created_at' , 'DESC')->with('products','programs')->get();
 
         return response([
             'status' => '200',

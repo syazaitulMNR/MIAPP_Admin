@@ -49,7 +49,7 @@ class AuthController extends Controller
         $user->email = $request->email;
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
-        $user->role = 'guest';
+        $user->role = 'User';
         $user->save();
 
         Auth::login($user);
