@@ -113,7 +113,9 @@
                   </div>
                   <div class="col-md-6">
                     <br>
-                    <img id="image" src="" class="w-100">
+                    <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
+                      <img id="image" src="" class="w-100">
+                    </div>
                     <br>
                   </div>
                   <div class="col-md-2 text-center" style="align-self: center;">
@@ -326,8 +328,16 @@
         }
   
         cropper = new Cropper(image, {
+          dragMode: 'move',
           aspectRatio: 1.7/1,
-          viewMode: 3,
+          autoCropArea: 0.65,
+          restore: false,
+          guides: false,
+          center: false,
+          highlight: false,
+          cropBoxMovable: true,
+          cropBoxResizable: true,
+          toggleDragModeOnDblclick: false,
         });
       });
   
