@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('login' , 'App\Http\Controllers\Api\AuthController@login');
 Route::post('register' , 'App\Http\Controllers\Api\AuthController@register');
-
+Route::post('validateUser' , 'App\Http\Controllers\Api\AuthController@validateUser');
+Route::post('changeForgotPassword' , 'App\Http\Controllers\Api\AuthController@changeForgotPassword');
 
 Route::get('ebooks/guestIndex' , 'App\Http\Controllers\Api\EBookController@guestIndex');
 Route::get('products/guestIndex' , 'App\Http\Controllers\Api\ProductController@guestIndex');
