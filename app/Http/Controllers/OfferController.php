@@ -20,7 +20,6 @@ class OfferController extends Controller
     public function index()
     {
         $data = Offer::latest()->paginate(10);
-       
 
         return view('pages.offers.all',compact('data'))->with('i');
     }
@@ -29,9 +28,6 @@ class OfferController extends Controller
     {
         $product = Product::latest()->paginate(15);
         $program = Program::all();
-        // dd($product);
-        // dd(empty($product));
-        // dd($product == NULL);
 
         return view('pages.offers.create',compact('product', 'program'));
     }
@@ -57,7 +53,7 @@ class OfferController extends Controller
             ///// End Upload /////
 
             $new = Offer::create([
-                'offer_id' => request('offer_id'),
+                'offer_id' => strtoupper(request('offer_id')),
                 'offer_name' => ucwords(request('offer_name')),
                 'desc' => ucfirst(request('desc')),
                 'type' => request('type'),
@@ -65,7 +61,7 @@ class OfferController extends Controller
                 'valid_until' => request('valid_until'),
                 'onpay_link' => request('onpay_link'),
                 'img_path' => ''.URL::to('').$img_path.'',
-                'promo_code' => request('promo_code'),
+                'promo_code' => strtoupper(request('promo_code')),
                 'status' => request('status'),
             ]);
 
@@ -144,16 +140,16 @@ class OfferController extends Controller
     public function update(Request $request, $id)
     {
         $offer = Offer::where('id',$id)->first();
-        $input = $request->all();
+        $input = $request->all(); //for selecting product & program process
         $filename = $request->file('img_path');
-        $offer->offer_id = $request->offer_id;
-        $offer->offer_name = $request->offer_name;
-        $offer->desc = $request->desc;
+        $offer->offer_id = strtoupper($request->offer_id);
+        $offer->offer_name = ucwords($request->offer_name);
+        $offer->desc = ucfirst($request->desc);
         $offer->type = $request->type;
         $offer->tnc = $request->tnc;
         $offer->valid_until = $request->valid_until;
         $offer->onpay_link = $request->onpay_link;
-        $offer->promo_code = $request->promo_code;
+        $offer->promo_code = strtoupper($request->promo_code);
         $offer->status = $request->status;
 
         if($filename != '')

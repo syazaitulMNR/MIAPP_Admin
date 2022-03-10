@@ -60,9 +60,8 @@ class EBookController extends Controller
             ///// End Upload /////
 
             EBook::create([
-                'ebook_name' => request('ebook_name'),
-                'desc' => request('desc'),
-                'type' => request('type'),
+                'ebook_name' => ucwords(request('ebook_name')),
+                'desc' => ucfirst(request('desc')),
                 'ebook_cover' => ''.URL::to('').$cover_path.'',
                 'ebook_pdf' => ''.URL::to('').$pdf_path.'',
             ]);
@@ -95,8 +94,8 @@ class EBookController extends Controller
             
         if($cover == '' && $pdf == '')
         {   
-            $book->ebook_name = $request->ebook_name;
-            $book->desc = $request->desc;
+            $book->ebook_name = ucwords($request->ebook_name);
+            $book->desc = ucfirst($request->desc);
 
             $book->save();
 
@@ -104,12 +103,12 @@ class EBookController extends Controller
 
         } else {
 
-            $book->ebook_name = $request->ebook_name;
-            $book->desc = $request->desc;
+            $book->ebook_name = ucwords($request->ebook_name);
+            $book->desc = ucfirst($request->desc);
 
             $validatedData = $request->validate([
                 'ebook_cover' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
-                'ebook_pdf' => 'mimes:pdf|max:5000',
+                'ebook_pdf' => 'mimes:pdf|max:6000',
             ]);
             
             if ($cover != '' && $pdf != '') {

@@ -45,7 +45,7 @@
                       @foreach($data as $offer)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $offer->offer_name }}</td>
+                            <td>{{ $offer->offer_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($offer->valid_until)) }}</td>
                             <td>{{ $offer->type }}</td>
                             <td>

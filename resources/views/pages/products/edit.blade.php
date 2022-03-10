@@ -19,7 +19,7 @@
         <div class="card">
 
           <div class="card-header">
-            <h5 class="title" style="text-transform: capitalize">Edit - {{ $product->product_name }}</h5>
+            <h5 class="title">Edit - {{ $product->product_name }}</h5>
           </div>
 
           <div class="card-body">
@@ -37,7 +37,7 @@
                       <div class="col-md-6 pr-1">
                         <div class="form-group">
                           <label>{{__(" Product ID")}}<span class="text-danger">*</span></label>
-                          <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID (Refer Onpay)" style="text-transform: uppercase" value="{{ $product->product_id }}"  required>
+                          <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID (Refer Onpay)" value="{{ $product->product_id }}"  required>
                           @include('alerts.feedback', ['field' => 'product_id'])
                         </div>
                       </div>
@@ -45,7 +45,7 @@
                       <div class="col-md-6 pr-1">
                         <div class="form-group">
                           <label>{{__(" Product Name")}}<span class="text-danger">*</span></label>
-                          <input type="text" name="product_name" class="form-control" placeholder="Insert Product Name" style="text-transform: capitalize" value="{{ $product->product_name }}" required>
+                          <input type="text" name="product_name" class="form-control" placeholder="Insert Product Name" value="{{ $product->product_name }}" required>
                           @include('alerts.feedback', ['field' => 'product_name'])
                         </div>
                       </div>

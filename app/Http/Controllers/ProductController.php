@@ -16,9 +16,7 @@ class ProductController extends Controller
     public function index()
     {
         $data = Product::latest()->paginate(15);
-        // dd($data);
-        // dd(empty($data));
-        // dd($data == NULL);
+        
         return view('pages.products.all',compact('data'))->with('i');
     }
 
@@ -48,10 +46,10 @@ class ProductController extends Controller
         
 
         Product::create([
-            'product_id' => request('product_id'),
-            'product_name' => request('product_name'),
+            'product_id' => strtoupper(request('product_id')),
+            'product_name' => ucwords(request('product_name')),
             'img_path' => ''.URL::to('').$img_path.'',
-            'desc' => request('desc'),
+            'desc' => ucfirst(request('desc')),
         ]);
         
         //success go to all list
@@ -65,7 +63,6 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        // $program = Program::findOrFail($program_id);
         $product = Product::where('id',$id)->first();
 
         return view('pages.products.edit', compact('product'));
@@ -88,15 +85,15 @@ class ProductController extends Controller
             $img_path = '/assets/Products/'.$uniqe_img;
             ///// End Upload /////
 
-            $product->product_id = $request->product_id;
-            $product->product_name = $request->product_name;
-            $product->desc = $request->desc;
+            $product->product_id = strtoupper($request->product_id);
+            $product->product_name = ucwords($request->product_name);
+            $product->desc = ucfirst($request->desc);
             $product->img_path = ''.URL::to('').$img_path.'';
 
         } else {
-            $product->product_id = $request->product_id;
-            $product->product_name = $request->product_name;
-            $product->desc = $request->desc;
+            $product->product_id = strtoupper($request->product_id);
+            $product->product_name = ucwords($request->product_name);
+            $product->desc = ucfirst($request->desc);
         }
 
         $product->save();

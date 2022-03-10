@@ -45,7 +45,7 @@
                       @foreach($data as $program)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $program->program_name }}</td>
+                            <td>{{ $program->program_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($program->date_start)) }} - {{ date('d/m/Y', strtotime($program->date_end)) }}</td>
                             <td>
                               @if($program->status == 'Active')

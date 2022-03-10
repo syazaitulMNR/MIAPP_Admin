@@ -34,7 +34,7 @@
                       <div class="col-md-12 pr-1">
                           <div class="form-group">
                               <label>{{__(" Name")}}<span class="text-danger">*</span></label>
-                              <input type="text" name="ebook_name" class="form-control" style="text-transform: capitalize" placeholder="Insert EBook Name" value="{{ $book->ebook_name }}" required>
+                              <input type="text" name="ebook_name" class="form-control" placeholder="Insert EBook Name" value="{{ $book->ebook_name }}" required>
                               @include('alerts.feedback', ['field' => 'ebook_name'])
                           </div>
                       </div>
