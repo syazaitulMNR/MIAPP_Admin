@@ -24,7 +24,6 @@ class UserController extends Controller
 
     public function view($id)
     {
-        // $program = Program::findOrFail($program_id);
         $user = User::where('id',$id)->first();
         $userOffer = OfferHistory::where('user_id',$id)->get();
         $offers = Offer::all();

@@ -43,8 +43,8 @@
                       @foreach($data as $product)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:uppercase">{{ $product->product_id }}</td>
-                            <td style="text-transform:capitalize">{{ $product->product_name }}</td>
+                            <td>{{ $product->product_id }}</td>
+                            <td>{{ $product->product_name }}</td>
                             <td>
                               @if($product->img_path != NULL) 
                                 <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:80px">

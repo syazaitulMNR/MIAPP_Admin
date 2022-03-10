@@ -40,8 +40,8 @@ class ProgramController extends Controller
         ///// End Upload /////
 
         Program::create([
-            'program_id' => request('program_id'),
-            'program_name' => request('program_name'),
+            'program_id' => strtoupper(request('program_id')),
+            'program_name' => ucwords(request('program_name')),
             'date_start' => request('date_start'),
             'date_end' => request('date_end'),
             'page_link' => request('page_link'),
@@ -70,8 +70,8 @@ class ProgramController extends Controller
     {
         $program = Program::where('id',$id)->first();
 
-        $program->program_id = $request->program_id;
-        $program->program_name = $request->program_name;
+        $program->program_id = strtoupper($request->program_id);
+        $program->program_name = ucwords($request->program_name);
         $program->date_start = $request->date_start;
         $program->date_end = $request->date_end;
         $program->page_link = $request->page_link;

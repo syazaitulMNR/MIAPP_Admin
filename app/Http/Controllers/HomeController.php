@@ -25,19 +25,13 @@ class HomeController extends Controller
         $date = Carbon::today();
         //user
         $userNum = User::where('role', 'user')->count();
-        // $userNum = count($user);
-
         //event
         $proNum = Program::where('status', 'Active')->count();
-        // $proNum = count($program);
-
         //ebook
         $ebook = EBook::all();
         $bookNum = count($ebook);
 
-
         $offerNum = Offer::where('status', 'Active')->count();
-        // $offerNum = count($offer);
         $bygroup = Offer::where('status', 'Active')->groupBy('type')->selectRaw('count(id) as total, type')->get();
        
         //promo

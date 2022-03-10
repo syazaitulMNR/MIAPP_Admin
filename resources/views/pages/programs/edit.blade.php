@@ -40,7 +40,7 @@
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>{{__(" Event ID")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="program_id" class="form-control" placeholder="Insert Program ID (Refer MIMS)" style="text-transform: uppercase" value="{{ $program->program_id }}" required>
+                        <input type="text" name="program_id" class="form-control" placeholder="Insert Program ID (Refer MIMS)" value="{{ $program->program_id }}" required>
                         @include('alerts.feedback', ['field' => 'program_id'])
                       </div>
                   </div>
@@ -48,7 +48,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Event Name")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="program_name" class="form-control" placeholder="Insert Program Name" style="text-transform: capitalize" value="{{ $program->program_name }}" required>
+                      <input type="text" name="program_name" class="form-control" placeholder="Insert Program Name" value="{{ $program->program_name }}" required>
                       @include('alerts.feedback', ['field' => 'program_name'])
                     </div>
                   </div>

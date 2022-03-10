@@ -10,7 +10,7 @@
         <div class="card">
 
           <div class="card-header">
-            <h5 class="title" style="text-transform: capitalize;">{{ $user->username }} </h5>
+            <h5 class="title">{{ $user->username }} </h5>
           </div>
 
           <div class="card-body">
@@ -20,7 +20,7 @@
                 <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Full Name")}}</label>
-                      <input type="text" name="name" class="form-control" style="text-transform: capitalize; background-color: white; color:black;" value="{{ $user->name }}" readonly>
+                      <input type="text" name="name" class="form-control" style="background-color: white; color:black;" value="{{ $user->name }}" readonly>
                       
                     </div>
                 </div>
@@ -82,7 +82,7 @@
                         @if ($offername->id == $offer->offer_id)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $offername->offer_name }}</td>
+                            <td>{{ $offername->offer_name }}</td>
                             <td>{{ date('d/m/Y', strtotime($offer->created_at)) }}</td>
                             <td class="text-right">
                               @if($offername->status == 'Active')

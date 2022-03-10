@@ -40,7 +40,7 @@
                       @foreach($data as $user)
                           <tr>
                             <th scope="row" style="text-align: center;">{{ $i += 1 }}</th>
-                            <td style="text-transform:capitalize">{{ $user->name }}</td>
+                            <td>{{ $user->name }}</td>
                             <td>{{ $user->phone }}</td>
                             <td>{{ $user->email }}</td>
                             <td class="text-right">
