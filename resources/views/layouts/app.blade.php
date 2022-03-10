@@ -17,6 +17,7 @@
   <!-- CSS Files -->
   <link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet" />
   <link href="{{ asset('assets') }}/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
+  <link href="{{ URL::to('/assets/css/cropper.css') }}" rel="stylesheet" />
 
   <!-- include summernote css/js -->
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -57,6 +58,9 @@
 
   <!-- View chart -->
   <script src="{{ asset('assets') }}/demo/demo.js"></script>
+
+  <!-- Cropper.js -->
+  <script src="{{URL::to('assets/js/plugins/cropper.js')}}"></script>
   @stack('js')
 </body>
 
