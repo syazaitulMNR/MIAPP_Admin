@@ -45,6 +45,7 @@
                       <input type="file" name="ebook_cover" class="form-control" placeholder="Insert EBook's Description" required>
                       @include('alerts.feedback', ['field' => 'ebook_cover'])
                     </div>
+                    <small class="text-danger float-right">*Suggestion size: 1250 x 1760 px</small>
                   </div>
     
                   <div class="col-md-6 pr-1">
@@ -53,6 +54,7 @@
                       <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description" required>
                       @include('alerts.feedback', ['field' => 'ebook_pdf'])
                     </div>
+                    <small class="text-danger float-right">*Max size: 10 mb</small>
                   </div>
                 </div>
 

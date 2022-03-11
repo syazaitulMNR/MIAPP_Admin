@@ -97,6 +97,7 @@
                       <input type="file" name="img_path" class="form-control" placeholder="Insert Product's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
+                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                   </div>
 
                   <div class="col-md-4 pr-1">

@@ -27,30 +27,37 @@ class ProgramController extends Controller
 
     public function store(Request $request)
     {
-        $filename = $request->file('img_path');
-
-        ///// End Upload /////
-        $extension = $filename->getClientOriginalExtension();
-        $name_img = $filename->getClientOriginalName();
-        $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
-        $dirpath = public_path('assets/Programs/');
-        $filename->move($dirpath, $uniqe_img);
-
-        $img_path = '/assets/Programs/'.$uniqe_img;
-        ///// End Upload /////
-
-        Program::create([
-            'program_id' => strtoupper(request('program_id')),
-            'program_name' => ucwords(request('program_name')),
-            'date_start' => request('date_start'),
-            'date_end' => request('date_end'),
-            'page_link' => request('page_link'),
-            'img_path' => ''.URL::to('').$img_path.'',
-            'status' => request('status'),
+        $validatedData = $request->validate([
+            'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000|dimensions:max_width=1920,max_height=1080,min_width=1800,min_height=960',
         ]);
-        
-        //success go to all list
-        return redirect('programs')->with('success', 'The program details is added successfully.');
+
+        if($validatedData)
+        {
+            $filename = $request->file('img_path');
+
+            ///// End Upload /////
+            $extension = $filename->getClientOriginalExtension();
+            $name_img = $filename->getClientOriginalName();
+            $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
+            $dirpath = public_path('assets/Programs/');
+            $filename->move($dirpath, $uniqe_img);
+
+            $img_path = '/assets/Programs/'.$uniqe_img;
+            ///// End Upload /////
+
+            Program::create([
+                'program_id' => strtoupper(request('program_id')),
+                'program_name' => ucwords(request('program_name')),
+                'date_start' => request('date_start'),
+                'date_end' => request('date_end'),
+                'page_link' => request('page_link'),
+                'img_path' => ''.URL::to('').$img_path.'',
+                'status' => request('status'),
+            ]);
+            
+            //success go to all list
+            return redirect('programs')->with('success', 'The program details is added successfully.');
+        }
     }
 
     public function show($id)
@@ -80,17 +87,24 @@ class ProgramController extends Controller
         $filename = $request->file('img_path');
         if($filename != '')
         {  
-            ///// End Upload /////
-            $extension = $filename->getClientOriginalExtension();
-            $name_img = $filename->getClientOriginalName();
-            $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
-            $dirpath = public_path('assets/Programs/');
-            $filename->move($dirpath, $uniqe_img);
+            $validatedData = $request->validate([
+                'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000|dimensions:max_width=1920,max_height=1080,min_width=1800,min_height=960',
+            ]);
+    
+            if($validatedData)
+            {
+                ///// End Upload /////
+                $extension = $filename->getClientOriginalExtension();
+                $name_img = $filename->getClientOriginalName();
+                $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
+                $dirpath = public_path('assets/Programs/');
+                $filename->move($dirpath, $uniqe_img);
 
-            $img_path = '/assets/Programs/'.$uniqe_img;
-            ///// End Upload /////
+                $img_path = '/assets/Programs/'.$uniqe_img;
+                ///// End Upload /////
 
-            $program->img_path = ''.URL::to('').$img_path.'';
+                $program->img_path = ''.URL::to('').$img_path.'';
+            }
         }
 
         $program->save();

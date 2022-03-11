@@ -31,15 +31,22 @@ class ProductController extends Controller
 
         if ($filename != '')
         {
-            ///// End Upload /////
-            $extension = $filename->getClientOriginalExtension();
-            $name_img = $filename->getClientOriginalName();
-            $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
-            $dirpath = public_path('assets/Products/');
-            $filename->move($dirpath, $uniqe_img);
+            $validatedData = $request->validate([
+                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1080,max_height=1080,min_width=900,min_height=900',
+            ]);
 
-            $img_path = '/assets/Products/'.$uniqe_img;
-            ///// End Upload /////
+            if($validatedData)
+            {
+                ///// End Upload /////
+                $extension = $filename->getClientOriginalExtension();
+                $name_img = $filename->getClientOriginalName();
+                $uniqe_img = 'POSTER_'. uniqid() . '.' . $extension;
+                $dirpath = public_path('assets/Products/');
+                $filename->move($dirpath, $uniqe_img);
+
+                $img_path = '/assets/Products/'.$uniqe_img;
+                ///// End Upload /////
+            }
         } else {
             $img_path = NULL;
         }
@@ -75,21 +82,27 @@ class ProductController extends Controller
         $filename = $request->file('img_path');
         if($filename != '')
         {  
-            ///// End Upload /////
-            $extension = $filename->getClientOriginalExtension();
-            $name_img = $filename->getClientOriginalName();
-            $uniqe_img = 'PRODUCT_'. uniqid() . '.' . $extension;
-            $dirpath = public_path('assets/Products/');
-            $filename->move($dirpath, $uniqe_img);
+            $validatedData = $request->validate([
+                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1080,max_height=1080,min_width=900,min_height=900',
+            ]);
 
-            $img_path = '/assets/Products/'.$uniqe_img;
-            ///// End Upload /////
+            if($validatedData) 
+            {
+                ///// End Upload /////
+                $extension = $filename->getClientOriginalExtension();
+                $name_img = $filename->getClientOriginalName();
+                $uniqe_img = 'PRODUCT_'. uniqid() . '.' . $extension;
+                $dirpath = public_path('assets/Products/');
+                $filename->move($dirpath, $uniqe_img);
 
-            $product->product_id = strtoupper($request->product_id);
-            $product->product_name = ucwords($request->product_name);
-            $product->desc = ucfirst($request->desc);
-            $product->img_path = ''.URL::to('').$img_path.'';
+                $img_path = '/assets/Products/'.$uniqe_img;
+                ///// End Upload /////
 
+                $product->product_id = strtoupper($request->product_id);
+                $product->product_name = ucwords($request->product_name);
+                $product->desc = ucfirst($request->desc);
+                $product->img_path = ''.URL::to('').$img_path.'';
+            }
         } else {
             $product->product_id = strtoupper($request->product_id);
             $product->product_name = ucwords($request->product_name);
