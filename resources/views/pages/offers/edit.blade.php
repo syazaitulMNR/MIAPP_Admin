@@ -155,7 +155,7 @@
 
                     <div class="col-md-12 pr-1 align-center">
                       <div class="form-group">
-                        <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
+                        <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label><small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                         <input type="file" name="img_path" class="form-control" placeholder="Insert Promotion's Image">
                         @include('alerts.feedback', ['field' => 'img_path'])
                       </div>

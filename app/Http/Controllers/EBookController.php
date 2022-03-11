@@ -28,8 +28,8 @@ class EBookController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'ebook_cover' => 'required|image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
-            'ebook_pdf' => 'required|mimes:pdf|max:5000',
+            'ebook_cover' => 'required|image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760,min_width=1100,min_height=1600',
+            'ebook_pdf' => 'required|mimes:pdf|max:10000',
         ]);
 
         if($validatedData)
@@ -107,8 +107,8 @@ class EBookController extends Controller
             $book->desc = ucfirst($request->desc);
 
             $validatedData = $request->validate([
-                'ebook_cover' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
-                'ebook_pdf' => 'mimes:pdf|max:6000',
+                'ebook_cover' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760,min_width=1100,min_height=1600',
+                'ebook_pdf' => 'mimes:pdf|max:10000',
             ]);
             
             if ($cover != '' && $pdf != '') {

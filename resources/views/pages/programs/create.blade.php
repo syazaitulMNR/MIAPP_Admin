@@ -74,6 +74,7 @@
                       <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Program's Poster">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
+                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                   </div>
                     <div class="col-md-6">
                       <br>
