@@ -29,7 +29,7 @@ class EBookController extends Controller
     {
         $validatedData = $request->validate([
             'ebook_cover' => 'required|image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1250,max_height=1760',
-            'ebook_pdf' => 'required|mimes:pdf|max:5000',
+            'ebook_pdf' => 'required|mimes:pdf|max:10000',
         ]);
 
         if($validatedData)
