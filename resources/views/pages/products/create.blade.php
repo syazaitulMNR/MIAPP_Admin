@@ -97,6 +97,11 @@
       var cropper;
   
       input.addEventListener('change', function (e) {
+        if(cropper){
+          cropper.destroy();
+          cropper = null;
+        }
+
         var files = e.target.files;
         var done = function (url) {
           input.value = '';
