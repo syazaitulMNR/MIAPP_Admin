@@ -32,7 +32,7 @@ class ProductController extends Controller
         if ($filename != '')
         {
             $validatedData = $request->validate([
-                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000',
+                'img_path' => 'image|mimes:jpeg,png,jpg',
             ]);
 
             if($validatedData)
@@ -83,7 +83,7 @@ class ProductController extends Controller
         if($filename != '')
         {  
             $validatedData = $request->validate([
-                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000',
+                'img_path' => 'image|mimes:jpeg,png,jpg',
             ]);
 
             if($validatedData) 

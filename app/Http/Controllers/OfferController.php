@@ -35,7 +35,7 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000',
+            'img_path' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         if($validatedData)
@@ -155,7 +155,7 @@ class OfferController extends Controller
         if($filename != '')
         {  
             $validatedData = $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000',
+                'img_path' => 'required|image|mimes:jpeg,png,jpg',
             ]);
     
             if($validatedData)

@@ -28,7 +28,7 @@ class EBookController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'ebook_cover' => 'required|image|mimes:jpeg,png,jpg|max:1000',
+            'ebook_cover' => 'required|image|mimes:jpeg,png,jpg',
             'ebook_pdf' => 'required|mimes:pdf|max:10000',
         ]);
 
@@ -107,7 +107,7 @@ class EBookController extends Controller
             $book->desc = ucfirst($request->desc);
 
             $validatedData = $request->validate([
-                'ebook_cover' => 'image|mimes:jpeg,png,jpg|max:1000',
+                'ebook_cover' => 'image|mimes:jpeg,png,jpg',
                 'ebook_pdf' => 'mimes:pdf|max:10000',
             ]);
             
