@@ -28,7 +28,7 @@ class ProgramController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000|dimensions:max_width=1920,max_height=1080,min_width=1800,min_height=960',
+            'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000',
         ]);
 
         if($validatedData)
@@ -88,7 +88,7 @@ class ProgramController extends Controller
         if($filename != '')
         {  
             $validatedData = $request->validate([
-                'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000|dimensions:max_width=1920,max_height=1080,min_width=1800,min_height=960',
+                'img_path' => 'required|image|mimes:jpeg,png,jpg|max:2000',
             ]);
     
             if($validatedData)
