@@ -119,7 +119,9 @@
     </div>
   </div>
 
-  @push('js')
+@endsection
+
+@push('js')
   <script>
     window.addEventListener('DOMContentLoaded', function () {
       var avatar = document.getElementById('avatar');
@@ -206,5 +208,3 @@
     });
   </script>
   @endpush
-
-@endsection

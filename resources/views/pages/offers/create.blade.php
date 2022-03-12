@@ -294,6 +294,8 @@
     // END Checkbox function for product & program
 
   </script>
+  
+@endsection
 
 
 @push('js')
@@ -383,5 +385,3 @@
     });
   </script>
   @endpush
-  
-@endsection
