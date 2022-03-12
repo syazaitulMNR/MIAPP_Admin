@@ -188,7 +188,7 @@
   
         if (cropper) {
           canvas = cropper.getCroppedCanvas({
-            width: 450,
+            width: 1350,
           });
           initialAvatarURL = avatar.src;
           avatar.src = canvas.toDataURL();
