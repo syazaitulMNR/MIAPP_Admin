@@ -32,7 +32,7 @@ class ProductController extends Controller
         if ($filename != '')
         {
             $validatedData = $request->validate([
-                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1080,max_height=1080,min_width=900,min_height=900',
+                'img_path' => 'image|mimes:jpeg,png,jpg|max:2000',
             ]);
 
             if($validatedData)
@@ -83,7 +83,7 @@ class ProductController extends Controller
         if($filename != '')
         {  
             $validatedData = $request->validate([
-                'img_path' => 'image|mimes:jpeg,png,jpg|max:1000|dimensions:max_width=1080,max_height=1080,min_width=900,min_height=900',
+                'img_path' => 'image|mimes:jpeg,png,jpg|max:2000',
             ]);
 
             if($validatedData) 

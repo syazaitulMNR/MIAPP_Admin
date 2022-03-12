@@ -93,15 +93,6 @@
 
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="img_path" class="form-control" placeholder="Insert Product's Image" required>
-                      @include('alerts.feedback', ['field' => 'img_path'])
-                    </div>
-                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
-                  </div>
-
-                  <div class="col-md-4 pr-1">
-                    <div class="form-group">
                       <label>{{__(" Status")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="status" required>
                         <option value="Active">Active</option>
@@ -119,6 +110,7 @@
                       <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Offer's Image">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
+                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                   </div>
                   <div class="col-md-6">
                     <br>
@@ -373,7 +365,7 @@
   
         if (cropper) {
           canvas = cropper.getCroppedCanvas({
-            width: 450,
+            width: 1350,
           });
           initialAvatarURL = avatar.src;
           avatar.src = canvas.toDataURL();
