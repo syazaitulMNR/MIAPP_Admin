@@ -46,7 +46,7 @@
                     <div class="text-center col-md-12 col-11">
                       <form action="{{ route('ebook.destroy', $book->id)}}" method="post">
                           @csrf
-                        <a type="button" target="blank" href="{{ $book->ebook_pdf }}" class="btn btn-warning btn-sm" title="View PDF">
+                        <a type="button" target="_blank" href="{{ $book->ebook_pdf }}" class="btn btn-warning btn-sm" title="View PDF">
                           <i class="now-ui-icons education_paper"></i> PDF
                         </a>
                         <a type="button" rel="tooltip" href="{{ route('ebook.edit', $book->id)}}" class="btn btn-success btn-sm btn-icon" title="Edit">
