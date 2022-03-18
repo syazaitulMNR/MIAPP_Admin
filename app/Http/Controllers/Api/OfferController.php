@@ -52,9 +52,19 @@ class OfferController extends Controller
     public function offerClick($id){
 
         $offer = Offer::find($id);
+
+       
         
         if($offer)
         {
+            if(count($offer->offerHistory->where('user_id' , auth()->user()->id)) > 0 ){
+                return response([
+                    'status' => '201',
+                    'message' => 'Offer has been redeemed, please refresh the page.',
+                    'data' => ''
+                ]);
+            }
+
             $offerHistory = New OfferHistory();
             $offerHistory->user_id = auth()->user()->id;
             $offerHistory->offer_id =  $offer->id;
