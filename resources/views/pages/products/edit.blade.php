@@ -3,6 +3,7 @@
 @section('content')
   <div class="panel-header panel-header-sm">
   </div>
+
   <div class="content">
     <div class="row">
       <div class="col-md-12">
@@ -31,10 +32,10 @@
               <div class="col-md-12">
 
                 <div class="row">
+                  
                   <div class="col-md-7 pr-1">
-
                     <div class="row">
-                      <div class="col-md-6 pr-1">
+                      <div class="col-md-4 pr-1">
                         <div class="form-group">
                           <label>{{__(" Product ID")}}<span class="text-danger">*</span></label>
                           <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID (Refer Onpay)" value="{{ $product->product_id }}"  required>
@@ -42,7 +43,7 @@
                         </div>
                       </div>
 
-                      <div class="col-md-6 pr-1">
+                      <div class="col-md-8 pr-1">
                         <div class="form-group">
                           <label>{{__(" Product Name")}}<span class="text-danger">*</span></label>
                           <input type="text" name="product_name" class="form-control" placeholder="Insert Product Name" value="{{ $product->product_name }}" required>
@@ -54,28 +55,17 @@
                     <div class="row">
                       <div class="col-md-12 pr-1">
                         <div class="form-group">
-                          <label>{{__(" Description (Optional)")}}</label>
-                          <textarea rows="2" class="form-control" name="desc" placeholder="Insert Product's Description" value="{{ $product->desc }}" >{{ $product->desc }}</textarea>
-                          @include('alerts.feedback', ['field' => 'desc'])
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="row">
-                      <div class="col-md-12 pr-1">
-                        <div class="form-group">
-                          <label>{{__(" Product Image (Optional)")}}</label>
+                          <label>{{__(" Product Image")}}<span class="text-danger">*</span></label>
                           <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image">
                           @include('alerts.feedback', ['field' => 'img_path'])
                         </div>
                         <small class="text-danger float-right">*Suggestion size: 1080 x 1080 px</small>
                       </div>
+
                       <div class="col-md-6">
-                        <br>
                         <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
                           <img id="image" src="" class="w-100">
                         </div>
-                        <br>
                       </div>
                       <div class="col-md-2 text-center" style="align-self: center;">
                         <button type="button" class="btn btn-primary" id="crop">Crop</button>
@@ -84,16 +74,29 @@
                         <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_product.png')}}" alt="avatar">
                       </div>
                     </div>
-
-                    <div class="card-footer text-right">
-                      <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
-                      <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
-                    </div>
-
                   </div>
 
                   <div class="col-md-5 text-center">
-                    <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:50%">
+                    <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:70%">
+                  </div>
+
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                      <label>{{__(" Description (Optional)")}}</label>
+                      <textarea class="form-control" rows="6" name="desc" placeholder="Insert Product's Description" value="{{ $product->desc }}" >{{ $product->desc }}</textarea>
+                      @include('alerts.feedback', ['field' => 'desc'])
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card-footer text-right">
+                  <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
+                  <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
+                </div>
+
                   </div>
                 </div>
                 

@@ -52,7 +52,7 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Product Image (Optional)")}}</label>
+                      <label>{{__(" Product Image")}}</label>
                       <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
