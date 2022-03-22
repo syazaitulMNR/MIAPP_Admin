@@ -32,8 +32,8 @@
               <div class="col-md-12">
 
                 <div class="row">
-                  
                   <div class="col-md-7 pr-1">
+
                     <div class="row">
                       <div class="col-md-4 pr-1">
                         <div class="form-group">
@@ -53,30 +53,17 @@
                     </div>
 
                     <div class="row">
-                      <div class="col-md-12 pr-1">
+                      <div class="col-md-12">
                         <div class="form-group">
-                          <label>{{__(" Product Image")}}<span class="text-danger">*</span></label>
-                          <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image">
-                          @include('alerts.feedback', ['field' => 'img_path'])
+                          <label>{{__(" Description (Optional)")}}</label>
+                          <textarea class="form-control" rows="6" name="desc" placeholder="Insert Product's Description" value="{{ $product->desc }}" >{{ $product->desc }}</textarea>
+                          @include('alerts.feedback', ['field' => 'desc'])
                         </div>
-                        <small class="text-danger float-right">*Suggestion size: 1080 x 1080 px</small>
-                      </div>
-
-                      <div class="col-md-6">
-                        <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
-                          <img id="image" src="" class="w-100">
-                        </div>
-                      </div>
-                      <div class="col-md-2 text-center" style="align-self: center;">
-                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
-                      </div>
-                      <div class="col-md-4 text-center" style="align-self: center;">
-                        <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_product.png')}}" alt="avatar">
                       </div>
                     </div>
                   </div>
 
-                  <div class="col-md-5 text-center">
+                  <div class="col-md-5 text-center pt-10">
                     <img class="card-img-top" src="{{ $product->img_path }}" style="max-width:70%">
                   </div>
 
@@ -85,28 +72,37 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Description (Optional)")}}</label>
-                      <textarea class="form-control" rows="6" name="desc" placeholder="Insert Product's Description" value="{{ $product->desc }}" >{{ $product->desc }}</textarea>
-                      @include('alerts.feedback', ['field' => 'desc'])
+                      <label>{{__(" Product Image")}}<span class="text-danger">*</span></label>
+                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image">
+                      @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>
-                </div>
 
-                <div class="card-footer text-right">
-                  <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
-                  <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
-                </div>
-
+                  <div class="col-md-6">
+                    <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
+                      <img id="image" src="" class="w-100">
+                    </div>
+                  </div>
+                  <div class="col-md-2 text-center" style="align-self: center;">
+                    <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                  </div>
+                  <div class="col-md-4 text-center" style="align-self: center;">
+                    <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_product.png')}}" alt="avatar">
                   </div>
                 </div>
-                
-                <hr class="half-rule"/>
+              </div><br>
 
+              <div class="card-footer text-right">
+                <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
+                <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
               </div>
+            
             </form>
+
           </div>
           
         </div>
+        
       </div>
     </div>
   </div>

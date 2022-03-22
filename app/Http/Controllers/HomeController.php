@@ -27,12 +27,14 @@ class HomeController extends Controller
         $userNum = User::where('role', 'user')->count();
         //event
         $proNum = Program::where('status', 'Active')->count();
+        //event
+        $prodNum = Product::count();
         //ebook
         $ebook = EBook::all();
         $bookNum = count($ebook);
 
         $offerNum = Offer::where('status', 'Active')->count();
-        $bygroup = Offer::where('status', 'Active')->groupBy('type')->selectRaw('count(id) as total, type')->get();
+        $bygroup = Offer::groupBy('type')->selectRaw('count(id) as total, type')->get();
        
         //promo
         $allOff = Offer::all();
@@ -40,8 +42,8 @@ class HomeController extends Controller
         //offer_history
         $byOffer = OfferHistory::groupBy('offer_id')->selectRaw('count(id) as total, offer_id')->get();
         $countByOffer = count($byOffer);
-        
         /////////////////////////////////////////////////////////////////////////////
+
         // for CHART
         $labelist = [];
         foreach($offYear as $lists => $list) {
@@ -57,8 +59,8 @@ class HomeController extends Controller
         foreach ($selectid as $value => $val) {
             $number[] = OfferHistory::where(\DB::raw("offer_id"),$val)->count();
         }
-        
+        ////////////////////////////////////////////////////////////////////////////
 
-        return view('home', compact('labelist', 'date', 'number', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff',  'countByOffer'));
+        return view('home', compact('labelist', 'date', 'number', 'userNum', 'proNum', 'offerNum', 'bookNum', 'bygroup', 'byOffer', 'allOff',  'countByOffer', 'prodNum'));
     }
 }

@@ -226,7 +226,7 @@ demo = {
                 }
             }
         };
-
+        // GRAPH PROMOTION CLAIMED //////////////////////////////////////////////////////////////////////////////////////
         var ctx = document.getElementById('bigDashboardChart').getContext("2d");
 
         gradientStroke = ctx.createLinearGradient(500, 0, 100, 0);
@@ -316,6 +316,7 @@ demo = {
                 }
             }
         });
+        // END //////////////////////////////////////////////////////////////////////
 
         var cardStatsMiniLineColor = "#fff",
             cardStatsMiniDotColor = "#fff";
@@ -392,9 +393,6 @@ demo = {
         gradientFill = ctx.createLinearGradient(0, 170, 0, 50);
         gradientFill.addColorStop(0, "rgba(128, 182, 244, 0)");
         gradientFill.addColorStop(1, hexToRGB('#2CA8FF', 0.6));
-
-        // var xValues =  $xValues;
-        // var yValues =  $yValues;
 
         var a = {
             type: "bar",

@@ -8,7 +8,7 @@
     <div class="row pt-12">
       <!-- User Number -->
       <div class="col-lg-3">
-        <div class="card card-chart">
+        <div class="card card-chart bg-light">
           <div class="card-header">
             <p class="card-title">Registered User</p>
             <div class="dropdown">
@@ -29,7 +29,7 @@
 
       <!-- Event Number -->
       <div class="col-lg-3">
-        <div class="card card-chart">
+        <div class="card card-chart bg-light">
           <div class="card-header">
             <p class="card-title">Total Event (Active)</p>
             <div class="dropdown">
@@ -47,31 +47,10 @@
         </div>
       </div>
       <!-- End Event Number -->
-
-      <!-- Promo Number -->
-      <div class="col-lg-3">
-        <div class="card card-chart">
-          <div class="card-header">
-            <p class="card-title">Total Promo (Active)</p>
-            <div class="dropdown">
-              <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
-                <i class="now-ui-icons loader_gear"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item" href="{{ route('offers') }}">Promo List</a>
-              </div>
-            </div>
-          </div>
-          <div class="pb-3">
-            <h4 class="card-text text-center">{{ $offerNum }}</h4>
-          </div>
-        </div>
-      </div>
-      <!-- End Promo Number -->
-
+      
       <!-- EBook Number -->
       <div class="col-lg-3">
-        <div class="card card-chart">
+        <div class="card card-chart bg-light">
           <div class="card-header">
             <p class="card-title">Total EBook</p>
             <div class="dropdown">
@@ -90,8 +69,30 @@
       </div>
       <!-- End EBook Number -->
 
-    </div>
+      <!-- Product Number -->
+      <div class="col-lg-3">
+        <div class="card card-chart bg-light">
+          <div class="card-header">
+            <p class="card-title">Total Product</p>
+            <div class="dropdown">
+              <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown">
+                <i class="now-ui-icons loader_gear"></i>
+              </button>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="{{ route('products') }}">Product List</a>
+              </div>
+            </div>
+          </div>
+          <div class="pb-3">
+            <h4 class="card-text text-center">{{ $prodNum }}</h4>
+          </div>
+        </div>
+      </div>
+      <!-- End Product Number -->
 
+
+    </div>
+    
     <div class="col-12">
       <a class="btn btn-round btn-outline-default btn-simple btn-icon no-caret pull-right" href="{{ route('offers') }}" title="View All Promotion">
         <i class="now-ui-icons loader_gear"></i>                                        
@@ -113,6 +114,19 @@
           </div>
         <!-- End Promo Number -->
         @endforeach
+
+        <!-- Active Promo Number -->
+        <div class="col-lg-3">
+          <div class="card card-chart bg-secondary text-white">
+            <div class="card-header">
+              <p class="card-title text-center">Total Promo (Active)</p>
+            </div>
+            <div class="pb-3">
+              <h4 class="card-title text-center">{{ $offerNum }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- End Active Promo Number -->
       </div>
     </div>
 

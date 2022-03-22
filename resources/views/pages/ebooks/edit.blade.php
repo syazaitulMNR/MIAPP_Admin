@@ -3,6 +3,7 @@
 @section('content')
   <div class="panel-header panel-header-sm">
   </div>
+
   <div class="content">
     <div class="row">
       <div class="col-md-12">
@@ -43,8 +44,8 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">{{__(" Description")}}</label>
-                        <textarea rows="3" class="form-control" name="desc" placeholder="Insert EBook's Description" >{{ $book->desc}}</textarea>
+                        <label for="exampleInputEmail1">{{__(" Description (Optional)")}}</label>
+                        <textarea rows="5" class="form-control" name="desc" placeholder="Insert EBook's Description" >{{ $book->desc}}</textarea>
                         @include('alerts.feedback', ['field' => 'desc'])
                       </div>
                     </div>
@@ -53,41 +54,11 @@
                   <div class="row">
                     <div class="col-md-12">
                       <div class="form-group">
-                        <label for="exampleInputEmail1">{{__(" EBook Cover")}}</label>
-                        <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*" placeholder="Insert EBook's Cover">
-                        @include('alerts.feedback', ['field' => 'ebook_cover'])
-                      </div>
-                      <small class="text-danger float-right">*suggestion size: 1250 x 1760 px</small>
-                    </div>
-                    <div class="col-md-6">
-                      <br>
-                      <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
-                        <img id="image" src="" class="w-100">
-                      </div>
-                      <br>
-                    </div>
-                    <div class="col-md-2 text-center" style="align-self: center;">
-                      <button type="button" class="btn btn-primary" id="crop">Crop</button>
-                    </div>
-                    <div class="col-md-4 text-center" style="align-self: center;">
-                      <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_ebook.png')}}" alt="avatar">
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">{{__(" PDF File")}}</label>
+                        <label for="exampleInputEmail1">{{__(" PDF File")}}<span class="text-danger">*</span></label> <small class="text-danger">(max size: 10 mb)</small>
                         <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description">
                         @include('alerts.feedback', ['field' => 'ebook_pdf'])
                       </div>
-                      <small class="text-danger float-right">*max size: 10 mb</small>
                     </div>
-                  </div>
-
-                  <div class="card-footer text-right">
-                    <a href="{{ route('ebooks') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
-                    <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                   </div>
 
                 </div>
@@ -95,12 +66,40 @@
                 <div class="col-md-5 text-center">
                   <img class="card-img-top" src="{{ $book->ebook_cover }}" style="max-width:50%">
                 </div>
-              </div>           
 
-              <hr class="half-rule"/>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">{{__(" EBook Cover")}}<span class="text-danger">*</span></label>
+                    <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*" placeholder="Insert EBook's Cover">
+                    @include('alerts.feedback', ['field' => 'ebook_cover'])
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <br>
+                  <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
+                    <img id="image" src="" class="w-100">
+                  </div>
+                  <br>
+                </div>
+                <div class="col-md-2 text-center" style="align-self: center;">
+                  <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                </div>
+                <div class="col-md-4 text-center" style="align-self: center;">
+                  <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_ebook.png')}}" alt="avatar">
+                </div>
+              </div><br>
+
+              <div class="card-footer text-right">
+                <a href="{{ route('ebooks') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
+                <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
+              </div>
+
             </form>
-              
-          </div>
+          </div> 
+
         </div>
       </div>
     </div>

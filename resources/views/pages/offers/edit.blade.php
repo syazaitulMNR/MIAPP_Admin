@@ -83,6 +83,27 @@
                   </div>
 
                   <div class="row">
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
+                        <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" value="{{ $offer->promo_code }}" required>
+                        @include('alerts.feedback', ['field' => 'promo_code'])
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 pr-1">
+                      <div class="form-group">
+                        <label>{{__(" Status")}}<span class="text-danger">*</span></label>
+                        <select class="form-control" name="status" required>
+                          <option value="Active" {{ $offer->status == 'Active' ? 'selected' : '' }} >Active</option>
+                          <option value="Deactive" {{ $offer->status == 'Deactive' ? 'selected' : '' }} >Deactive</option>
+                        </select>
+                        @include('alerts.feedback', ['field' => 'status'])
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
                     <div class="col-md-12 pr-1">
                       <div class="form-group">
                         <label>{{__(" Description")}}</label>
@@ -104,27 +125,6 @@
                         </a>
                         <input type="text" name="onpay_link" id="copy_{{ $offer->onpay_link }}" class="form-control" placeholder="Insert OnPay Link (Refer Onpay)" value="{{ $offer->onpay_link }}" required>
                         @include('alerts.feedback', ['field' => 'onpay_link'])
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" value="{{ $offer->promo_code }}" required>
-                        @include('alerts.feedback', ['field' => 'promo_code'])
-                      </div>
-                    </div>
-
-                    <div class="col-md-6 pr-1">
-                      <div class="form-group">
-                        <label>{{__(" Status")}}<span class="text-danger">*</span></label>
-                        <select class="form-control" name="status" required>
-                          <option value="Active" {{ $offer->status == 'Active' ? 'selected' : '' }} >Active</option>
-                          <option value="Deactive" {{ $offer->status == 'Deactive' ? 'selected' : '' }} >Deactive</option>
-                        </select>
-                        @include('alerts.feedback', ['field' => 'status'])
                       </div>
                     </div>
                   </div>
@@ -156,33 +156,31 @@
                   </div>
                   
                   <div class="col-md-12">
-
+                    
                     <div class="col-md-12 pr-1 align-center">
                       <div class="form-group">
-                        <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label><small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
+                        <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
                         <input type="file" name="img_path" class="form-control" id="input" accept="image/*"  placeholder="Insert Promotion's Image">
                         @include('alerts.feedback', ['field' => 'img_path'])
                       </div>
-                    </div>
-
-               
-                    
-                    
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <br>
-                      <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
-                        <img id="image" src="" class="w-100">
+                    </div>  
+                  
+                    <div class="row">
+                      <div class="col-md-6">
+                        <br>
+                        <div class="container" style="max-height: 540px;overflow:auto; position:absolute; top: 0; left:0; right:0; bottom:0">
+                          <img id="image" src="" class="w-100">
+                        </div>
+                        <br>
                       </div>
-                      <br>
+                      <div class="col-md-2 text-center" style="align-self: center;">
+                        <button type="button" class="btn btn-primary" id="crop">Crop</button>
+                      </div>
+                      <div class="col-md-4 text-center" style="align-self: center;">
+                        <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_program.png')}}" alt="avatar">
+                      </div>
                     </div>
-                    <div class="col-md-2 text-center" style="align-self: center;">
-                      <button type="button" class="btn btn-primary" id="crop">Crop</button>
-                    </div>
-                    <div class="col-md-4 text-center" style="align-self: center;">
-                      <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_program.png')}}" alt="avatar">
-                    </div>
+                    
                   </div>
                 </div>
 

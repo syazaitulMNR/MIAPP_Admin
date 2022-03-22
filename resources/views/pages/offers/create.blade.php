@@ -63,26 +63,6 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-12 pr-1">
-                    <div class="form-group">
-                      <label>{{__(" Description")}}</label>
-                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert Promotion's Description" >{{ old('desc') }}</textarea>
-                      @include('alerts.feedback', ['field' => 'desc'])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12 pr-1">
-                    <div class="form-group">
-                      <label>{{__(" OnPay Link")}} <span class="text-danger">*</span></label>
-                      <input type="text" name="onpay_link" class="form-control" value="{{ old('onpay_link') }}" placeholder="Insert OnPay Link (Refer Onpay)" required>
-                      @include('alerts.feedback', ['field' => 'onpay_link'])
-                    </div>
-                  </div>
-                </div>
-
-                <div class="row">
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
@@ -106,11 +86,30 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
+                      <label>{{__(" Description")}}</label>
+                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert Promotion's Description" >{{ old('desc') }}</textarea>
+                      @include('alerts.feedback', ['field' => 'desc'])
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 pr-1">
+                    <div class="form-group">
+                      <label>{{__(" OnPay Link")}} <span class="text-danger">*</span></label>
+                      <input type="text" name="onpay_link" class="form-control" value="{{ old('onpay_link') }}" placeholder="Insert OnPay Link (Refer Onpay)" required>
+                      @include('alerts.feedback', ['field' => 'onpay_link'])
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 pr-1">
+                    <div class="form-group">
                       <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
                       <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Offer's Image">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
-                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                   </div>
                   <div class="col-md-6">
                     <br>
@@ -204,7 +203,6 @@
                   <a href="{{ route('offers') }}" class="btn btn-danger btn-round">{{__('Back')}}</a>
                   <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
-                <hr class="half-rule"/>
 
               </div>
             </form>

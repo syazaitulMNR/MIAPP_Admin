@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-md-6 pr-1">
+                  <div class="col-md-4 pr-1">
                     <div class="form-group">
                       <label>{{__(" Date Start")}}<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="date_start" class="form-control" required>
@@ -48,11 +48,22 @@
                     </div>
                   </div>
     
-                  <div class="col-md-6 pr-1">
+                  <div class="col-md-4 pr-1">
                     <div class="form-group">
                       <label>{{__(" Date End")}}<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="date_end" class="form-control" required>
                       @include('alerts.feedback', ['field' => '	date_end'])
+                    </div>
+                  </div>
+
+                  <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                      <label>{{__(" Status")}}<span class="text-danger">*</span></label>
+                      <select class="form-control" name="status">
+                        <option value="Active">Active</option>
+                        <option value="Deactive">Deactive</option>
+                      </select>
+                      @include('alerts.feedback', ['field' => '	status'])
                     </div>
                   </div>
                 </div>
@@ -74,7 +85,6 @@
                       <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Program's Poster">
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
-                    <small class="text-danger float-right">*Suggestion size: 1920 x 1080 px</small>
                   </div>
                     <div class="col-md-6">
                       <br>
@@ -89,26 +99,12 @@
                     <div class="col-md-4 text-center" style="align-self: center;">
                       <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_program.png')}}" alt="avatar">
                     </div>
-                </div>
-    
-                <div class="row">
-                  <div class="col-md-6 pr-1">
-                    <div class="form-group">
-                      <label>{{__(" Status")}}<span class="text-danger">*</span></label>
-                      <select class="form-control" name="status">
-                        <option value="Active">Active</option>
-                        <option value="Deactive">Deactive</option>
-                      </select>
-                      @include('alerts.feedback', ['field' => '	status'])
-                    </div>
-                  </div>
-                </div>
+                </div><br>
 
                 <div class="card-footer text-right">
                   <a href="{{ route('programs') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
                   <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
-                <hr class="half-rule"/>
 
               </div>
             </form>

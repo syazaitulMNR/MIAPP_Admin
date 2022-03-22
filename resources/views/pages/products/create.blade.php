@@ -43,7 +43,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Description (Optional)")}}</label>
-                      <textarea rows="2" class="form-control" name="desc" placeholder="Insert Product's Description" ></textarea>
+                      <textarea rows="4" class="form-control" name="desc" placeholder="Insert Product's Description" ></textarea>
                       @include('alerts.feedback', ['field' => 'desc'])
                     </div>
                   </div>
@@ -52,11 +52,10 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Product Image")}}</label>
-                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image">
+                      <label>{{__(" Product Image")}}<span class="text-danger">*</span></label>
+                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
-                    <small class="text-danger float-right">*Suggestion size: 1080 x 1080 px</small>
                   </div>
                     <div class="col-md-6">
                       <br>
@@ -71,13 +70,12 @@
                     <div class="col-md-4 text-center" style="align-self: center;">
                       <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_product.png')}}" alt="avatar">
                     </div>
-                </div>
-    
+                </div><br>
+
                 <div class="card-footer text-right">
                   <a href="{{ route('products') }}" class="btn btn-danger btn-round">{{__('Cancel')}}</a>
                   <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                 </div>
-                <hr class="half-rule"/>
 
               </div>
             </form>

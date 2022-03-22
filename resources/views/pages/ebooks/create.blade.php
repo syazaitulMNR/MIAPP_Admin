@@ -31,9 +31,19 @@
                 <div class="row">
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
-                      <label>{{__(" Description")}}</label>
+                      <label>{{__(" Description (Optional)")}}</label>
                       <textarea rows="2" class="form-control" name="desc" placeholder="Insert EBook's Description" >{{ old('desc') }}</textarea>
                       @include('alerts.feedback', ['field' => 'desc'])
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">{{__(" PDF File")}}<span class="text-danger">*</span></label> <small class="text-danger">(Max size: 10 mb)</small>
+                      <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description" required>
+                      @include('alerts.feedback', ['field' => 'ebook_pdf'])
                     </div>
                   </div>
                 </div>
@@ -45,7 +55,6 @@
                       <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*">
                       @include('alerts.feedback', ['field' => 'ebook_cover'])
                     </div>
-                    <small class="text-danger float-right">*Suggestion size: 1250 x 1760 px</small>
                   </div>
                   <div class="col-md-6">
                     <br>
@@ -60,18 +69,7 @@
                   <div class="col-md-4 text-center" style="align-self: center;">
                     <img class="rounded" id="avatar" src="{{URL::to('/assets/img/no_ebook.png')}}" alt="avatar">
                   </div>
-                </div>
-
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">{{__(" PDF File")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description" required>
-                      @include('alerts.feedback', ['field' => 'ebook_pdf'])
-                    </div>
-                    <small class="text-danger float-right">*Max size: 10 mb</small>
-                  </div>
-                </div>
+                </div><br>
 
                 <div class="card-footer">
                   <div class="col-md-12 text-right">
@@ -80,8 +78,6 @@
                     <button type="submit" class="btn btn-success btn-round">{{__('Save')}}</button>
                   </div>
                 </div>
-
-              <hr class="half-rule"/>
               </div>
                 
             </form>
