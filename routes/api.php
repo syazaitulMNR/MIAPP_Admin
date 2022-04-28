@@ -22,6 +22,7 @@ Route::post('changeForgotPassword' , 'App\Http\Controllers\Api\AuthController@ch
 Route::get('ebooks/guestIndex' , 'App\Http\Controllers\Api\EBookController@guestIndex');
 Route::get('products/guestIndex' , 'App\Http\Controllers\Api\ProductController@guestIndex');
 Route::get('programs/guestIndex' , 'App\Http\Controllers\Api\ProgramController@guestIndex');
+Route::get('programs/latest' , 'App\Http\Controllers\Api\ProgramController@threeLatest');
 Route::get('promotions/guestIndex' , 'App\Http\Controllers\Api\OfferController@guestIndex');
 Route::get('profile/guestIndex' , 'App\Http\Controllers\Api\ProfileController@guestIndex');
 
