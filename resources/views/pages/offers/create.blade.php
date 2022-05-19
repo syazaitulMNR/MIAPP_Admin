@@ -107,7 +107,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Offer's Image">
+                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Offer's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>

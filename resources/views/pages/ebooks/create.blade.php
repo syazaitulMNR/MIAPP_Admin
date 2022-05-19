@@ -52,7 +52,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" EBook Cover")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*">
+                      <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*" required>
                       @include('alerts.feedback', ['field' => 'ebook_cover'])
                     </div>
                   </div>

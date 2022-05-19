@@ -25,7 +25,7 @@
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>{{__(" Event ID")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="program_id" class="form-control" placeholder="Insert Program ID (Refer MIMS)" required>
+                        <input type="text" name="program_id" class="form-control" value="{{ old('program_id') }}" placeholder="Insert Program ID (Refer MIMS)" required>
                         @include('alerts.feedback', ['field' => 'program_id'])
                       </div>
                   </div>
@@ -33,7 +33,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Event Name")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="program_name" class="form-control" placeholder="Insert Program Name" required>
+                      <input type="text" name="program_name" class="form-control" value="{{ old('program_name') }}" placeholder="Insert Program Name" required>
                       @include('alerts.feedback', ['field' => 'program_name'])
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
                       <label>{{__(" Date Start")}}<span class="text-danger">*</span></label>
-                      <input type="datetime-local" name="date_start" class="form-control" required>
+                      <input type="datetime-local" name="date_start" class="form-control" value="{{ old('date_start') }}" required>
                       @include('alerts.feedback', ['field' => 'date_start'])
                     </div>
                   </div>
@@ -51,7 +51,7 @@
                   <div class="col-md-4 pr-1">
                     <div class="form-group">
                       <label>{{__(" Date End")}}<span class="text-danger">*</span></label>
-                      <input type="datetime-local" name="date_end" class="form-control" required>
+                      <input type="datetime-local" name="date_end" class="form-control" value="{{ old('date_end') }}" required>
                       @include('alerts.feedback', ['field' => '	date_end'])
                     </div>
                   </div>
@@ -60,8 +60,8 @@
                     <div class="form-group">
                       <label>{{__(" Status")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="status">
-                        <option value="Active">Active</option>
-                        <option value="Deactive">Deactive</option>
+                        <option value="Active" @if (old('status') == 'Active') selected="selected" @endif >Active</option>
+                        <option value="Deactive" @if (old('status') == 'Deactive') selected="selected" @endif >Deactive</option>
                       </select>
                       @include('alerts.feedback', ['field' => '	status'])
                     </div>
@@ -72,7 +72,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Web Link")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="page_link" class="form-control" placeholder="Insert Link of Program's Landing Page" required>
+                      <input type="text" name="page_link" class="form-control" value="{{ old('page_link') }}" placeholder="Insert Link of Program's Landing Page" required>
                       @include('alerts.feedback', ['field' => 'page_link'])
                     </div>
                   </div>
@@ -82,7 +82,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Poster Image")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Program's Poster">
+                      <input type="file" name="img_path" class="form-control" value="{{ old('img_path') }}" id="input" accept="image/*" placeholder="Insert Program's Poster" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>
