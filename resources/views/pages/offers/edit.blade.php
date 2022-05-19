@@ -85,8 +85,8 @@
                   <div class="row">
                     <div class="col-md-6 pr-1">
                       <div class="form-group">
-                        <label>{{__(" Promo Code")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" value="{{ $offer->promo_code }}" required>
+                        <label>{{__(" Promo Code")}}</label>
+                        <input type="text" name="promo_code" class="form-control" placeholder="Insert Promo Code" value="{{ $offer->promo_code }}">
                         @include('alerts.feedback', ['field' => 'promo_code'])
                       </div>
                     </div>
