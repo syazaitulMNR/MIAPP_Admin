@@ -32,7 +32,7 @@ class ProgramController extends Controller
 
     public function threeLatest()
     {
-        $data = Program::orderBy('created_at' , 'DESC')->take(3)->get();
+        $data = Program::orderBy('created_at' , 'ASC')->where('status', 'Active')->get();
 
         return response([
             'status' => '200',
