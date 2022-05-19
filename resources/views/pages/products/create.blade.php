@@ -25,7 +25,7 @@
                   <div class="col-md-6 pr-1">
                       <div class="form-group">
                         <label>{{__(" Product ID")}}<span class="text-danger">*</span></label>
-                        <input type="text" name="product_id" class="form-control" placeholder="Insert Product ID" required>
+                        <input type="text" name="product_id" class="form-control" value="{{ old('product_id') }}" placeholder="Insert Product ID" required>
                         @include('alerts.feedback', ['field' => 'product_id'])
                       </div>
                   </div>
@@ -33,7 +33,7 @@
                   <div class="col-md-6 pr-1">
                     <div class="form-group">
                       <label>{{__(" Product Name")}}<span class="text-danger">*</span></label>
-                      <input type="text" name="product_name" class="form-control" placeholder="Insert Product Name" required>
+                      <input type="text" name="product_name" class="form-control" value="{{ old('product_name') }}" placeholder="Insert Product Name" required>
                       @include('alerts.feedback', ['field' => 'product_name'])
                     </div>
                   </div>
@@ -43,7 +43,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Description (Optional)")}}</label>
-                      <textarea rows="4" class="form-control" name="desc" placeholder="Insert Product's Description" ></textarea>
+                      <textarea rows="4" class="form-control" name="desc" value="{{ old('desc') }}" placeholder="Insert Product's Description" ></textarea>
                       @include('alerts.feedback', ['field' => 'desc'])
                     </div>
                   </div>
@@ -53,7 +53,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Product Image")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Product's Image" required>
+                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" value="{{ old('img_path') }}" placeholder="Insert Product's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>

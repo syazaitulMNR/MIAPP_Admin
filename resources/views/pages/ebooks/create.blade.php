@@ -42,7 +42,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputEmail1">{{__(" PDF File")}}<span class="text-danger">*</span></label> <small class="text-danger">(Max size: 10 mb)</small>
-                      <input type="file" name="ebook_pdf" class="form-control" placeholder="Insert EBook's Description" required>
+                      <input type="file" name="ebook_pdf" class="form-control" value="{{ old('ebook_pdf') }}" placeholder="Insert EBook's Description" required>
                       @include('alerts.feedback', ['field' => 'ebook_pdf'])
                     </div>
                   </div>
@@ -52,7 +52,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" EBook Cover")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="ebook_cover" class="form-control" id="input" accept="image/*" required>
+                      <input type="file" name="ebook_cover" class="form-control" value="{{ old('ebook_cover') }}" id="input" accept="image/*" required>
                       @include('alerts.feedback', ['field' => 'ebook_cover'])
                     </div>
                   </div>

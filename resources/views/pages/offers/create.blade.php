@@ -45,9 +45,9 @@
                       <label>{{__(" Promotion Type")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="type" id="type" onchange="ableCheckBox(this)" required>
                         <option value="">Please Select...</option>
-                        <option value="Product">Product</option>
-                        <option value="Event">Event</option>
-                        <option value="Product + Event">Product + Event</option>
+                        <option value="Product" @if (old('type') == 'Product') selected="selected" @endif >Product</option>
+                        <option value="Event" @if (old('type') == 'Event') selected="selected" @endif >Event</option>
+                        <option value="Product + Event" @if (old('type') == 'Product + Event') selected="selected" @endif >Product + Event</option>
                       </select>
                       @include('alerts.feedback', ['field' => '	type'])
                     </div>
@@ -75,8 +75,8 @@
                     <div class="form-group">
                       <label>{{__(" Status")}}<span class="text-danger">*</span></label>
                       <select class="form-control" name="status" required>
-                        <option value="Active">Active</option>
-                        <option value="Deactive">Deactive</option>
+                        <option value="Active" @if (old('status') == 'Active') selected="selected" @endif >Active</option>
+                        <option value="Deactive" @if (old('status') == 'Deactive') selected="selected" @endif >Deactive</option>
                       </select>
                       @include('alerts.feedback', ['field' => 'status'])
                     </div>
@@ -107,7 +107,7 @@
                   <div class="col-md-12 pr-1">
                     <div class="form-group">
                       <label>{{__(" Promo Image")}}<span class="text-danger">*</span></label>
-                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" placeholder="Insert Offer's Image" required>
+                      <input type="file" name="img_path" class="form-control" id="input" accept="image/*" value="{{ old('img_path') }}" placeholder="Insert Offer's Image" required>
                       @include('alerts.feedback', ['field' => 'img_path'])
                     </div>
                   </div>
